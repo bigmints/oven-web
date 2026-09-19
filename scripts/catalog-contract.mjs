@@ -86,6 +86,7 @@ export function validateCatalog(catalog) {
     )
       fail("evidence needs a summary and public HTTPS source");
     if (["source-reviewed", "verified"].includes(c.status)) {
+      if (!c.launch || typeof c.launch.packagePath !== "string" || c.launch.packageName !== app.packageName || c.launch.script !== app.preferredScript || typeof c.launch.command !== "string" || !c.launch.command.trim()) fail("reviewed entries need an exact recorded launch recipe");
       if (
         !/^[a-f0-9]{40}$/.test(c.commit || "") ||
         !c.checkedAt ||

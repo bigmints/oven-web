@@ -22,7 +22,8 @@
         "requirements": [
           "macOS with Oven",
           "Internet access for installation",
-          "Node.js workspace (bundled by Oven)"
+          "Pinned source declares Node 18 or newer and Yarn 1.22.22",
+          "Root start command delegates to the excalidraw-app workspace; installation on Oven has not been tested"
         ],
         "license": "MIT",
         "audience": "consumer"
@@ -39,14 +40,21 @@
             "source": "https://github.com/excalidraw/excalidraw/blob/97c68dd371e13c017a8dcca49f8b3995ba7890a8/LICENSE"
           },
           {
-            "summary": "Root package 'excalidraw-monorepo' exposes a 'start' script (vite dev --host)",
+            "summary": "Root package excalidraw-monorepo declares start = yarn --cwd ./excalidraw-app start. Package manager: yarn@1.22.22. Exact manifest verified; installation not tested.",
             "source": "https://github.com/excalidraw/excalidraw/blob/97c68dd371e13c017a8dcca49f8b3995ba7890a8/package.json"
           },
           {
-            "summary": "Vite-based web app; no native toolchain or external service required to launch",
+            "summary": "Upstream source and setup documentation reviewed. Transitive dependencies, external connections and macOS runtime behavior have not been exhaustively verified.",
             "source": "https://github.com/excalidraw/excalidraw/blob/97c68dd371e13c017a8dcca49f8b3995ba7890a8/README.md"
           }
-        ]
+        ],
+        "launch": {
+          "packagePath": "package.json",
+          "packageName": "excalidraw-monorepo",
+          "script": "start",
+          "command": "yarn --cwd ./excalidraw-app start",
+          "packageManager": "yarn@1.22.22"
+        }
       }
     },
     {
@@ -65,13 +73,14 @@
       "accent": "#3b82f6",
       "glyph": "AB",
       "editorial": {
-        "reason": "A dedicated place to plan spending with envelope budgeting. Native modules and an optional sync server need review before runtime use.",
+        "reason": "Envelope budgeting for planning personal spending, with local-first data. Sync and bank-connection setup is separate from the basic budgeting interface.",
         "bestFor": "Budget",
         "requirements": [
           "macOS with Oven",
           "Internet access for installation",
-          "Native modules (better-sqlite3, bcrypt, argon2, sharp) need review",
-          "Optional sync server and bank connections need review"
+          "Requires Node 22.18 or newer and Yarn 4; pinned source declares Yarn 4.17.1",
+          "Sync and bank connections may require separate services; these have not been tested",
+          "Native build requirements and first-run setup have not been verified on Oven"
         ],
         "license": "MIT",
         "audience": "consumer"
@@ -88,14 +97,21 @@
             "source": "https://github.com/actualbudget/actual/blob/749fa264571ce53940f055192ee2e0cc26b3e172/LICENSE"
           },
           {
-            "summary": "Root package 'actual' exposes a 'start' script (vite dev --host)",
+            "summary": "Root package actual declares start = yarn start:browser. Package manager: yarn@4.17.1. Exact manifest verified; installation not tested.",
             "source": "https://github.com/actualbudget/actual/blob/749fa264571ce53940f055192ee2e0cc26b3e172/package.json"
           },
           {
-            "summary": "Native dependencies (better-sqlite3, bcrypt, argon2, sharp) and a sync server may need native toolchains Oven does not provision",
+            "summary": "Upstream source and setup documentation reviewed. Transitive dependencies, external connections and macOS runtime behavior have not been exhaustively verified.",
             "source": "https://github.com/actualbudget/actual/blob/749fa264571ce53940f055192ee2e0cc26b3e172/package.json"
           }
-        ]
+        ],
+        "launch": {
+          "packagePath": "package.json",
+          "packageName": "actual",
+          "script": "start",
+          "command": "yarn start:browser",
+          "packageManager": "yarn@4.17.1"
+        }
       }
     },
     {
@@ -136,14 +152,21 @@
             "source": "https://github.com/iNikAnn/DoHabit/blob/be269c7b64ea1f7b99ad3e684ee3daa5b4b46bb0/LICENSE"
           },
           {
-            "summary": "Root package 'dohabit' exposes a 'dev' script (vite)",
+            "summary": "Root package dohabit declares dev = vite. Package manager: not declared. Exact manifest verified; installation not tested.",
             "source": "https://github.com/iNikAnn/DoHabit/blob/be269c7b64ea1f7b99ad3e684ee3daa5b4b46bb0/package.json"
           },
           {
-            "summary": "Vite + React app with no native dependencies or external services to launch",
+            "summary": "Upstream source and setup documentation reviewed. Transitive dependencies, external connections and macOS runtime behavior have not been exhaustively verified.",
             "source": "https://github.com/iNikAnn/DoHabit/blob/be269c7b64ea1f7b99ad3e684ee3daa5b4b46bb0/README.md"
           }
-        ]
+        ],
+        "launch": {
+          "packagePath": "package.json",
+          "packageName": "dohabit",
+          "script": "dev",
+          "command": "vite",
+          "packageManager": null
+        }
       }
     }
   ]

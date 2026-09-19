@@ -23,6 +23,7 @@ for (const app of catalog.apps) {
   if (app.compatibility.status === 'verified' && prior?.compatibility.status !== 'verified') errors.push(`${app.id}: Linux curator cannot promote macOS verification`);
 }
 if (errors.length) throw new Error(errors.join('\n'));
+execFileSync('python3',['scripts/verify-source-manifests.py','--changed-only'],{stdio:'inherit'});
 execFileSync(process.execPath,['--test','scripts/site.test.mjs'],{stdio:'inherit'});
 git('fetch','origin','main');
 if (git('rev-parse','HEAD') !== git('rev-parse','origin/main')) throw new Error('Remote changed. Reconcile manually; no overwrite attempted.');
