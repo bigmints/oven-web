@@ -7,11 +7,11 @@ Each app contains:
 
 - `id`: stable lowercase hyphenated slug, unique across the catalog.
 - `name`, `description`, `glyph`: upstream identity, plain-language purpose, and a short letter icon.
-- `category`: Developer tools, Design, Productivity, or Finance. Extend the public contract and desktop category list together when needed.
+- `category`: Everyday life, Productivity, Creativity, Photos & media, Learning, Personal finance, or Wellbeing. Extend the public contract and desktop category list together when needed.
 - `tags`: short relevant search terms; `accent`: six-digit hex color.
 - `repository`: canonical `https://github.com/owner/repository`, no query, fragment, credentials, branch or shell syntax.
 - `packageName`: actual runnable package name; `preferredScript`: `dev`, `start`, or `serve`. Do not guess through unrelated workspaces.
-- `editorial`: `reason`, `bestFor`, `requirements` (nonempty string array), `license` (SPDX when confirmed, null when unknown).
+- `editorial`: `audience` (must be `consumer`), `reason`, `bestFor`, `requirements` (nonempty string array), `license` (SPDX when confirmed, null when unknown).
 - `compatibility`: `status`, `checkedAt` (YYYY-MM-DD or null), `commit` (40-character SHA or null), `platform`, `launcherVersion`, `evidence`.
 
 Evidence records are `{ "kind": "source", "source": "https://...", "summary": "What this source establishes" }`. Public commit permalinks support source review. Runtime evidence should link to a public, redacted test report with distinct observations for `install`, `launch`, `health`, `smoke`, `restart`, and `cleanup`. The validator checks presence; the curator must assess truth and quality. A link repeated six times without actual observations is not verification.
@@ -24,6 +24,6 @@ Generated command: `open 'oven://install?repository=https%3A%2F%2Fgithub.com%2Fo
 Launch only: `open 'oven://open'`.
 Both require macOS with a built/installed Oven app that registers the `oven` scheme. Install handoff opens review; no unattended install/status API is currently provided. A browser cannot reliably detect app installation and should offer a visible download fallback, not claim launch success.
 
-Publishing uses `site/config.json` for public name, HTTPS site URL, real HTTPS release download URL, source URL and release version. `node scripts/build-site.mjs --release` fails without site URL, download and version. Use `SITE_BASE_PATH=/repository/` for GitHub project Pages or `/` for a custom-domain root. A preview build may show a truthful download-pending page.
+Publishing uses `site/config.json` for public name, HTTPS site URL, real HTTPS release download URL, source URL and release version. `node scripts/build-site.mjs --release` fails without site URL, download and version. Use `SITE_BASE_PATH=/oven-web/` for GitHub project Pages or `/` for a custom-domain root. A preview build may show a truthful download-pending page.
 
 For the later platform, retain stable IDs and versioned public JSON. Add submissions, moderation state and contributor identity in separate storage; accepted entries are exported into this contract. Avoid changing public URLs when replacing the static renderer or adding accounts.

@@ -26,7 +26,7 @@ test("evidence gate rejects unsupported claims and command injection", () => {
 });
 test("root and project Pages builds have working local links and per-app commands", () => {
   try {
-    for (const base of ["/", "/oven-site/"]) {
+    for (const base of ["/", "/oven-web/"]) {
       execFileSync(process.execPath, ["scripts/build-site.mjs"], {
         cwd: root,
         env: { ...process.env, SITE_BASE_PATH: base },

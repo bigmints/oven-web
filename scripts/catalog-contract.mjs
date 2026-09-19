@@ -1,9 +1,4 @@
-export const CATEGORIES = [
-  "Developer tools",
-  "Design",
-  "Productivity",
-  "Finance",
-];
+export const CATEGORIES = ["Everyday life", "Productivity", "Creativity", "Photos & media", "Learning", "Personal finance", "Wellbeing"];
 export const STATUSES = [
   "unverified",
   "source-reviewed",
@@ -57,6 +52,7 @@ export function validateCatalog(catalog) {
     )
       fail("invalid tags");
     const e = app.editorial;
+    if (e?.audience !== "consumer") fail("only consumer apps belong in this catalog");
     if (
       !e ||
       !e.reason?.trim() ||

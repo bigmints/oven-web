@@ -29,7 +29,7 @@ jobs:
       - run: node --test scripts/site.test.mjs
       - name: Build
         env:
-          SITE_BASE_PATH: /oven-site/
+          SITE_BASE_PATH: /oven-web/
           PUBLISH: ${{ github.event_name == 'workflow_dispatch' }}
           PREVIEW: ${{ inputs.preview }}
         run: |
@@ -39,11 +39,11 @@ jobs:
             node scripts/build-site.mjs
           fi
       - uses: actions/upload-pages-artifact@v3
-        if: github.event_name == 'workflow_dispatch'
+        if: github.event_name != 'pull_request'
         with:
           path: site-dist
   deploy:
-    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
     permissions:
