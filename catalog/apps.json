@@ -22,18 +22,31 @@
         "requirements": [
           "macOS with Oven",
           "Internet access for installation",
-          "Upstream requirements need review"
+          "Node.js workspace (bundled by Oven)"
         ],
-        "license": null,
+        "license": "MIT",
         "audience": "consumer"
       },
       "compatibility": {
-        "status": "unverified",
-        "checkedAt": null,
-        "commit": null,
+        "status": "source-reviewed",
+        "checkedAt": "2026-09-19",
+        "commit": "97c68dd371e13c017a8dcca49f8b3995ba7890a8",
         "platform": null,
         "launcherVersion": null,
-        "evidence": []
+        "evidence": [
+          {
+            "summary": "MIT license confirmed at the checked commit",
+            "source": "https://github.com/excalidraw/excalidraw/blob/97c68dd371e13c017a8dcca49f8b3995ba7890a8/LICENSE"
+          },
+          {
+            "summary": "Root package 'excalidraw-monorepo' exposes a 'start' script (vite dev --host)",
+            "source": "https://github.com/excalidraw/excalidraw/blob/97c68dd371e13c017a8dcca49f8b3995ba7890a8/package.json"
+          },
+          {
+            "summary": "Vite-based web app; no native toolchain or external service required to launch",
+            "source": "https://github.com/excalidraw/excalidraw/blob/97c68dd371e13c017a8dcca49f8b3995ba7890a8/README.md"
+          }
+        ]
       }
     },
     {
@@ -52,23 +65,85 @@
       "accent": "#3b82f6",
       "glyph": "AB",
       "editorial": {
-        "reason": "A dedicated place to plan spending with envelope budgeting. Server, sync and bank-connection requirements still need review.",
+        "reason": "A dedicated place to plan spending with envelope budgeting. Native modules and an optional sync server need review before runtime use.",
         "bestFor": "Budget",
         "requirements": [
           "macOS with Oven",
           "Internet access for installation",
-          "Upstream requirements need review"
+          "Native modules (better-sqlite3, bcrypt, argon2, sharp) need review",
+          "Optional sync server and bank connections need review"
         ],
-        "license": null,
+        "license": "MIT",
         "audience": "consumer"
       },
       "compatibility": {
-        "status": "unverified",
-        "checkedAt": null,
-        "commit": null,
+        "status": "source-reviewed",
+        "checkedAt": "2026-09-19",
+        "commit": "749fa264571ce53940f055192ee2e0cc26b3e172",
         "platform": null,
         "launcherVersion": null,
-        "evidence": []
+        "evidence": [
+          {
+            "summary": "MIT license confirmed at the checked commit",
+            "source": "https://github.com/actualbudget/actual/blob/749fa264571ce53940f055192ee2e0cc26b3e172/LICENSE"
+          },
+          {
+            "summary": "Root package 'actual' exposes a 'start' script (vite dev --host)",
+            "source": "https://github.com/actualbudget/actual/blob/749fa264571ce53940f055192ee2e0cc26b3e172/package.json"
+          },
+          {
+            "summary": "Native dependencies (better-sqlite3, bcrypt, argon2, sharp) and a sync server may need native toolchains Oven does not provision",
+            "source": "https://github.com/actualbudget/actual/blob/749fa264571ce53940f055192ee2e0cc26b3e172/package.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dohabit",
+      "name": "DoHabit",
+      "description": "Track daily habits and routines with a local-first calendar and streaks.",
+      "category": "Wellbeing",
+      "tags": [
+        "Habits",
+        "Routines",
+        "Local-first"
+      ],
+      "repository": "https://github.com/iNikAnn/DoHabit",
+      "packageName": "dohabit",
+      "preferredScript": "dev",
+      "accent": "#10b981",
+      "glyph": "DH",
+      "editorial": {
+        "reason": "A local-first habit tracker that keeps routines and streaks on your own device, with no account or cloud required.",
+        "bestFor": "Habits",
+        "requirements": [
+          "macOS with Oven",
+          "Internet access for installation",
+          "Node.js workspace (bundled by Oven)"
+        ],
+        "license": "AGPL-3.0",
+        "audience": "consumer"
+      },
+      "compatibility": {
+        "status": "source-reviewed",
+        "checkedAt": "2026-09-19",
+        "commit": "be269c7b64ea1f7b99ad3e684ee3daa5b4b46bb0",
+        "platform": null,
+        "launcherVersion": null,
+        "evidence": [
+          {
+            "summary": "AGPL-3.0 license confirmed at the checked commit",
+            "source": "https://github.com/iNikAnn/DoHabit/blob/be269c7b64ea1f7b99ad3e684ee3daa5b4b46bb0/LICENSE"
+          },
+          {
+            "summary": "Root package 'dohabit' exposes a 'dev' script (vite)",
+            "source": "https://github.com/iNikAnn/DoHabit/blob/be269c7b64ea1f7b99ad3e684ee3daa5b4b46bb0/package.json"
+          },
+          {
+            "summary": "Vite + React app with no native dependencies or external services to launch",
+            "source": "https://github.com/iNikAnn/DoHabit/blob/be269c7b64ea1f7b99ad3e684ee3daa5b4b46bb0/README.md"
+          }
+        ]
       }
     }
   ]
