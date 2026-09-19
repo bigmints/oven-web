@@ -1,0 +1,226 @@
+{
+  "schemaVersion": 1,
+  "apps": [
+    {
+      "id": "it-tools",
+      "name": "IT-Tools",
+      "description": "Everyday converters, generators, formatters, and web utilities in one place.",
+      "category": "Developer tools",
+      "tags": [
+        "Utilities",
+        "Converters",
+        "Vue"
+      ],
+      "repository": "https://github.com/CorentinTh/it-tools",
+      "packageName": "it-tools",
+      "preferredScript": "dev",
+      "accent": "#7c5cff",
+      "glyph": "IT",
+      "editorial": {
+        "reason": "A useful first stop for small conversion and formatting tasks that otherwise send you searching for separate websites.",
+        "bestFor": "Utilities",
+        "requirements": [
+          "macOS with NodeLauncher",
+          "Internet access for installation",
+          "Upstream requirements need review"
+        ],
+        "license": null
+      },
+      "compatibility": {
+        "status": "unverified",
+        "checkedAt": null,
+        "commit": null,
+        "platform": null,
+        "launcherVersion": null,
+        "evidence": []
+      }
+    },
+    {
+      "id": "json-crack",
+      "name": "JSON Crack",
+      "description": "Explore JSON, YAML, XML, CSV, and data structures as interactive diagrams.",
+      "category": "Developer tools",
+      "tags": [
+        "JSON",
+        "Visualizer",
+        "Data"
+      ],
+      "repository": "https://github.com/AykutSarac/jsoncrack.com",
+      "packageName": "www",
+      "preferredScript": "dev",
+      "accent": "#ff6b57",
+      "glyph": "JC",
+      "editorial": {
+        "reason": "Explore JSON, YAML, XML, CSV, and data structures as interactive diagrams.",
+        "bestFor": "JSON",
+        "requirements": [
+          "macOS with NodeLauncher",
+          "Internet access for installation",
+          "Upstream requirements need review"
+        ],
+        "license": null
+      },
+      "compatibility": {
+        "status": "unverified",
+        "checkedAt": null,
+        "commit": null,
+        "platform": null,
+        "launcherVersion": null,
+        "evidence": []
+      }
+    },
+    {
+      "id": "drawdb",
+      "name": "drawDB",
+      "description": "Design database diagrams in your browser and export SQL schemas.",
+      "category": "Developer tools",
+      "tags": [
+        "Database",
+        "Diagram",
+        "Vite"
+      ],
+      "repository": "https://github.com/drawdb-io/drawdb",
+      "packageName": "drawdb",
+      "preferredScript": "dev",
+      "accent": "#14b8a6",
+      "glyph": "DB",
+      "editorial": {
+        "reason": "Turns a database idea into an editable diagram and SQL export, with a documented local Node setup and no required account for the core editor.",
+        "bestFor": "Planning database schemas and exporting SQL",
+        "requirements": [
+          "macOS with Oven; Internet access for dependency installation",
+          "The core editor uses npm and Vite; no database server is documented as required",
+          "Sharing requires a separate optional drawDB server and VITE_BACKEND_URL configuration",
+          "Upstream includes analytics and network-capable dependencies; offline behavior and privacy have not been audited"
+        ],
+        "license": "AGPL-3.0"
+      },
+      "compatibility": {
+        "status": "source-reviewed",
+        "checkedAt": "2026-09-19",
+        "commit": "1e6349ec98698ed841fdcbb15f594f5578212f5a",
+        "platform": null,
+        "launcherVersion": null,
+        "evidence": [
+          {
+            "kind": "source",
+            "source": "https://github.com/drawdb-io/drawdb/blob/1e6349ec98698ed841fdcbb15f594f5578212f5a/package.json",
+            "summary": "Root package is drawdb, with dev = vite and npm package-lock.json present. No root install lifecycle scripts declared. Dependencies include Vite 8 and network-capable libraries; no runtime test performed."
+          },
+          {
+            "kind": "requirements",
+            "source": "https://github.com/drawdb-io/drawdb/blob/1e6349ec98698ed841fdcbb15f594f5578212f5a/README.md",
+            "summary": "Documents npm install and npm run dev. The sharing server is optional and requires environment configuration."
+          },
+          {
+            "kind": "license",
+            "source": "https://github.com/drawdb-io/drawdb/blob/1e6349ec98698ed841fdcbb15f594f5578212f5a/LICENSE",
+            "summary": "Upstream license text identifies GNU Affero General Public License version 3."
+          }
+        ]
+      }
+    },
+    {
+      "id": "excalidraw",
+      "name": "Excalidraw",
+      "description": "A hand-drawn whiteboard for diagrams, sketches, and collaborative thinking.",
+      "category": "Design",
+      "tags": [
+        "Whiteboard",
+        "Drawing",
+        "Local"
+      ],
+      "repository": "https://github.com/excalidraw/excalidraw",
+      "packageName": "excalidraw-monorepo",
+      "preferredScript": "start",
+      "accent": "#6965db",
+      "glyph": "EX",
+      "editorial": {
+        "reason": "A hand-drawn whiteboard for diagrams, sketches, and collaborative thinking.",
+        "bestFor": "Whiteboard",
+        "requirements": [
+          "macOS with NodeLauncher",
+          "Internet access for installation",
+          "Upstream requirements need review"
+        ],
+        "license": null
+      },
+      "compatibility": {
+        "status": "unverified",
+        "checkedAt": null,
+        "commit": null,
+        "platform": null,
+        "launcherVersion": null,
+        "evidence": []
+      }
+    },
+    {
+      "id": "dashy",
+      "name": "Dashy",
+      "description": "Build a personal start page for links, services, status checks, and widgets.",
+      "category": "Productivity",
+      "tags": [
+        "Dashboard",
+        "Start page",
+        "Widgets"
+      ],
+      "repository": "https://github.com/Lissy93/dashy",
+      "packageName": "dashy",
+      "preferredScript": "dev",
+      "accent": "#22c55e",
+      "glyph": "DA",
+      "editorial": {
+        "reason": "Build a personal start page for links, services, status checks, and widgets.",
+        "bestFor": "Dashboard",
+        "requirements": [
+          "macOS with NodeLauncher",
+          "Internet access for installation",
+          "Upstream requirements need review"
+        ],
+        "license": null
+      },
+      "compatibility": {
+        "status": "unverified",
+        "checkedAt": null,
+        "commit": null,
+        "platform": null,
+        "launcherVersion": null,
+        "evidence": []
+      }
+    },
+    {
+      "id": "actual-budget",
+      "name": "Actual Budget",
+      "description": "Plan personal finances with envelope budgeting and local-first data.",
+      "category": "Finance",
+      "tags": [
+        "Budget",
+        "Local-first",
+        "Privacy"
+      ],
+      "repository": "https://github.com/actualbudget/actual",
+      "packageName": "actual",
+      "preferredScript": "start",
+      "accent": "#3b82f6",
+      "glyph": "AB",
+      "editorial": {
+        "reason": "A dedicated place to plan spending with envelope budgeting. Server, sync and bank-connection requirements still need review.",
+        "bestFor": "Budget",
+        "requirements": [
+          "macOS with NodeLauncher",
+          "Internet access for installation",
+          "Upstream requirements need review"
+        ],
+        "license": null
+      },
+      "compatibility": {
+        "status": "unverified",
+        "checkedAt": null,
+        "commit": null,
+        "platform": null,
+        "launcherVersion": null,
+        "evidence": []
+      }
+    }
+  ]
+}

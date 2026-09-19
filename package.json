@@ -1,0 +1,14 @@
+{
+  "name": "oven-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "node scripts/build-site.mjs",
+    "check": "node scripts/validate-catalog.mjs && node --test scripts/site.test.mjs",
+    "preview": "node scripts/preview-site.mjs"
+  }
+}

@@ -1,0 +1,58 @@
+name: Pages
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      preview:
+        description: Publish a preview without a desktop download
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/validate-catalog.mjs
+      - run: node --test scripts/site.test.mjs
+      - name: Build
+        env:
+          SITE_BASE_PATH: /oven-site/
+          PUBLISH: ${{ github.event_name == 'workflow_dispatch' }}
+          PREVIEW: ${{ inputs.preview }}
+        run: |
+          if [ "$PUBLISH" = "true" ] && [ "$PREVIEW" != "true" ]; then
+            node scripts/build-site.mjs --release
+          else
+            node scripts/build-site.mjs
+          fi
+      - uses: actions/upload-pages-artifact@v3
+        if: github.event_name == 'workflow_dispatch'
+        with:
+          path: site-dist
+  deploy:
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
