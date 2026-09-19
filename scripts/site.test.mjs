@@ -49,6 +49,7 @@ test("root and project Pages builds have working local links and per-app command
       }
       for (const page of [
         "index.html",
+        "apps/index.html",
         "agents/index.html",
         "download/index.html",
         ...catalog.apps.map((a) => `apps/${a.id}/index.html`),
@@ -72,6 +73,23 @@ test("root and project Pages builds have working local links and per-app command
           );
         }
       }
+      const home = readFileSync(
+        new URL("../site-dist/index.html", import.meta.url),
+        "utf8",
+      );
+      const apps = readFileSync(
+        new URL("../site-dist/apps/index.html", import.meta.url),
+        "utf8",
+      );
+      assert(home.includes(`href="${base}apps/"`));
+      assert(!home.includes("id=\"search\""));
+      assert(apps.includes("id=\"search\""));
+      assert(apps.includes(`${catalog.apps.length} apps to explore`));
+      const sitemap = readFileSync(
+        new URL("../site-dist/sitemap.xml", import.meta.url),
+        "utf8",
+      );
+      assert(sitemap.includes("/apps/</loc>"));
     }
   } finally {
     execFileSync(process.execPath, ["scripts/build-site.mjs"], {

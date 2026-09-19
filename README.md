@@ -1,6 +1,6 @@
 # Oven
 
-A public collection of consumer-grade open-source apps for Oven on macOS. Built for people and agents, with individual app pages, compatibility evidence, install-review links and copyable agent commands.
+A public collection of consumer-grade open-source apps for Oven on macOS. The dedicated `/apps/` catalog supports search and category filters, while individual app pages include compatibility evidence, install-review links and copyable agent commands for people and agents.
 
 ## Run locally
 
