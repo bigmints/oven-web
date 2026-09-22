@@ -1,4 +1,5 @@
 import { readFile, writeFile, mkdir, rm, copyFile, cp } from "node:fs/promises";
+import { existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import {
@@ -205,6 +206,12 @@ await cp(
   { recursive: true },
 );
 await cp(path.join(root, "site/brand"), path.join(output, "brand"), { recursive: true });
+const updaterManifest = path.join(root, "site/updates/latest.json");
+if (existsSync(updaterManifest)) {
+  if (!config.downloadUrl) throw new Error("Configure the public download before publishing the updater feed.");
+  await mkdir(path.join(output, "updates"), { recursive: true });
+  await copyFile(updaterManifest, path.join(output, "updates/latest.json"));
+}
 await cp(path.join(output, "skills/picorunner-curator"), path.join(output, "skills/oven-curator"), { recursive: true });
 console.log(
   `Built ${catalog.apps.length} app pages in site-dist (base ${base}). ${config.downloadUrl ? "Download configured." : "Preview only: release download not configured."}`,
