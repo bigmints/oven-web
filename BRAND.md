@@ -1,32 +1,38 @@
 # PicoRunner identity
 
-Use **PicoRunner** in visible copy and **picorunner.com** for public web links.
+Use **PicoRunner** in visible copy and **picorunner.com** for public links.
 The desktop bundle identifier is `com.bigmints.picorunner`.
 
-The original geometric wordmark and P/play symbol are path-based SVGs generated
-by `node scripts/build-brand.mjs`. Do not substitute a typed font for the logo.
-Use the complete lockup in navigation, the wordmark in About, and the symbol or
-rounded icon where space is limited. Keep artwork proportions unchanged.
+The approved identity is **Folded P**: an original geometric P with heavy
+mixed-case lettering. Primary artwork is black (`#080808`) on white; use the
+white reverse version on dark backgrounds. Keep the wordmark transparent.
+Do not add a play triangle, colored gradient, outline, or shadow to the mark.
 
-- Pine: `#245344`
-- Dark ink: `#19392f`
-- Pale lime: `#eaf2cd`
-- Warm white: `#f7f8f2`
+The lettering is stored as vector outlines in `scripts/brand/wordmark.json`.
+It was outlined from locally licensed Arial Black; no font software is
+embedded or distributed. It has no runtime font dependency.
 
-`site/brand` is the vector source of truth. The desktop uses copies in
-`node-launcher/public/brand`; its sidebar mark is `public/picorunner-mark.svg`.
-After updating the vectors, copy them to those locations and run
-`pnpm tauri icon public/brand/app-icon.svg` in the desktop repository. The
-app icon includes its own macOS-safe inset. Tray artwork is a monochrome,
-36-by-36 RGBA rendering of `symbol.svg`.
+Regenerate SVGs with:
 
-The share image is `site/brand/social-card.png` at 1200 by 630 pixels.
-Render SVG strokes with a browser or the Tauri SVG rasterizer: ImageMagick's
-SVG reader can omit the wordmark strokes. To reproduce the existing PNG,
-copy `social-card.svg` to a temporary file with a 1200-by-1200 viewBox,
-run `pnpm tauri icon /tmp/picorunner-social-square.svg -p 1200 -o /tmp/picorunner-social-render`
-in the desktop repository, then crop the resulting PNG to the top 1200 by 630
-pixels. Inspect the output before committing it.
+```sh
+node scripts/build-brand.mjs
+```
 
-Historical repository names and the legacy `oven://` protocol remain for
-compatibility. They must not replace PicoRunner in product-facing copy.
+With ImageMagick installed, regenerate PNGs and synchronize the desktop:
+
+```sh
+node scripts/render-brand.mjs --desktop ../node-launcher
+```
+
+This copies shared SVGs, regenerates the transparent 36-by-36 RGBA tray
+silhouette, and invokes Tauri's icon builder. A desktop build and new signing/
+notarization are required after changing its icons or embedded assets.
+
+Use `lockup.svg` in website navigation, `wordmark.svg` in About, and
+`icon.svg` in compact app UI. `app-icon.svg` contains its own macOS-safe
+inset. The share card is `social-card.png` at 1200 by 630 pixels.
+
+The selected concept and its exploration board are archived in
+`design/brand-v2`. The canonical production artwork is `site/brand`.
+Historical repository names and the legacy `oven://` protocol remain only
+for compatibility.
