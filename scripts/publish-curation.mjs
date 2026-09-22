@@ -29,6 +29,6 @@ git('fetch','origin','main');
 if (git('rev-parse','HEAD') !== git('rev-parse','origin/main')) throw new Error('Remote changed. Reconcile manually; no overwrite attempted.');
 git('add','--',...paths);
 git('diff','--cached','--check');
-git('commit','-m','Curate consumer apps for Oven');
+git('commit','-m','Curate consumer apps for PicoRunner');
 git('push','origin','HEAD:main');
 console.log(`Published curation commit ${git('rev-parse','HEAD')}. GitHub Pages deployment is triggered; deployment completion is not established by this push.`);

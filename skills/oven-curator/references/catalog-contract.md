@@ -22,9 +22,9 @@ Source-reviewed entries also need `compatibility.launch`: `{ "packagePath": "pac
 
 The installed desktop currently fetches the repository default branch, not the recorded verification commit. Always show the tested date/commit and the possibility of upstream drift. Do not describe installations as pinned, reproducible or guaranteed. A future pinned install flow requires a new desktop contract and compatibility testing.
 
-Generated command: `open 'oven://install?repository=https%3A%2F%2Fgithub.com%2Fowner%2Frepository'`.
-Launch only: `open 'oven://open'`.
-Both require macOS with a built/installed Oven app that registers the `oven` scheme. Install handoff opens review; no unattended install/status API is currently provided. A browser cannot reliably detect app installation and should offer a visible download fallback, not claim launch success.
+Generated command: `open 'picorunner://install?repository=https%3A%2F%2Fgithub.com%2Fowner%2Frepository'`.
+Launch only: `open 'picorunner://open'`.
+Both require macOS with a built/installed PicoRunner app that registers the `oven` scheme. Install handoff opens review; no unattended install/status API is currently provided. A browser cannot reliably detect app installation and should offer a visible download fallback, not claim launch success.
 
 Publishing uses `site/config.json` for public name, HTTPS site URL, real HTTPS release download URL, source URL and release version. `node scripts/build-site.mjs --release` fails without site URL, download and version. Use `SITE_BASE_PATH=/oven-web/` for GitHub project Pages or `/` for a custom-domain root. A preview build may show a truthful download-pending page.
 

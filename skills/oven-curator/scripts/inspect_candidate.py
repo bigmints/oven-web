@@ -15,7 +15,7 @@ LIMIT = 2 * 1024 * 1024
 
 def fetch(endpoint):
     request = Request("https://api.github.com/" + endpoint, headers={
-        "Accept": "application/vnd.github+json", "User-Agent": "Oven-Curator/1"
+        "Accept": "application/vnd.github+json", "User-Agent": "PicoRunner-Curator/1"
     })
     try:
         with urlopen(request, timeout=25) as response:

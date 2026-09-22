@@ -20,10 +20,10 @@
         "reason": "An approachable canvas for sketching everyday ideas and sharing them as drawings.",
         "bestFor": "Whiteboard",
         "requirements": [
-          "macOS with Oven",
+          "macOS with PicoRunner",
           "Internet access for installation",
           "Pinned source declares Node 18 or newer and Yarn 1.22.22",
-          "Root start command delegates to the excalidraw-app workspace; installation on Oven has not been tested"
+          "Root start command delegates to the excalidraw-app workspace; installation on PicoRunner has not been tested"
         ],
         "license": "MIT",
         "audience": "consumer"
@@ -76,11 +76,11 @@
         "reason": "Envelope budgeting for planning personal spending, with local-first data. Sync and bank-connection setup is separate from the basic budgeting interface.",
         "bestFor": "Budget",
         "requirements": [
-          "macOS with Oven",
+          "macOS with PicoRunner",
           "Internet access for installation",
           "Requires Node 22.18 or newer and Yarn 4; pinned source declares Yarn 4.17.1",
           "Sync and bank connections may require separate services; these have not been tested",
-          "Native build requirements and first-run setup have not been verified on Oven"
+          "Native build requirements and first-run setup have not been verified on PicoRunner"
         ],
         "license": "MIT",
         "audience": "consumer"
@@ -133,9 +133,9 @@
         "reason": "A local-first habit tracker that keeps routines and streaks on your own device, with no account or cloud required.",
         "bestFor": "Habits",
         "requirements": [
-          "macOS with Oven",
+          "macOS with PicoRunner",
           "Internet access for installation",
-          "Node.js workspace (bundled by Oven)"
+          "Node.js workspace (bundled by PicoRunner)"
         ],
         "license": "AGPL-3.0",
         "audience": "consumer"

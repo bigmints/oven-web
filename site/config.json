@@ -1,8 +1,8 @@
 {
-  "name": "Oven",
+  "name": "PicoRunner",
   "tagline": "Good apps. At home on your Mac.",
-  "description": "Discover useful open-source apps and bring them to your Mac with Oven.",
-  "siteUrl": "https://bigmints.github.io/oven-web/",
+  "description": "Discover useful open-source apps and bring them to your Mac with PicoRunner.",
+  "siteUrl": "https://picorunner.com/",
   "downloadUrl": null,
   "sourceUrl": "https://github.com/bigmints/oven-web",
   "releaseVersion": null

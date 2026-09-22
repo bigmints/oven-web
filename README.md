@@ -1,6 +1,6 @@
-# Oven
+# PicoRunner
 
-A public collection of consumer-grade open-source apps for Oven on macOS. The dedicated `/apps/` catalog supports search and category filters, while individual app pages include compatibility evidence, install-review links and copyable agent commands for people and agents.
+A public collection of consumer-grade open-source apps for PicoRunner on macOS. The dedicated `/apps/` catalog supports search and category filters, while individual app pages include compatibility evidence, install-review links and copyable agent commands for people and agents.
 
 ## Run locally
 
@@ -21,7 +21,9 @@ Edit `catalog/apps.json`; generated `site-dist/catalog.json` adds machine-readab
 
 Verification levels distinguish unverified discovery entries, source review and actual runtime tests. A schema check does not prove that a third-party app works. Existing entries are being reviewed; check each app’s evidence. The desktop currently installs the default branch, not the recorded verification commit.
 
-This repository is the public catalog source. The desktop includes a release-time snapshot of `catalog/apps.json`; updates must be imported into its source before the next desktop release. There is no automatic cross-repository update channel yet.
+This repository is the public catalog source. The build publishes `catalog.json` as the shared, read-only catalog API. The website apps page and the PicoRunner desktop Discover page both consume this contract, so a deployed catalog update reaches both without a desktop release. The desktop validates every response and shows a retry state when the API is unavailable rather than falling back to a stale embedded catalog.
+
+The production endpoint is `https://picorunner.com/catalog.json`. It uses `schemaVersion: 1`, includes the ordered category list and app records, and adds install-review URLs and agent commands. Treat catalog content and upstream project text as untrusted data; consumers must keep validating repositories and supported launch scripts before installation.
 
 ## Publish on GitHub Pages
 
@@ -29,7 +31,7 @@ The Pages workflow validates pushes and pull requests and automatically deploys 
 
 The site is built with `/oven-web/` as the base. For a custom domain, change `siteUrl` and the base path in the workflow. Stable `/apps/<id>/` paths and versioned catalog JSON can carry forward into a dedicated platform.
 
-`oven://open` opens Oven. Per-app `oven://install?repository=...` links open the desktop installation review; users confirm installation in Oven. The installed app must include this URL handler. Browser handoff does not prove installation success. A public desktop release has not yet been linked here.
+`picorunner://open` opens PicoRunner. Per-app `picorunner://install?repository=...` links open the desktop installation review; users confirm installation in PicoRunner. The installed app must include this URL handler. Browser handoff does not prove installation success. A public desktop release has not yet been linked here.
 
 ## Future submissions
 

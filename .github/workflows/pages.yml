@@ -29,7 +29,7 @@ jobs:
       - run: node --test scripts/site.test.mjs
       - name: Build
         env:
-          SITE_BASE_PATH: /oven-web/
+          SITE_BASE_PATH: /
           PUBLISH: ${{ github.event_name == 'workflow_dispatch' }}
           PREVIEW: ${{ inputs.preview }}
         run: |

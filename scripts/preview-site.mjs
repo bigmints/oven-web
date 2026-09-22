@@ -17,4 +17,4 @@ http.createServer(async (req, res) => {
     res.writeHead(200, {"Content-Type": `${types[path.extname(file)] || "application/octet-stream"}; charset=utf-8`, "X-Content-Type-Options":"nosniff"});
     res.end(data);
   } catch { res.writeHead(404, {"Content-Type":"text/plain"}); res.end("Not found"); }
-}).listen(port, "127.0.0.1", () => console.log(`Oven catalog: http://127.0.0.1:${port}${base}`));
+}).listen(port, "127.0.0.1", () => console.log(`PicoRunner catalog: http://127.0.0.1:${port}${base}`));

@@ -11,7 +11,7 @@ export const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 export function installUrl(app) {
   if (!repositoryPattern.test(app.repository))
     throw new Error("Invalid repository");
-  return `oven://install?repository=${encodeURIComponent(app.repository)}`;
+  return `picorunner://install?repository=${encodeURIComponent(app.repository)}`;
 }
 export function agentCommand(app) {
   return `open '${installUrl(app)}'`;

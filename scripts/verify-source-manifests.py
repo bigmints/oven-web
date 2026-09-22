@@ -37,7 +37,7 @@ for app in catalog["apps"]:
         if not re.fullmatch(r"(?:[A-Za-z0-9_@.-]+/)*package\.json", manifest_path) or ".." in manifest_path.split("/"):
             raise ValueError("Invalid package manifest path")
         url = f"https://api.github.com/repos/{repo}/contents/{quote(manifest_path, safe='/')}?ref={c['commit']}"
-        request = Request(url, headers={"Accept":"application/vnd.github+json", "User-Agent":"Oven-Source-Verification/1"})
+        request = Request(url, headers={"Accept":"application/vnd.github+json", "User-Agent":"PicoRunner-Source-Verification/1"})
         with urlopen(request, timeout=30) as response:
             raw = response.read(2 * 1024 * 1024 + 1)
         if len(raw) > 2 * 1024 * 1024:
@@ -53,7 +53,7 @@ for app in catalog["apps"]:
             if launch.get(key) != value:
                 raise ValueError(f"Recorded {key} does not match upstream")
         license_url = f"https://api.github.com/repos/{repo}/license?ref={c['commit']}"
-        request = Request(license_url, headers={"Accept":"application/vnd.github+json", "User-Agent":"Oven-Source-Verification/1"})
+        request = Request(license_url, headers={"Accept":"application/vnd.github+json", "User-Agent":"PicoRunner-Source-Verification/1"})
         with urlopen(request, timeout=30) as response:
             raw = response.read(2 * 1024 * 1024 + 1)
         if len(raw) > 2 * 1024 * 1024:

@@ -1,11 +1,11 @@
 # Consumer curation automation
 
-Website: https://bigmints.github.io/oven-web/
+Website: https://picorunner.com/
 Repository: https://github.com/bigmints/oven-web
 
 The owner authorized daily automatic publication of qualifying consumer apps on 2026-09-19. The native Hermes job runs on ubot-server with its existing configured model and gateway; no extra scheduler or Codex automation is involved.
 
-- Job: `9b2a3d5230a8` — Oven daily consumer app curation.
+- Job: `9b2a3d5230a8` — PicoRunner daily consumer app curation.
 - Schedule: every 24 hours, approximately 18:59 Asia/Dubai (14:59 UTC).
 - Working directory: `/root/projects/oven-web`.
 - Skill: `oven-curator`; continuity enabled to preserve the prior run's summary.
@@ -14,7 +14,7 @@ The owner authorized daily automatic publication of qualifying consumer apps on 
 
 The job screens consumer usefulness and supported installation requirements, records exact upstream commits and licenses, and can edit only the catalog and dated curation reports. The publisher rejects out-of-scope files, unreviewed changed listings, an empty catalog, runtime-verification promotion by the Linux curator, and unexpected remote history. Main-branch pushes trigger validation and GitHub Pages deployment.
 
-Linux source research is not proof of a successful macOS Oven installation. The job cannot install or run candidate code, provision services, change website/deployment code, or alter release downloads. Apps requiring unsupported runtimes or consumers to administer infrastructure stay out of the catalog. The public desktop download is still pending a separate release.
+Linux source research is not proof of a successful macOS PicoRunner installation. The job cannot install or run candidate code, provision services, change website/deployment code, or alter release downloads. Apps requiring unsupported runtimes or consumers to administer infrastructure stay out of the catalog. The public desktop download is still pending a separate release.
 
 ## Operations
 

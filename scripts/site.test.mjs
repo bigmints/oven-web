@@ -3,7 +3,11 @@ import test from "node:test";
 import { readFileSync, existsSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { validateCatalog, agentCommand } from "./catalog-contract.mjs";
+import {
+  validateCatalog,
+  agentCommand,
+  CATEGORIES,
+} from "./catalog-contract.mjs";
 const root = fileURLToPath(new URL("../", import.meta.url));
 const catalog = JSON.parse(
   readFileSync(new URL("../catalog/apps.json", import.meta.url)),
@@ -26,7 +30,7 @@ test("evidence gate rejects unsupported claims and command injection", () => {
 });
 test("root and project Pages builds have working local links and per-app commands", () => {
   try {
-    for (const base of ["/", "/oven-web/"]) {
+    for (const base of ["/"]) {
       execFileSync(process.execPath, ["scripts/build-site.mjs"], {
         cwd: root,
         env: { ...process.env, SITE_BASE_PATH: base },
@@ -35,9 +39,10 @@ test("root and project Pages builds have working local links and per-app command
         readFileSync(new URL("../site-dist/catalog.json", import.meta.url)),
       );
       assert.equal(output.apps.length, catalog.apps.length);
+      assert.deepEqual(output.categories, CATEGORIES);
       for (const app of output.apps) {
         const url = new URL(app.installUrl);
-        assert.equal(url.protocol, "oven:");
+        assert.equal(url.protocol, "picorunner:");
         assert.equal(url.searchParams.get("repository"), app.repository);
         assert.equal(app.agentCommand, agentCommand(app));
         const html = readFileSync(
@@ -90,6 +95,10 @@ test("root and project Pages builds have working local links and per-app command
         "utf8",
       );
       assert(sitemap.includes("/apps/</loc>"));
+      assert.equal(
+        readFileSync(new URL("../site-dist/CNAME", import.meta.url), "utf8"),
+        "picorunner.com\n",
+      );
     }
   } finally {
     execFileSync(process.execPath, ["scripts/build-site.mjs"], {
