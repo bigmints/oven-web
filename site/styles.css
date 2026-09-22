@@ -72,6 +72,12 @@ button:disabled {
   letter-spacing: -0.7px;
   font-size: 21px;
 }
+.brand-lockup { display: block; width: 223px; height: auto; }
+@media (max-width: 760px) {
+  .header .brand-lockup { width: 164px; }
+  .header nav > a:not(.button) { display: none; }
+  .header nav > .button { max-width: 150px; text-align: center; }
+}
 .brand-mark {
   display: grid;
   place-items: center;
@@ -936,7 +942,7 @@ button:disabled {
   }
 }
 
-@media(max-width:760px){.header nav .open-oven{display:none}}
+@media(max-width:760px){.header nav .open-picorunner{display:none}}
 
 .catalog-hero {
  padding-block: 78px 62px;

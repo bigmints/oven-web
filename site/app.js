@@ -61,6 +61,6 @@ for (const button of document.querySelectorAll("[data-copy]"))
 for (const link of document.querySelectorAll("[data-install]"))
   link.addEventListener("click", () => {
     announce(
-      "Opening NodeLauncher. If nothing happens, use “Didn’t open?” below.",
+      "Opening PicoRunner. If nothing happens, use “Didn’t open?” below.",
     );
   });

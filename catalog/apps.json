@@ -141,11 +141,11 @@
         "audience": "consumer"
       },
       "compatibility": {
-        "status": "source-reviewed",
-        "checkedAt": "2026-09-19",
+        "status": "blocked",
+        "checkedAt": "2026-09-22",
         "commit": "be269c7b64ea1f7b99ad3e684ee3daa5b4b46bb0",
-        "platform": null,
-        "launcherVersion": null,
+        "platform": "macOS arm64",
+        "launcherVersion": "0.3.0",
         "evidence": [
           {
             "summary": "AGPL-3.0 license confirmed at the checked commit",
@@ -158,6 +158,10 @@
           {
             "summary": "Upstream source and setup documentation reviewed. Transitive dependencies, external connections and macOS runtime behavior have not been exhaustively verified.",
             "source": "https://github.com/iNikAnn/DoHabit/blob/be269c7b64ea1f7b99ad3e684ee3daa5b4b46bb0/README.md"
+          },
+          {
+            "summary": "PicoRunner 0.3.0 installed and started this commit, but the browser failed with Vite import-analysis: Cannot resolve linkifyjs from linkify-plugin-hashtag. Upstream omits the required direct dependency. Installation is disabled until a corrected revision passes runtime verification.",
+            "source": "https://github.com/iNikAnn/DoHabit/blob/be269c7b64ea1f7b99ad3e684ee3daa5b4b46bb0/package.json"
           }
         ],
         "launch": {
