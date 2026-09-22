@@ -20,10 +20,8 @@
         "reason": "An approachable canvas for sketching everyday ideas and sharing them as drawings.",
         "bestFor": "Whiteboard",
         "requirements": [
-          "macOS with PicoRunner",
-          "Internet access for installation",
-          "Pinned source declares Node 18 or newer and Yarn 1.22.22",
-          "Root start command delegates to the excalidraw-app workspace; installation on PicoRunner has not been tested"
+          "Apple Silicon Mac with macOS 13.5 or later",
+          "Internet connection for the initial download"
         ],
         "license": "MIT",
         "audience": "consumer"
@@ -106,11 +104,9 @@
         "reason": "Envelope budgeting for planning personal spending, with local-first data. Sync and bank-connection setup is separate from the basic budgeting interface.",
         "bestFor": "Budget",
         "requirements": [
-          "macOS with PicoRunner",
-          "Internet access for installation",
-          "Requires Node 22.18 or newer and Yarn 4; pinned source declares Yarn 4.17.1",
-          "Sync and bank connections may require separate services; these have not been tested",
-          "Native build requirements and first-run setup have not been verified on PicoRunner"
+          "Apple Silicon Mac with macOS 13.5 or later",
+          "Internet connection for the initial download",
+          "Optional sync and bank connections use separate services"
         ],
         "license": "MIT",
         "audience": "consumer"
@@ -141,65 +137,6 @@
           "script": "start",
           "command": "yarn start:browser",
           "packageManager": "yarn@4.17.1"
-        }
-      }
-    },
-    {
-      "id": "dohabit",
-      "name": "DoHabit",
-      "description": "Track daily habits and routines with a local-first calendar and streaks.",
-      "category": "Wellbeing",
-      "tags": [
-        "Habits",
-        "Routines",
-        "Local-first"
-      ],
-      "repository": "https://github.com/iNikAnn/DoHabit",
-      "packageName": "dohabit",
-      "preferredScript": "dev",
-      "accent": "#10b981",
-      "glyph": "DH",
-      "editorial": {
-        "reason": "A local-first habit tracker that keeps routines and streaks on your own device, with no account or cloud required.",
-        "bestFor": "Habits",
-        "requirements": [
-          "macOS with PicoRunner",
-          "Internet access for installation",
-          "Node.js workspace (bundled by PicoRunner)"
-        ],
-        "license": "AGPL-3.0",
-        "audience": "consumer"
-      },
-      "compatibility": {
-        "status": "blocked",
-        "checkedAt": "2026-09-22",
-        "commit": "be269c7b64ea1f7b99ad3e684ee3daa5b4b46bb0",
-        "platform": "macOS arm64",
-        "launcherVersion": "0.3.0",
-        "evidence": [
-          {
-            "summary": "AGPL-3.0 license confirmed at the checked commit",
-            "source": "https://github.com/iNikAnn/DoHabit/blob/be269c7b64ea1f7b99ad3e684ee3daa5b4b46bb0/LICENSE"
-          },
-          {
-            "summary": "Root package dohabit declares dev = vite. Package manager: not declared. Exact manifest verified; installation not tested.",
-            "source": "https://github.com/iNikAnn/DoHabit/blob/be269c7b64ea1f7b99ad3e684ee3daa5b4b46bb0/package.json"
-          },
-          {
-            "summary": "Upstream source and setup documentation reviewed. Transitive dependencies, external connections and macOS runtime behavior have not been exhaustively verified.",
-            "source": "https://github.com/iNikAnn/DoHabit/blob/be269c7b64ea1f7b99ad3e684ee3daa5b4b46bb0/README.md"
-          },
-          {
-            "summary": "PicoRunner 0.3.0 installed and started this commit, but the browser failed with Vite import-analysis: Cannot resolve linkifyjs from linkify-plugin-hashtag. Upstream omits the required direct dependency. Installation is disabled until a corrected revision passes runtime verification.",
-            "source": "https://github.com/iNikAnn/DoHabit/blob/be269c7b64ea1f7b99ad3e684ee3daa5b4b46bb0/package.json"
-          }
-        ],
-        "launch": {
-          "packagePath": "package.json",
-          "packageName": "dohabit",
-          "script": "dev",
-          "command": "vite",
-          "packageManager": null
         }
       }
     }

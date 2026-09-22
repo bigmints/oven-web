@@ -13,7 +13,7 @@ function filterApps() {
     if (!card.hidden) visible++;
   }
   document.querySelector("#result-count").textContent =
-    `${visible} ${visible === 1 ? "app" : "apps"} to explore`;
+    `${visible} ${visible === 1 ? "app" : "apps"}`;
   document.querySelector("#empty").hidden = visible > 0;
   for (const button of filters)
     button.setAttribute(

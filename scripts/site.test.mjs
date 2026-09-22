@@ -30,6 +30,11 @@ test("evidence gate rejects unsupported claims and command injection", () => {
   }
   invalid.apps[0] = structuredClone(invalid.apps[1]);
   assert(validateCatalog(invalid).some((e) => e.includes("duplicate")));
+  const blocked = structuredClone(catalog);
+  blocked.apps[0].compatibility.status = "blocked";
+  assert(
+    validateCatalog(blocked).some((e) => e.includes("curation reports")),
+  );
 });
 test("root and project Pages builds have working local links and per-app commands", () => {
   try {
@@ -52,8 +57,15 @@ test("root and project Pages builds have working local links and per-app command
           new URL(`../site-dist/apps/${app.id}/index.html`, import.meta.url),
           "utf8",
         );
-        assert(html.includes("Copy command"));
+        if (app.compatibility.status === "blocked") {
+          assert(!html.includes("Copy command"));
+          assert(html.includes("is not ready yet"));
+          assert(!html.includes("Review the evidence"));
+        } else {
+          assert(html.includes("Copy command"));
+        }
         assert(html.includes(app.name));
+        assert(html.includes("Technical details"));
       }
       for (const page of [
         "index.html",
@@ -92,7 +104,10 @@ test("root and project Pages builds have working local links and per-app command
       assert(home.includes(`href="${base}apps/"`));
       assert(!home.includes("id=\"search\""));
       assert(apps.includes("id=\"search\""));
-      assert(apps.includes(`${catalog.apps.length} apps to explore`));
+      assert(apps.includes(`${catalog.apps.length} apps`));
+      assert(apps.includes("Works with PicoRunner"));
+      assert(apps.includes("Not tested yet"));
+      assert(!apps.includes("DoHabit"));
       const sitemap = readFileSync(
         new URL("../site-dist/sitemap.xml", import.meta.url),
         "utf8",
