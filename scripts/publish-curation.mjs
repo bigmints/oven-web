@@ -2,6 +2,10 @@ import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { validateCatalog } from './catalog-contract.mjs';
 
+if (process.env.PICORUNNER_MANUAL_CURATION !== '1') {
+  throw new Error('Automatic catalog publication is paused. The owner will curate apps manually.');
+}
+
 const git = (...args) => execFileSync('git', ['-c', 'core.hooksPath=/dev/null', ...args], { encoding: 'utf8' }).trim();
 if (git('branch', '--show-current') !== 'main') throw new Error('Publish only from main');
 const remote = git('remote', 'get-url', 'origin');

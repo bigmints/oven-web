@@ -2,141 +2,134 @@
   "schemaVersion": 1,
   "apps": [
     {
-      "id": "excalidraw",
-      "name": "Excalidraw",
-      "description": "Sketch ideas, plan a room, or explain something with a simple hand-drawn whiteboard.",
-      "category": "Creativity",
-      "tags": [
-        "Drawing",
-        "Whiteboard",
-        "Ideas"
-      ],
-      "repository": "https://github.com/excalidraw/excalidraw",
-      "packageName": "excalidraw-monorepo",
-      "preferredScript": "start",
-      "accent": "#6965db",
-      "glyph": "EX",
+      "id": "youbot",
+      "name": "Youbot",
+      "description": "A self-hosted AI concierge for visitors. PicoRunner setup is coming later.",
+      "category": "Productivity",
+      "tags": ["AI concierge", "Visitors", "Self-hosted"],
+      "repository": "https://github.com/bigmints/ubot",
+      "packageName": "youbot-core",
+      "preferredScript": "dev",
+      "accent": "#6f72e8",
+      "glyph": "YO",
       "editorial": {
-        "reason": "An approachable canvas for sketching everyday ideas and sharing them as drawings.",
-        "bestFor": "Whiteboard",
-        "requirements": [
-          "Apple Silicon Mac with macOS 13.5 or later",
-          "Internet connection for the initial download"
-        ],
-        "license": "MIT",
-        "audience": "consumer"
-      },
-      "compatibility": {
-        "status": "verified",
-        "checkedAt": "2026-09-22",
-        "commit": "31df3e6ef245c646b18a055ccf858cd6117c7768",
-        "platform": "macOS arm64",
-        "launcherVersion": "0.3.0",
-        "evidence": [
-          {
-            "summary": "MIT license confirmed at the checked commit",
-            "source": "https://github.com/excalidraw/excalidraw/blob/97c68dd371e13c017a8dcca49f8b3995ba7890a8/LICENSE"
-          },
-          {
-            "summary": "Root package excalidraw-monorepo declares start = yarn --cwd ./excalidraw-app start. Package manager: yarn@1.22.22. Exact manifest verified; installation not tested.",
-            "source": "https://github.com/excalidraw/excalidraw/blob/97c68dd371e13c017a8dcca49f8b3995ba7890a8/package.json"
-          },
-          {
-            "summary": "Upstream source and setup documentation reviewed. Transitive dependencies, external connections and macOS runtime behavior have not been exhaustively verified.",
-            "source": "https://github.com/excalidraw/excalidraw/blob/97c68dd371e13c017a8dcca49f8b3995ba7890a8/README.md"
-          },
-          {
-            "kind": "install",
-            "summary": "Installed from the live PicoRunner Discover catalog into a new managed folder with bundled runtime tools.",
-            "source": "https://github.com/excalidraw/excalidraw/tree/31df3e6ef245c646b18a055ccf858cd6117c7768"
-          },
-          {
-            "kind": "launch",
-            "summary": "Started successfully using yarn run start and opened the Excalidraw Whiteboard.",
-            "source": "https://github.com/excalidraw/excalidraw/tree/31df3e6ef245c646b18a055ccf858cd6117c7768"
-          },
-          {
-            "kind": "health",
-            "summary": "HTTP 200 verified on the app's localhost address after restart.",
-            "source": "https://github.com/excalidraw/excalidraw/tree/31df3e6ef245c646b18a055ccf858cd6117c7768"
-          },
-          {
-            "kind": "smoke",
-            "summary": "Created a rectangle in the browser canvas and undid it; the prior drawing remained unchanged.",
-            "source": "https://github.com/excalidraw/excalidraw/tree/31df3e6ef245c646b18a055ccf858cd6117c7768"
-          },
-          {
-            "kind": "restart",
-            "summary": "Restarted through PicoRunner twice. First restart recovered a conflict with an unrelated IPv4 listener; the second retained the uncontested address and rendered the canvas.",
-            "source": "https://github.com/excalidraw/excalidraw/tree/31df3e6ef245c646b18a055ccf858cd6117c7768"
-          },
-          {
-            "kind": "cleanup",
-            "summary": "Stopped and deleted only the disposable test installation through PicoRunner. Managed folder removal was verified; both pre-existing imported apps remained.",
-            "source": "https://github.com/excalidraw/excalidraw/tree/31df3e6ef245c646b18a055ccf858cd6117c7768"
-          }
-        ],
-        "launch": {
-          "packagePath": "package.json",
-          "packageName": "excalidraw-monorepo",
-          "script": "start",
-          "command": "yarn --cwd ./excalidraw-app start",
-          "packageManager": "yarn@1.22.22"
-        }
-      }
-    },
-    {
-      "id": "actual-budget",
-      "name": "Actual Budget",
-      "description": "Plan personal finances with envelope budgeting and local-first data.",
-      "category": "Personal finance",
-      "tags": [
-        "Budget",
-        "Local-first",
-        "Privacy"
-      ],
-      "repository": "https://github.com/actualbudget/actual",
-      "packageName": "actual",
-      "preferredScript": "start",
-      "accent": "#3b82f6",
-      "glyph": "AB",
-      "editorial": {
-        "reason": "Envelope budgeting for planning personal spending, with local-first data. Sync and bank-connection setup is separate from the basic budgeting interface.",
-        "bestFor": "Budget",
+        "reason": "Give visitors a helpful first response while keeping control of the information and channels Youbot can use.",
+        "bestFor": "Visitor conversations",
         "requirements": [
           "Apple Silicon Mac with macOS 13.5 or later",
           "Internet connection for the initial download",
-          "Optional sync and bank connections use separate services"
+          "An AI provider must be configured before conversations work",
+          "Use Youbot's own installer until PicoRunner supports its setup"
+        ],
+        "availability": "Youbot uses its own user-scoped installer. PicoRunner cannot manage that installation from the gallery yet.",
+        "license": null,
+        "audience": "consumer"
+      },
+      "compatibility": {
+        "status": "blocked",
+        "checkedAt": "2026-09-22",
+        "commit": "3750b6fc29b7f15adf4d720836caf79042f9a883",
+        "platform": null,
+        "launcherVersion": null,
+        "evidence": [
+          {
+            "summary": "The public repository has no root package manifest. Its recommended installer writes a separate user-scoped Youbot installation and launcher outside PicoRunner's managed app directory.",
+            "source": "https://github.com/bigmints/ubot/blob/3750b6fc29b7f15adf4d720836caf79042f9a883/install.sh"
+          }
+        ]
+      }
+    },
+    {
+      "id": "flourish",
+      "name": "Flourish",
+      "description": "Track spending, savings, investments, and loans in a private finance workspace.",
+      "category": "Personal finance",
+      "tags": ["Money", "Planning", "Local data"],
+      "repository": "https://github.com/bigmints/flourish",
+      "packageName": "flourish",
+      "preferredScript": "dev",
+      "accent": "#548c6a",
+      "glyph": "FL",
+      "editorial": {
+        "reason": "Bring everyday money records into one local workspace, with imports you can review before saving.",
+        "bestFor": "Personal finances",
+        "requirements": [
+          "Apple Silicon Mac with macOS 13.5 or later",
+          "Internet connection for the initial download",
+          "Flourish has no built-in account system; keep it on your Mac or behind a private network"
         ],
         "license": "MIT",
         "audience": "consumer"
       },
       "compatibility": {
         "status": "source-reviewed",
-        "checkedAt": "2026-09-19",
-        "commit": "749fa264571ce53940f055192ee2e0cc26b3e172",
+        "checkedAt": "2026-09-22",
+        "commit": "bca2789a0fb6709f707fa938a2a2dd0a645a4a6f",
         "platform": null,
         "launcherVersion": null,
         "evidence": [
           {
-            "summary": "MIT license confirmed at the checked commit",
-            "source": "https://github.com/actualbudget/actual/blob/749fa264571ce53940f055192ee2e0cc26b3e172/LICENSE"
+            "summary": "The public package manifest declares Flourish and a dev script. It specifies pnpm 10.29.3 and Node.js 22.22 or newer.",
+            "source": "https://github.com/bigmints/flourish/blob/bca2789a0fb6709f707fa938a2a2dd0a645a4a6f/package.json"
           },
           {
-            "summary": "Root package actual declares start = yarn start:browser. Package manager: yarn@4.17.1. Exact manifest verified; installation not tested.",
-            "source": "https://github.com/actualbudget/actual/blob/749fa264571ce53940f055192ee2e0cc26b3e172/package.json"
-          },
-          {
-            "summary": "Upstream source and setup documentation reviewed. Transitive dependencies, external connections and macOS runtime behavior have not been exhaustively verified.",
-            "source": "https://github.com/actualbudget/actual/blob/749fa264571ce53940f055192ee2e0cc26b3e172/package.json"
+            "summary": "The project documents local startup and SQLite storage. A full PicoRunner install, open, and restart check has not been recorded.",
+            "source": "https://github.com/bigmints/flourish/blob/bca2789a0fb6709f707fa938a2a2dd0a645a4a6f/README.md"
           }
         ],
         "launch": {
           "packagePath": "package.json",
-          "packageName": "actual",
-          "script": "start",
-          "command": "yarn start:browser",
-          "packageManager": "yarn@4.17.1"
+          "packageName": "flourish",
+          "script": "dev",
+          "command": "node scripts/dev.mjs --port 3210",
+          "packageManager": "pnpm@10.29.3"
+        }
+      }
+    },
+    {
+      "id": "rise",
+      "name": "Rise",
+      "description": "Keep daily check-ins, health records, and follow-up reminders together.",
+      "category": "Wellbeing",
+      "tags": ["Health records", "Check-ins", "Local data"],
+      "repository": "https://github.com/bigmints/rise",
+      "packageName": "rise",
+      "preferredScript": "dev",
+      "accent": "#d99270",
+      "glyph": "RI",
+      "editorial": {
+        "reason": "Keep personal records and daily changes in one place without turning missed days into failures.",
+        "bestFor": "Personal health records",
+        "requirements": [
+          "Apple Silicon Mac with macOS 13.5 or later",
+          "Internet connection for the initial download",
+          "Python 3.11 or newer is needed for Rise's local API"
+        ],
+        "license": "MIT",
+        "audience": "consumer"
+      },
+      "compatibility": {
+        "status": "source-reviewed",
+        "checkedAt": "2026-09-22",
+        "commit": "24a7b85744c14e4a9f866991500a571cb0e1af59",
+        "platform": null,
+        "launcherVersion": null,
+        "evidence": [
+          {
+            "summary": "The public root package is Rise and declares a dev script that starts its local API and web interface.",
+            "source": "https://github.com/bigmints/rise/blob/24a7b85744c14e4a9f866991500a571cb0e1af59/package.json"
+          },
+          {
+            "summary": "The project documents Node.js and Python requirements and local startup. A full PicoRunner install, open, and restart check has not been recorded.",
+            "source": "https://github.com/bigmints/rise/blob/24a7b85744c14e4a9f866991500a571cb0e1af59/README.md"
+          }
+        ],
+        "launch": {
+          "packagePath": "package.json",
+          "packageName": "rise",
+          "script": "dev",
+          "command": "node scripts/dev.mjs --port 5173",
+          "packageManager": null
         }
       }
     }

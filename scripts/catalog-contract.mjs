@@ -67,8 +67,8 @@ export function validateCatalog(catalog) {
       fail("invalid compatibility record");
       continue;
     }
-    if (c.status === "blocked")
-      fail("known-broken apps belong in curation reports, not the public catalog");
+    if (c.status === "blocked" && !e?.availability?.trim())
+      fail("unavailable apps need a plain-language availability explanation");
     if (
       c.checkedAt !== null &&
       (!/^\d{4}-\d{2}-\d{2}$/.test(c.checkedAt) ||

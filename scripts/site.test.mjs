@@ -32,8 +32,9 @@ test("evidence gate rejects unsupported claims and command injection", () => {
   assert(validateCatalog(invalid).some((e) => e.includes("duplicate")));
   const blocked = structuredClone(catalog);
   blocked.apps[0].compatibility.status = "blocked";
+  blocked.apps[0].editorial.availability = "";
   assert(
-    validateCatalog(blocked).some((e) => e.includes("curation reports")),
+    validateCatalog(blocked).some((e) => e.includes("availability explanation")),
   );
 });
 test("root and project Pages builds have working local links and per-app commands", () => {
@@ -47,12 +48,26 @@ test("root and project Pages builds have working local links and per-app command
         readFileSync(new URL("../site-dist/catalog.json", import.meta.url)),
       );
       assert.equal(output.apps.length, catalog.apps.length);
-      assert.deepEqual(output.categories, CATEGORIES);
+      assert.deepEqual(
+        output.apps.map((app) => app.id),
+        ["youbot", "flourish", "rise"],
+      );
+      assert.deepEqual(
+        output.categories,
+        CATEGORIES.filter((category) =>
+          catalog.apps.some((app) => app.category === category),
+        ),
+      );
       for (const app of output.apps) {
-        const url = new URL(app.installUrl);
-        assert.equal(url.protocol, "picorunner:");
-        assert.equal(url.searchParams.get("repository"), app.repository);
-        assert.equal(app.agentCommand, agentCommand(app));
+        if (app.compatibility.status === "blocked") {
+          assert.equal(app.installUrl, null);
+          assert.equal(app.agentCommand, null);
+        } else {
+          const url = new URL(app.installUrl);
+          assert.equal(url.protocol, "picorunner:");
+          assert.equal(url.searchParams.get("repository"), app.repository);
+          assert.equal(app.agentCommand, agentCommand(app));
+        }
         const html = readFileSync(
           new URL(`../site-dist/apps/${app.id}/index.html`, import.meta.url),
           "utf8",
@@ -105,9 +120,10 @@ test("root and project Pages builds have working local links and per-app command
       assert(!home.includes("id=\"search\""));
       assert(apps.includes("id=\"search\""));
       assert(apps.includes(`${catalog.apps.length} apps`));
-      assert(apps.includes("Works with PicoRunner"));
       assert(apps.includes("Not tested yet"));
-      assert(!apps.includes("DoHabit"));
+      assert(apps.includes("Setup pending"));
+      assert(!apps.includes("Excalidraw"));
+      assert(!apps.includes("Actual Budget"));
       const sitemap = readFileSync(
         new URL("../site-dist/sitemap.xml", import.meta.url),
         "utf8",

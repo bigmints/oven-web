@@ -54,11 +54,15 @@ const statusLabel = {
   unverified: "Compatibility unknown",
   "source-reviewed": "Not tested yet",
   verified: "Works with PicoRunner",
-  blocked: "Not available",
+  blocked: "Setup pending",
 };
 const visibleCategories = CATEGORIES.filter((category) =>
   catalog.apps.some((app) => app.category === category),
 );
+const handoffApp = catalog.apps.find(
+  (app) => app.compatibility.status !== "blocked",
+);
+if (!handoffApp) throw new Error("The catalog needs an installable app for the agent handoff example.");
 const supportSummary = (app) => {
   const c = app.compatibility;
   if (c.status === "verified")
@@ -89,7 +93,6 @@ const tiles = catalog.apps
  )
  .join("");
 const featuredTiles = catalog.apps
-  .filter((app) => app.compatibility.status !== "blocked")
   .slice(0, 3)
   .map(
     (app) =>
@@ -103,7 +106,6 @@ await writeFile(
     config.description,
     "",
     `<main id="main"><section class="hero wrap"><div class="hero-copy"><span class="eyebrow"><span class="dot"></span> OPEN-SOURCE APPS, MADE SIMPLE</span><h1>Useful apps.<br>Ready on your <em>Mac.</em></h1><p class="hero-description">PicoRunner sets up open-source apps and keeps them organized, so you can use them without wrestling with developer tools.</p><div class="hero-actions">${download("Download PicoRunner")}<a class="text-link" href="${href("apps/")}">Browse apps <span aria-hidden="true">→</span></a></div><p class="fine">For Apple Silicon Macs running macOS 13.5 or later.</p></div><div class="hero-art" aria-label="A collection of useful apps"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><span class="art-caption">APPS WORTH DISCOVERING</span>${catalog.apps
-      .filter((app) => app.compatibility.status !== "blocked")
       .slice(0, 5)
       .map(
         (a, i) =>
@@ -111,7 +113,7 @@ await writeFile(
       )
       .join(
         "",
-      )}<span class="art-note">More useful.<br>Less fiddly.</span></div></section><section class="steps wrap" aria-label="How it works"><p><b>01</b> Choose an app.</p><p><b>02</b> See what it needs.</p><p><b>03</b> Install and run it.</p></section><section class="catalog featured-catalog wrap"><div class="section-heading"><div><span class="eyebrow">START HERE</span><h2>Apps worth using.</h2></div><a class="text-link" href="${href("apps/")}">Browse all apps <span aria-hidden="true">→</span></a></div><div class="app-grid">${featuredTiles}</div><p class="catalog-note">We tell you clearly which apps work with PicoRunner and which ones have not been fully tested yet.</p></section><section class="agent-banner wrap"><div><span class="eyebrow">USING AN AI AGENT?</span><h2>Ask it to open<br>the right app.</h2><p>Each app page includes a command your agent can use to open PicoRunner. You still approve the installation before anything is downloaded.</p><a class="button secondary" href="${href("agents/")}">How agent handoff works <span aria-hidden="true">↗</span></a></div><div class="terminal"><div class="terminal-top"><i></i><i></i><i></i><span>your agent · your Mac</span></div><p class="terminal-comment"># Open Excalidraw in PicoRunner</p><code>${esc(agentCommand(catalog.apps[0]))}</code><p class="terminal-comment"># You approve before installation starts.</p></div></section><section class="closing wrap"><h2>Find an app.<br>Make it yours.</h2><a class="button primary" href="${href("apps/")}">Browse apps <span aria-hidden="true">→</span></a></section></main>`,
+      )}<span class="art-note">More useful.<br>Less fiddly.</span></div></section><section class="steps wrap" aria-label="How it works"><p><b>01</b> Choose an app.</p><p><b>02</b> See what it needs.</p><p><b>03</b> Install and run it.</p></section><section class="catalog featured-catalog wrap"><div class="section-heading"><div><span class="eyebrow">START HERE</span><h2>Apps worth using.</h2></div><a class="text-link" href="${href("apps/")}">Browse all apps <span aria-hidden="true">→</span></a></div><div class="app-grid">${featuredTiles}</div><p class="catalog-note">Each app shows its current PicoRunner setup status before you install.</p></section><section class="agent-banner wrap"><div><span class="eyebrow">USING AN AI AGENT?</span><h2>Ask it to open<br>the right app.</h2><p>Installable app pages include a command your agent can use to open PicoRunner. You still approve the installation before anything is downloaded.</p><a class="button secondary" href="${href("agents/")}">How agent handoff works <span aria-hidden="true">↗</span></a></div><div class="terminal"><div class="terminal-top"><i></i><i></i><i></i><span>your agent · your Mac</span></div><p class="terminal-comment"># Open ${esc(handoffApp.name)} in PicoRunner</p><code>${esc(agentCommand(handoffApp))}</code><p class="terminal-comment"># You approve before installation starts.</p></div></section><section class="closing wrap"><h2>Find an app.<br>Make it yours.</h2><a class="button primary" href="${href("apps/")}">Browse apps <span aria-hidden="true">→</span></a></section></main>`,
   ),
 );
 await mkdir(path.join(output, "apps"), { recursive: true });
@@ -121,7 +123,7 @@ await writeFile(
     "Explore apps",
     "Browse useful open-source apps and see which ones work with PicoRunner.",
     "apps/",
-    `<main id="main"><section class="catalog-hero wrap"><span class="eyebrow">APPS</span><h1>Find something useful.</h1><p>Start with a whiteboard or a personal budget. We show what works before you install.</p></section><section class="catalog catalog-page wrap" aria-labelledby="catalog-heading"><div class="section-heading"><div><span class="eyebrow">ALL APPS</span><h2 id="catalog-heading">Made for everyday use.</h2></div><p>Clear status. No guesswork.</p></div><div class="filters"><div class="filter-buttons" aria-label="Filter apps by category">${["All", ...visibleCategories].map((c) => `<button data-category-filter="${c}" aria-pressed="${c === "All"}">${c}</button>`).join("")}</div><label class="search"><span class="sr-only">Search apps</span><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search apps…"></label></div><p class="result-count" id="result-count" role="status">${catalog.apps.length} apps</p><div class="app-grid">${tiles}</div><div class="empty" id="empty" hidden><h3>No apps found.</h3><p>Try another search or category.</p><button id="clear-search">Clear filters</button></div><p class="catalog-note">Works with PicoRunner means we installed, opened, used, and restarted that version successfully.</p></section></main>`,
+    `<main id="main"><section class="catalog-hero wrap"><span class="eyebrow">APPS</span><h1>Find something useful.</h1><p>Meet Youbot, Flourish, and Rise. Each app shows its PicoRunner setup status before you begin.</p></section><section class="catalog catalog-page wrap" aria-labelledby="catalog-heading"><div class="section-heading"><div><span class="eyebrow">ALL APPS</span><h2 id="catalog-heading">The current collection.</h2></div><p>Clear status. No guesswork.</p></div><div class="filters"><div class="filter-buttons" aria-label="Filter apps by category">${["All", ...visibleCategories].map((c) => `<button data-category-filter="${c}" aria-pressed="${c === "All"}">${c}</button>`).join("")}</div><label class="search"><span class="sr-only">Search apps</span><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search apps…"></label></div><p class="result-count" id="result-count" role="status">${catalog.apps.length} apps</p><div class="app-grid">${tiles}</div><div class="empty" id="empty" hidden><h3>No apps found.</h3><p>Try another search or category.</p><button id="clear-search">Clear filters</button></div><p class="catalog-note">Setup pending means PicoRunner does not yet support that app's installation.</p></section></main>`,
   ),
 );
 for (const app of catalog.apps) {
@@ -156,7 +158,7 @@ await writeFile(
     "For agents",
     "Help someone find an app and open it safely in PicoRunner.",
     "agents/",
-    `<main id="main" class="prose wrap"><span class="eyebrow">FOR AI AGENTS</span><h1>Find the app. Let the person decide.</h1><p class="lead">Use PicoRunner’s public catalog to find suitable apps, then open the selected app in PicoRunner for approval.</p><h2>Read the catalog</h2><p><a href="${href("catalog.json")}">catalog.json</a> includes each app’s purpose, requirements, current PicoRunner status, install link, and Mac command. <a href="${href("llms.txt")}">llms.txt</a> is a shorter index. Neither requires an account or API key.</p><h2>Open an app in PicoRunner</h2>${command(catalog.apps[0])}<p>This command opens Excalidraw in PicoRunner. It does not install anything by itself. The person reviews and approves the installation in the app.</p><h2>Report the real result</h2><p>After the handoff, check PicoRunner before saying an app is installed or running. A successful command only confirms that macOS opened the link.</p><h2>Status meanings</h2><ul><li><b>Works with PicoRunner:</b> we installed, opened, used, and restarted it successfully.</li><li><b>Not tested yet:</b> we reviewed the project but have not completed a full PicoRunner test.</li><li><b>Compatibility unknown:</b> no PicoRunner test or detailed setup review has been completed.</li></ul><p>Known-broken apps stay out of the public catalog. Catalog maintainers can use the <a href="${href("skills/picorunner-curator/SKILL.md")}">PicoRunner curation guide</a>.</p></main>`,
+    `<main id="main" class="prose wrap"><span class="eyebrow">FOR AI AGENTS</span><h1>Find the app. Let the person decide.</h1><p class="lead">Use PicoRunner’s public catalog to find suitable apps, then open the selected app in PicoRunner for approval.</p><h2>Read the catalog</h2><p><a href="${href("catalog.json")}">catalog.json</a> includes each app’s purpose, requirements, current PicoRunner status, install link, and Mac command. <a href="${href("llms.txt")}">llms.txt</a> is a shorter index. Neither requires an account or API key.</p><h2>Open an app in PicoRunner</h2>${command(handoffApp)}<p>This command opens ${esc(handoffApp.name)} in PicoRunner. It does not install anything by itself. The person reviews and approves the installation in the app.</p><h2>Report the real result</h2><p>After the handoff, check PicoRunner before saying an app is installed or running. A successful command only confirms that macOS opened the link.</p><h2>Status meanings</h2><ul><li><b>Works with PicoRunner:</b> we installed, opened, used, and restarted it successfully.</li><li><b>Not tested yet:</b> we reviewed the project but have not completed a full PicoRunner test.</li><li><b>Compatibility unknown:</b> no PicoRunner test or detailed setup review has been completed.</li><li><b>Setup pending:</b> PicoRunner does not yet support this app's installation; no install link is offered.</li></ul><p>Catalog maintainers can use the <a href="${href("skills/picorunner-curator/SKILL.md")}">PicoRunner curation guide</a>.</p></main>`,
   ),
 );
 await mkdir(path.join(output, "privacy"), { recursive: true });
@@ -176,7 +178,7 @@ await writeFile(
 );
 const api = {
   ...catalog,
-  categories: CATEGORIES,
+  categories: visibleCategories,
   launcher: {
     name: config.name,
     platform: "macOS",
@@ -187,8 +189,8 @@ const api = {
   },
   apps: catalog.apps.map((app) => ({
     ...app,
-    installUrl: installUrl(app),
-    agentCommand: agentCommand(app),
+    installUrl: app.compatibility.status === "blocked" ? null : installUrl(app),
+    agentCommand: app.compatibility.status === "blocked" ? null : agentCommand(app),
     page: `${base}apps/${app.id}/`,
   })),
 };

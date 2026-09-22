@@ -17,7 +17,7 @@ Open http://127.0.0.1:4178/. For a project-path preview, use `SITE_BASE_PATH=/ov
 
 ## Maintain the catalog
 
-Edit `catalog/apps.json`; generated `site-dist/catalog.json` adds machine-readable commands and links. Read `skills/oven-curator/SKILL.md` for the evidence-based review workflow. Copy that complete folder to `~/.hermes/skills/oven-curator/` to make it available in Hermes. The skill is installed on ubot-server for a daily native Hermes job. The job researches everyday consumer apps and automatically publishes qualifying source-reviewed listings. It does not execute candidate app code.
+Edit `catalog/apps.json`; generated `site-dist/catalog.json` adds machine-readable commands and links. The owner is curating the collection manually. The former daily Hermes curator must remain paused, and `scripts/publish-curation.mjs` refuses unattended publication. A future owner-directed manual curation run can set `PICORUNNER_MANUAL_CURATION=1` after reviewing the exact catalog diff.
 
 Verification levels distinguish unverified discovery entries, source review and actual runtime tests. A schema check does not prove that a third-party app works. Existing entries are being reviewed; check each app’s evidence. The desktop currently installs the default branch, not the recorded verification commit.
 

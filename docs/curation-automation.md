@@ -3,7 +3,7 @@
 Website: https://picorunner.com/
 Repository: https://github.com/bigmints/oven-web
 
-The owner authorized daily automatic publication of qualifying consumer apps on 2026-09-19. The native Hermes job runs on ubot-server with its existing configured model and gateway; no extra scheduler or Codex automation is involved.
+The owner switched the public collection to manual curation on 2026-09-23. The former native Hermes job on ubot-server must be paused. The publisher now refuses unattended catalog changes even if that job starts before its scheduler is paused.
 
 - Job: `9b2a3d5230a8` — PicoRunner daily consumer app curation.
 - Schedule: every 24 hours, approximately 18:59 Asia/Dubai (14:59 UTC).

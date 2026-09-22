@@ -9,7 +9,7 @@ Build a collection ordinary people would download PicoRunner to use: personal ph
 
 ## Automation scope
 
-For the authorized daily job on ubot-server, work in `/root/projects/oven-web` against `bigmints/oven-web`. Publishing qualifying catalog edits is authorized by the owner. Read [references/daily-curation.md](references/daily-curation.md) for the daily job. Do not alter deployment code, site configuration, credentials, other repositories or the scheduler. Linux source checks do not establish macOS PicoRunner runtime compatibility.
+The owner now curates the public collection manually. The former daily job on ubot-server must not publish catalog changes. Work in `/root/projects/oven-web` against `bigmints/oven-web` only when the owner asks for curation. Read [references/daily-curation.md](references/daily-curation.md) for historical context. Do not alter deployment code, site configuration, credentials, other repositories or the scheduler. Linux source checks do not establish macOS PicoRunner runtime compatibility.
 
 ## Find the working catalog
 
