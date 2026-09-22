@@ -29,11 +29,11 @@
         "audience": "consumer"
       },
       "compatibility": {
-        "status": "source-reviewed",
-        "checkedAt": "2026-09-19",
-        "commit": "97c68dd371e13c017a8dcca49f8b3995ba7890a8",
-        "platform": null,
-        "launcherVersion": null,
+        "status": "verified",
+        "checkedAt": "2026-09-22",
+        "commit": "31df3e6ef245c646b18a055ccf858cd6117c7768",
+        "platform": "macOS arm64",
+        "launcherVersion": "0.3.0",
         "evidence": [
           {
             "summary": "MIT license confirmed at the checked commit",
@@ -46,6 +46,36 @@
           {
             "summary": "Upstream source and setup documentation reviewed. Transitive dependencies, external connections and macOS runtime behavior have not been exhaustively verified.",
             "source": "https://github.com/excalidraw/excalidraw/blob/97c68dd371e13c017a8dcca49f8b3995ba7890a8/README.md"
+          },
+          {
+            "kind": "install",
+            "summary": "Installed from the live PicoRunner Discover catalog into a new managed folder with bundled runtime tools.",
+            "source": "https://github.com/excalidraw/excalidraw/tree/31df3e6ef245c646b18a055ccf858cd6117c7768"
+          },
+          {
+            "kind": "launch",
+            "summary": "Started successfully using yarn run start and opened the Excalidraw Whiteboard.",
+            "source": "https://github.com/excalidraw/excalidraw/tree/31df3e6ef245c646b18a055ccf858cd6117c7768"
+          },
+          {
+            "kind": "health",
+            "summary": "HTTP 200 verified on the app's localhost address after restart.",
+            "source": "https://github.com/excalidraw/excalidraw/tree/31df3e6ef245c646b18a055ccf858cd6117c7768"
+          },
+          {
+            "kind": "smoke",
+            "summary": "Created a rectangle in the browser canvas and undid it; the prior drawing remained unchanged.",
+            "source": "https://github.com/excalidraw/excalidraw/tree/31df3e6ef245c646b18a055ccf858cd6117c7768"
+          },
+          {
+            "kind": "restart",
+            "summary": "Restarted through PicoRunner twice. First restart recovered a conflict with an unrelated IPv4 listener; the second retained the uncontested address and rendered the canvas.",
+            "source": "https://github.com/excalidraw/excalidraw/tree/31df3e6ef245c646b18a055ccf858cd6117c7768"
+          },
+          {
+            "kind": "cleanup",
+            "summary": "Stopped and deleted only the disposable test installation through PicoRunner. Managed folder removal was verified; both pre-existing imported apps remained.",
+            "source": "https://github.com/excalidraw/excalidraw/tree/31df3e6ef245c646b18a055ccf858cd6117c7768"
           }
         ],
         "launch": {

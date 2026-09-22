@@ -16,6 +16,9 @@ test("evidence gate rejects unsupported claims and command injection", () => {
   assert.deepEqual(validateCatalog(catalog), []);
   const invalid = structuredClone(catalog);
   invalid.apps[0].compatibility.status = "verified";
+  invalid.apps[0].compatibility.evidence = invalid.apps[0].compatibility.evidence.filter(
+    (entry) => entry.kind !== "install",
+  );
   assert(validateCatalog(invalid).some((e) => e.includes("install evidence")));
   for (const repository of [
     "https://github.com/a/b';touch /tmp/x",
