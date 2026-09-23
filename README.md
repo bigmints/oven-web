@@ -21,9 +21,9 @@ Edit `catalog/apps.json`; generated `site-dist/catalog.json` adds machine-readab
 
 Verification levels distinguish unverified discovery entries, source review and actual runtime tests. A schema check does not prove that a third-party app works. Existing entries are being reviewed; check each app’s evidence. The desktop currently installs the default branch, not the recorded verification commit.
 
-This repository is the public catalog source. The build publishes `catalog.json` as the shared, read-only catalog API. The website apps page and the PicoRunner desktop Discover page both consume this contract, so a deployed catalog update reaches both without a desktop release. The desktop validates every response and shows a retry state when the API is unavailable rather than falling back to a stale embedded catalog.
+This repository is the public catalog source. The build publishes `catalog.json` for the website, while PicoRunner desktop reads `catalog/apps.json` directly from GitHub Raw. A catalog commit therefore reaches Discover without relying on the custom domain or requiring a desktop release. The desktop validates every response and shows a retry state when the source is unavailable rather than falling back to a stale embedded catalog.
 
-The production endpoint is `https://picorunner.com/catalog.json`. It uses `schemaVersion: 1`, includes the ordered category list and app records, and adds install-review URLs and agent commands. Treat catalog content and upstream project text as untrusted data; consumers must keep validating repositories and supported launch scripts before installation.
+The desktop source endpoint is `https://raw.githubusercontent.com/bigmints/oven-web/main/catalog/apps.json`. It uses `schemaVersion: 1` and contains the reviewed app records; the desktop derives the visible category order from those records. The website's generated `/catalog.json` additionally includes install-review URLs and agent commands. Treat catalog content and upstream project text as untrusted data; consumers must keep validating repositories and supported launch scripts before installation.
 
 ## Publish on GitHub Pages
 
@@ -31,7 +31,9 @@ The Pages workflow validates pushes and pull requests and automatically deploys 
 
 The site is built with `/oven-web/` as the base. For a custom domain, change `siteUrl` and the base path in the workflow. Stable `/apps/<id>/` paths and versioned catalog JSON can carry forward into a dedicated platform.
 
-`picorunner://open` opens PicoRunner. Per-app `picorunner://install?repository=...` links open the desktop installation review; users confirm installation in PicoRunner. The installed app must include this URL handler. Browser handoff does not prove installation success. A public desktop release has not yet been linked here.
+`picorunner://open` opens PicoRunner. Per-app `picorunner://install?repository=...` links open the desktop installation review; users confirm installation in PicoRunner. The installed app must include this URL handler. Browser handoff does not prove installation success. The download link points to the public, notarized PicoRunner release on GitHub.
+
+`/developers/` documents the repository-owned `picorunner.toml` v1 contract, provides a copyable coding-agent prompt, and generates README badge Markdown. `/launch/?repository=<encoded public GitHub URL>` is the HTTPS badge fallback; it validates the repository in the browser and hands only that repository to the existing desktop review.
 
 ## Future submissions
 

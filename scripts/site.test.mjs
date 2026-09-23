@@ -85,7 +85,9 @@ test("root and project Pages builds have working local links and per-app command
       for (const page of [
         "index.html",
         "apps/index.html",
+        "developers/index.html",
         "agents/index.html",
+        "launch/index.html",
         "download/index.html",
         ...catalog.apps.map((a) => `apps/${a.id}/index.html`),
       ]) {
@@ -124,11 +126,35 @@ test("root and project Pages builds have working local links and per-app command
       assert(apps.includes("Setup pending"));
       assert(!apps.includes("Excalidraw"));
       assert(!apps.includes("Actual Budget"));
+      const developers = readFileSync(
+        new URL("../site-dist/developers/index.html", import.meta.url),
+        "utf8",
+      );
+      assert(developers.includes("picorunner.toml"));
+      assert(developers.includes("badge-generator"));
+      assert(developers.includes("Add PicoRunner support to this repository"));
+      assert(developers.includes("schemas/picorunner-manifest-v1.json"));
+      assert(existsSync(new URL("../site-dist/badges/launch.svg", import.meta.url)));
+      const schema = JSON.parse(
+        readFileSync(
+          new URL("../site-dist/schemas/picorunner-manifest-v1.json", import.meta.url),
+          "utf8",
+        ),
+      );
+      assert.equal(schema.properties.schema.const, 1);
+      const launch = readFileSync(
+        new URL("../site-dist/launch/index.html", import.meta.url),
+        "utf8",
+      );
+      assert(launch.includes("data-launch-page"));
+      assert(launch.includes("Open PicoRunner"));
       const sitemap = readFileSync(
         new URL("../site-dist/sitemap.xml", import.meta.url),
         "utf8",
       );
       assert(sitemap.includes("/apps/</loc>"));
+      assert(sitemap.includes("/developers/</loc>"));
+      assert(sitemap.includes("/launch/</loc>"));
       assert.equal(
         readFileSync(new URL("../site-dist/CNAME", import.meta.url), "utf8"),
         "picorunner.com\n",

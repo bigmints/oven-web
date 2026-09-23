@@ -64,3 +64,73 @@ for (const link of document.querySelectorAll("[data-install]"))
       "Opening PicoRunner. If nothing happens, use “Didn’t open?” below.",
     );
   });
+
+const githubRepository = (value) => {
+  const match = value
+    .trim()
+    .replace(/\.git\/?$/, "")
+    .match(
+      /^https:\/\/github\.com\/([A-Za-z0-9_][A-Za-z0-9_.-]*)\/([A-Za-z0-9_][A-Za-z0-9_.-]*)\/?$/,
+    );
+  return match ? `https://github.com/${match[1]}/${match[2]}` : null;
+};
+
+const badgeForm = document.querySelector("#badge-generator");
+badgeForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const input = document.querySelector("#badge-repository");
+  const error = document.querySelector("#badge-error");
+  const output = document.querySelector("#badge-output");
+  const code = document.querySelector("#badge-markdown");
+  const repository = githubRepository(input.value);
+  if (!repository) {
+    error.textContent = "Enter a public GitHub repository URL with an owner and repository name.";
+    output.hidden = true;
+    return;
+  }
+  const launch = `${location.origin}/launch/?repository=${encodeURIComponent(repository)}`;
+  code.textContent = `[![Launch on PicoRunner](${location.origin}/badges/launch.svg)](${launch})`;
+  error.textContent = "";
+  output.hidden = false;
+});
+
+document.querySelector("#copy-badge")?.addEventListener("click", async () => {
+  const value = document.querySelector("#badge-markdown")?.textContent || "";
+  if (!value) return;
+  try {
+    await navigator.clipboard.writeText(value);
+    announce("README badge copied.");
+  } catch {
+    announce("Copy was blocked. Select the badge Markdown and press ⌘C.");
+  }
+});
+
+const launchPage = document.querySelector("[data-launch-page]");
+if (launchPage) {
+  const repository = githubRepository(
+    new URLSearchParams(location.search).get("repository") || "",
+  );
+  const summary = document.querySelector("#launch-summary");
+  const repositoryNode = document.querySelector("#launch-repository");
+  const button = document.querySelector("#launch-button");
+  const source = document.querySelector("#launch-source");
+  const error = document.querySelector("#launch-error");
+  if (repository) {
+    summary.textContent =
+      "PicoRunner will show the repository and its setup for review before downloading anything.";
+    repositoryNode.textContent = repository;
+    button.href = `picorunner://install?repository=${encodeURIComponent(repository)}`;
+    button.hidden = false;
+    button.addEventListener("click", () => {
+      announce("Opening PicoRunner. You will review the repository in the app.");
+    });
+    source.href = repository;
+    source.hidden = false;
+    error.textContent = "";
+  } else {
+    summary.textContent = "This launch link is incomplete.";
+    repositoryNode.textContent = "No valid public GitHub repository was provided.";
+    error.textContent =
+      "Ask the project maintainer for a new Launch on PicoRunner link.";
+  }
+}

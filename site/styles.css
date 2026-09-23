@@ -981,3 +981,98 @@ button:disabled {
   padding-top: 40px;
  }
 }
+
+.developer-page { padding-block: 70px 90px; }
+.developer-hero { max-width: 820px; margin-bottom: 54px; }
+.developer-hero h1,
+.launch-page h1 {
+ margin: 18px 0 22px;
+ font-size: clamp(46px, 6.5vw, 76px);
+ line-height: 1.05;
+ letter-spacing: -3px;
+ font-weight: 550;
+}
+.developer-grid {
+ display: grid;
+ grid-template-columns: repeat(2, minmax(0, 1fr));
+ gap: 18px;
+}
+.developer-grid article,
+.developer-contract,
+.launch-card {
+ min-width: 0;
+ padding: 28px;
+ border: 1px solid var(--line);
+ border-radius: 12px;
+ background: #fff;
+}
+.developer-grid h2,
+.developer-contract h2 {
+ margin: 12px 0;
+ font-size: 24px;
+ font-weight: 580;
+ letter-spacing: -0.6px;
+}
+.developer-grid p,
+.developer-grid li,
+.developer-contract p,
+.launch-card p {
+ color: var(--muted);
+ font-size: 13px;
+ line-height: 1.8;
+}
+.developer-grid a { color: var(--green); text-decoration: underline; }
+.developer-step { color: #7d8f70; font: 11px/1 ui-monospace, monospace; }
+.developer-command { margin-top: 18px; max-height: 330px; overflow: auto; }
+.developer-command code { white-space: pre-wrap; }
+.badge-generator label {
+ display: block;
+ margin-bottom: 8px;
+ font-size: 12px;
+ font-weight: 650;
+}
+.badge-generator > div { display: flex; gap: 8px; }
+.badge-generator input {
+ min-width: 0;
+ flex: 1;
+ border: 1px solid #cdd4c7;
+ border-radius: 6px;
+ padding: 11px 12px;
+}
+.badge-generator button,
+.badge-output button {
+ border: 0;
+ border-radius: 6px;
+ padding: 10px 14px;
+ background: var(--green);
+ color: #fff;
+}
+.field-message { min-height: 1.6em; margin: 5px 0 0; color: #9b3f32 !important; }
+.badge-output { margin-top: 10px; }
+.launch-badge-preview { display: block; max-width: 100%; height: auto; }
+.developer-contract { margin-top: 18px; background: #edf1e4; }
+.developer-contract > div {
+ display: grid;
+ grid-template-columns: repeat(3, minmax(0, 1fr));
+ gap: 12px 28px;
+}
+.launch-page { max-width: 780px; padding-block: 75px 95px; }
+.launch-card { margin-top: 35px; background: #f0f3e8; }
+.launch-card > code {
+ display: block;
+ overflow-wrap: anywhere;
+ margin-bottom: 22px;
+}
+.launch-card .button { margin-bottom: 16px; }
+.launch-card details { margin: 18px 0; font-size: 13px; line-height: 1.7; }
+
+@media (max-width: 620px) {
+ .developer-page,
+ .launch-page { padding-block: 48px 65px; }
+ .developer-grid { grid-template-columns: 1fr; }
+ .developer-grid article,
+ .developer-contract,
+ .launch-card { padding: 21px; }
+ .developer-contract > div { grid-template-columns: 1fr; }
+ .badge-generator > div { flex-direction: column; }
+}
