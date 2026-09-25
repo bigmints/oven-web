@@ -20,4 +20,4 @@ if (process.argv[2] === '--desktop') {
   execFileSync('magick', ['-background', 'none', path.join(brand, 'symbol.svg'), '-resize', '36x36', '-depth', '8', `rgba:${path.join(desktop, 'src-tauri/icons/tray-icon.rgba')}`], { stdio: 'inherit' });
   execFileSync('pnpm', ['tauri', 'icon', 'public/brand/app-icon.svg'], { cwd: desktop, stdio: 'inherit' });
 }
-console.log('Rendered Folded P raster assets.');
+console.log('Rendered PicoRunner raster assets.');
