@@ -4,7 +4,7 @@
     {
       "id": "youbot",
       "name": "Youbot",
-      "description": "A self-hosted AI concierge for visitors. PicoRunner setup is coming later.",
+      "description": "A self-hosted AI concierge for visitors. Set it up with Youbot's guide.",
       "category": "Productivity",
       "tags": ["AI concierge", "Visitors", "Self-hosted"],
       "repository": "https://github.com/bigmints/ubot",
@@ -21,7 +21,7 @@
           "An AI provider must be configured before conversations work",
           "Use Youbot's own installer until PicoRunner supports its setup"
         ],
-        "availability": "Youbot uses its own user-scoped installer. PicoRunner cannot manage that installation from the gallery yet.",
+        "availability": "Youbot's installer creates a private owner login and keeps its app and data in your user folder. PicoRunner does not yet run or manage that installer.",
         "license": null,
         "audience": "consumer"
       },

@@ -74,13 +74,13 @@ test("root and project Pages builds have working local links and per-app command
         );
         if (app.compatibility.status === "blocked") {
           assert(!html.includes("Copy command"));
-          assert(html.includes("is not ready yet"));
+        assert(html.includes("is not in PicoRunner yet"));
           assert(!html.includes("Review the evidence"));
         } else {
-          assert(html.includes("Copy command"));
+        assert(!html.includes("Copy command"));
         }
         assert(html.includes(app.name));
-        assert(html.includes("Technical details"));
+      assert(html.includes("For developers"));
       }
       for (const page of [
         "index.html",
@@ -110,6 +110,19 @@ test("root and project Pages builds have working local links and per-app command
           );
         }
       }
+      const developerSkill = readFileSync(
+        new URL("../site-dist/skills/picorunner-developer/SKILL.md", import.meta.url),
+        "utf8",
+      );
+      const developerPage = readFileSync(
+        new URL("../site-dist/developers/index.html", import.meta.url),
+        "utf8",
+      );
+      assert.equal(
+        developerSkill,
+        readFileSync(new URL("../skills/picorunner-developer/SKILL.md", import.meta.url), "utf8"),
+      );
+      assert(developerPage.includes(`${base}skills/picorunner-developer/SKILL.md`));
       const home = readFileSync(
         new URL("../site-dist/index.html", import.meta.url),
         "utf8",
@@ -119,11 +132,15 @@ test("root and project Pages builds have working local links and per-app command
         "utf8",
       );
       assert(home.includes(`href="${base}apps/"`));
+      assert(home.includes('class="nav-toggle"'));
+      assert(home.includes('aria-controls="site-nav"'));
+      assert(home.includes('id="site-nav"'));
+      assert(!home.includes(">Open PicoRunner</a>"));
       assert(!home.includes("id=\"search\""));
       assert(apps.includes("id=\"search\""));
       assert(apps.includes(`${catalog.apps.length} apps`));
-      assert(apps.includes("Not tested yet"));
-      assert(apps.includes("Setup pending"));
+      assert(apps.includes("View app"));
+      assert(!apps.includes("setup status"));
       assert(!apps.includes("Excalidraw"));
       assert(!apps.includes("Actual Budget"));
       const developers = readFileSync(
@@ -132,7 +149,7 @@ test("root and project Pages builds have working local links and per-app command
       );
       assert(developers.includes("picorunner.toml"));
       assert(developers.includes("badge-generator"));
-      assert(developers.includes("Add PicoRunner support to this repository"));
+      assert(developers.includes("Read the PicoRunner developer skill"));
       assert(developers.includes("schemas/picorunner-manifest-v1.json"));
       assert(existsSync(new URL("../site-dist/badges/launch.svg", import.meta.url)));
       const schema = JSON.parse(

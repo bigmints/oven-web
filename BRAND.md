@@ -3,10 +3,10 @@
 Use **PicoRunner** in visible copy and **picorunner.com** for public links.
 The desktop bundle identifier is `com.bigmints.picorunner`.
 
-The approved identity is **Folded P**: an original geometric P with heavy
-mixed-case lettering. Primary artwork is black (`#080808`) on white; use the
-white reverse version on dark backgrounds. Keep the wordmark transparent.
-Do not add a play triangle, colored gradient, outline, or shadow to the mark.
+The approved identity is the **intertwined mark** from the workspace root
+`logo.svg`, paired with the existing heavy mixed-case lettering. Primary
+artwork is charcoal (`#253027`) on white; use the white reverse version on
+dark backgrounds. Keep the wordmark transparent and do not add effects.
 
 The lettering is stored as vector outlines in `scripts/brand/wordmark.json`.
 It was outlined from locally licensed Arial Black; no font software is

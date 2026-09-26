@@ -1,3 +1,50 @@
+const siteHeader = document.querySelector(".header");
+const siteNav = document.querySelector("#site-nav");
+const navToggle = document.querySelector(".nav-toggle");
+const navToggleText = navToggle?.querySelector(".nav-toggle-text");
+
+function setNavigationOpen(open) {
+  if (!siteHeader || !navToggle) return;
+  siteHeader.classList.toggle("nav-open", open);
+  navToggle.setAttribute("aria-expanded", String(open));
+  if (navToggleText) navToggleText.textContent = open ? "Close" : "Menu";
+}
+
+navToggle?.addEventListener("click", () => {
+  setNavigationOpen(navToggle.getAttribute("aria-expanded") !== "true");
+});
+
+for (const link of siteNav?.querySelectorAll("a") || []) {
+  const url = new URL(link.href);
+  if (url.protocol === location.protocol && url.pathname === location.pathname)
+    link.setAttribute("aria-current", "page");
+  link.addEventListener("click", () => setNavigationOpen(false));
+}
+
+document.addEventListener("keydown", (event) => {
+  if (
+    event.key === "Escape" &&
+    navToggle?.getAttribute("aria-expanded") === "true"
+  ) {
+    setNavigationOpen(false);
+    navToggle.focus();
+  }
+});
+
+document.addEventListener("click", (event) => {
+  if (
+    navToggle?.getAttribute("aria-expanded") === "true" &&
+    siteHeader &&
+    !siteHeader.contains(event.target)
+  )
+    setNavigationOpen(false);
+});
+
+const desktopNavigation = window.matchMedia("(min-width: 761px)");
+desktopNavigation.addEventListener?.("change", (event) => {
+  if (event.matches) setNavigationOpen(false);
+});
+
 const search = document.querySelector("#search");
 const filters = [...document.querySelectorAll("[data-category-filter]")];
 const cards = [...document.querySelectorAll("[data-app-card]")];
