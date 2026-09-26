@@ -131,8 +131,10 @@ test("root and project Pages builds have working local links and per-app command
         "utf8",
       );
       assert(developers.includes("picorunner.toml"));
+      assert(developers.includes(`${base}skills/picorunner-developer/SKILL.md`));
+      assert.equal(readFileSync(new URL("../site-dist/skills/picorunner-developer/SKILL.md", import.meta.url), "utf8"), readFileSync(new URL("../skills/picorunner-developer/SKILL.md", import.meta.url), "utf8"));
       assert(developers.includes("badge-generator"));
-      assert(developers.includes("Add PicoRunner support to this repository"));
+      assert(developers.includes("Read the PicoRunner developer skill"));
       assert(developers.includes("schemas/picorunner-manifest-v1.json"));
       assert(existsSync(new URL("../site-dist/badges/launch.svg", import.meta.url)));
       const schema = JSON.parse(

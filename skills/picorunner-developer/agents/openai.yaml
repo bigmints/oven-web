@@ -1,0 +1,3 @@
+interface:
+  display_name: "PicoRunner Developer"
+  short_description: "Prepare an app for PicoRunner"
