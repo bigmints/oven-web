@@ -92,6 +92,8 @@ if (typeof window !== "undefined")
       event.data?.type !== "pico-analytics-result"
     )
       return;
+    if (testMode && event.data.diagnostics)
+      document.title = `QA analytics: ${JSON.stringify(event.data.diagnostics)}`;
     const entry = pending.get(event.data.id);
     if (!entry) return;
     pending.delete(event.data.id);

@@ -21,7 +21,12 @@ window.addEventListener("message", async event => {
   if (event.source !== parent) return;
   const valid = validateEvent(event.data, event.origin, config.appIds);
   if (!valid) return;
-  const reply = ok => event.source.postMessage({type:"pico-analytics-result", id:event.data.id, ok}, event.origin);
+  const reply = ok => {
+    const send = () => event.source.postMessage({type:"pico-analytics-result", id:event.data.id, ok,
+      ...(event.data.test === true ? {diagnostics:{cookieAvailable: /(?:^|; )_ga=/.test(document.cookie), collectRequests:performance.getEntriesByType("resource").filter(item => {try {const url = new URL(item.name); return url.hostname.endsWith("google-analytics.com") && url.pathname.includes("collect");} catch {return false;}}).length}} : {})
+    }, event.origin);
+    if (event.data.test === true) setTimeout(send,2000); else send();
+  };
   try {
     await loadTag();
     window.gtag("config", config.measurementId, {send_page_view:false, client_id:valid.client, cookie_flags:"SameSite=None;Secure", cookie_update:false, page_location:"https://picorunner.com/", page_referrer:"", allow_google_signals:false, allow_ad_personalization_signals:false});
