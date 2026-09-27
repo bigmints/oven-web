@@ -71,8 +71,10 @@ names and the legacy `oven://` protocol remain only for compatibility.
 
 PicoRunner makes open-source projects easier for people without technical skills
 to run, and easier for developers—including first-time builders and vibe
-coders—to share with their community. Lead with both audiences, not a specific
-operating system. Mac is the currently available download; more platforms are
+coders—to share with their community. Keep these audiences separate: the homepage helps people find and run apps;
+the For developers page explains the benefits and steps for sharing a project.
+Connect them through navigation, without competing creator calls to action on
+the homepage. Do not define the product by a specific operating system. Mac is the currently available download; more platforms are
 planned. Do not name unreleased platforms or promise release dates.
 
 The developer benefit is a simpler path to a first run: reusable setup steps, a

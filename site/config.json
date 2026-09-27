@@ -1,7 +1,7 @@
 {
   "name": "PicoRunner",
   "tagline": "Open-source apps. Open to everyone.",
-  "description": "Use open-source apps without figuring out the setup. Share what you build with people who don’t code.",
+  "description": "Run open-source apps without the complicated setup. PicoRunner installs and opens apps on your computer. No coding needed.",
   "siteUrl": "https://picorunner.com/",
   "downloadUrl": "https://github.com/bigmints/oven-site/releases/download/v0.3.6/PicoRunner_0.3.6_aarch64.dmg",
   "sourceUrl": "https://github.com/bigmints/oven-web",

@@ -434,19 +434,8 @@ h2 code { font-size: .84em; letter-spacing: -.04em; }
 .install-panel { scroll-margin-top: 90px; }
 @media (max-width: 760px) { .mobile-install { display: inline-flex; margin: 0 0 8px; } }
 
-/* The two sides of the community: using apps and sharing what you build. */
+/* Consumer homepage and developer guide details. */
 .hero .fine a { text-decoration: underline; text-underline-offset: 3px; }
-.creator-section { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; padding-block: 92px 72px; border-bottom: 1px solid var(--color-border); }
-.creator-intro h2 { font-size: 42px; margin: 18px 0 24px; line-height: 1.18; }
-.creator-intro h2 em { font-style: normal; color: var(--color-accent); }
-.creator-intro p { font-size: 14px; line-height: 1.9; max-width: 450px; }
-.creator-intro .button { margin-top: 12px; }
-.creator-benefits article { display: flex; gap: 22px; padding: 22px 0; border-bottom: 1px solid var(--color-border); }
-.creator-benefits article:first-child { padding-top: 3px; }
-.creator-benefits article > span { color: var(--color-accent); font: 11px/1.8 var(--font-mono); }
-.creator-benefits h3 { font-size: 17px; margin: 0 0 10px; }
-.creator-benefits article p { margin: 0; font-size: 13px; line-height: 1.8; }
-.creator-ownership { font-size: 11px; color: var(--color-subtle); margin: 20px 0 0; }
 .faq-list a { color: var(--color-accent); text-decoration: underline; text-underline-offset: 3px; }
 .docs-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 18px 24px; margin-top: 26px; }
 .docs-content .button.primary { color: var(--color-accent-ink); }
@@ -456,12 +445,7 @@ h2 code { font-size: .84em; letter-spacing: -.04em; }
 .developer-value-grid .icon { color: var(--color-accent); margin-bottom: 20px; }
 .developer-value-grid h3 { font-size: 16px; line-height: 1.4; margin-bottom: 10px; }
 .developer-value-grid p { font-size: 12px; margin: 0; line-height: 1.85; }
-@media (max-width: 1000px) { .creator-section { gap: 45px; } }
 @media (max-width: 760px) {
-  .creator-section { grid-template-columns: 1fr; gap: 36px; padding-block: 56px; }
-  .creator-intro h2 { font-size: 34px; }
-  .creator-intro p { max-width: none; }
-  .creator-benefits article { gap: 16px; }
   .footer-bottom > span { margin: 0; flex-basis: 100%; }
 }
 @media (max-width: 520px) { .developer-value-grid { grid-template-columns: 1fr; } }
