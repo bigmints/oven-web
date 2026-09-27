@@ -452,3 +452,13 @@ h2 code { font-size: .84em; letter-spacing: -.04em; }
 
 .github-stars { gap: .3rem; }
 .github-stars .github-stars-icon { width: 14px; height: 14px; flex-shrink: 0; }
+
+.manifest-reference { padding-block: 3rem 5rem; }
+.manifest-reference h1 { margin-block: 1.5rem 1rem; }
+.manifest-table-scroll { overflow-x: auto; margin-top: 2rem; }
+.manifest-table { border-collapse: collapse; width: 100%; text-align: left; font-size: .9rem; }
+.manifest-table caption { text-align: left; font-weight: 600; padding-bottom: 1rem; }
+.manifest-table th, .manifest-table td { padding: .85rem; border-bottom: 1px solid currentColor; vertical-align: top; }
+.manifest-table td { min-width: 7rem; }
+.manifest-table td:last-child { min-width: 16rem; }
+.manifest-table code { overflow-wrap: anywhere; }

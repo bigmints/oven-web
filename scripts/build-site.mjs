@@ -275,7 +275,7 @@ const developerDocsContent = `<main id="main" class="developer-docs">
         <a href="#validate">Validate your app</a>
         <a href="#readme-button">README button</a>
         <p>Reference</p>
-        <a href="${href("schemas/picorunner-manifest-v1.json")}">JSON schema <span aria-hidden="true">↗</span></a>
+        <a href="${href("developers/manifest/")}">Manifest reference <span aria-hidden="true">↗</span></a>
         <a href="#publishing">Publishing checklist</a>
       </nav>
       <div class="docs-sidebar-note">
@@ -339,7 +339,7 @@ const developerDocsContent = `<main id="main" class="developer-docs">
           <tr><td><code>persistence</code></td><td>Repository-relative files and folders that survive managed updates.</td><td>No</td></tr>
           <tr><td><code>inputs</code></td><td>Required configuration and secret names—never their values.</td><td>No</td></tr>
         </tbody></table></div>
-        <a class="docs-inline-link" href="${href("schemas/picorunner-manifest-v1.json")}">Open the complete manifest v1 schema <span aria-hidden="true">→</span></a>
+        <a class="docs-inline-link" href="${href("developers/manifest/")}">View the complete manifest reference <span aria-hidden="true">→</span></a>
       </section>
 
       <section id="agent" class="docs-section">
@@ -462,7 +462,7 @@ await writeFile(
 if (config.siteUrl)
   await writeFile(
     path.join(output, "sitemap.xml"),
-    `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${["", "apps/", "developers/", "launch/", "download/", "privacy/", ...catalog.apps.map((a) => `apps/${a.id}/`)].map((r) => `<url><loc>${esc(new URL(r, config.siteUrl.replace(/\/?$/, "/")).href)}</loc></url>`).join("")}</urlset>`,
+    `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${["", "apps/", "developers/", "developers/manifest/", "launch/", "download/", "privacy/", ...catalog.apps.map((a) => `apps/${a.id}/`)].map((r) => `<url><loc>${esc(new URL(r, config.siteUrl.replace(/\/?$/, "/")).href)}</loc></url>`).join("")}</urlset>`,
   );
 await writeFile(
   path.join(output, "robots.txt"),
@@ -476,6 +476,34 @@ for (const file of ["tokens.css", "styles.css", "app.js", "favicon.svg", "analyt
   await copyFile(path.join(root, "site", file), path.join(output, file));
 await cp(path.join(root, "site/fonts"), path.join(output, "fonts"), { recursive: true });
 await cp(path.join(root, "site/badges"), path.join(output, "badges"), { recursive: true });
+// Generate the human-readable reference from the same schema used by tools.
+const manifestSchema = JSON.parse(await readFile(path.join(root, "site/schemas/picorunner-manifest-v1.json"), "utf8"));
+const schemaValue = (value) => JSON.stringify(value);
+function schemaRules(node) {
+  const labels = { const: "Must equal", enum: "Allowed values", default: "Default", minLength: "Minimum length", maxLength: "Maximum length", minimum: "Minimum", maximum: "Maximum", minItems: "Minimum items", maxItems: "Maximum items", pattern: "Must match", additionalProperties: "Additional fields", oneOf: "Exactly one rule must match", not: "Must not match" };
+  return Object.entries(labels).filter(([key]) => key in node).map(([key, label]) => `<div>${esc(label)}: <code>${esc(schemaValue(node[key]))}</code></div>`).join("") || "—";
+}
+function schemaRows(properties, required = [], prefix = "") {
+  return Object.entries(properties).map(([name, original]) => {
+    const node = original.$ref ? { ...manifestSchema.$defs[original.$ref.split("/").at(-1)], ...original } : original;
+    const field = prefix + name;
+    const type = node.type || (node.enum ? typeof node.enum[0] : typeof node.const);
+    const requirement = required.includes(name) ? (prefix ? "Required when parent is present" : "Required") : "Optional";
+    const row = `<tr><th scope="row"><code>${esc(field)}</code></th><td>${esc(type)}</td><td>${requirement}</td><td>${schemaRules(node)}${node.description ? `<p>${esc(node.description)}</p>` : ""}</td></tr>`;
+    if (node.properties) return row + schemaRows(node.properties, node.required, field + ".");
+    if (node.items?.properties) return row + schemaRows(node.items.properties, node.items.required, field + "[].") + `<tr><th scope="row"><code>${esc(field)}[]</code></th><td>object</td><td>Each item</td><td>${schemaRules(node.items)}</td></tr>`;
+    if (node.items) {
+      const item = node.items.$ref ? { ...manifestSchema.$defs[node.items.$ref.split("/").at(-1)], ...node.items } : node.items;
+      return row + `<tr><th scope="row"><code>${esc(field)}[]</code></th><td>${esc(item.type || "value")}</td><td>Each item</td><td>${schemaRules(item)}</td></tr>`;
+    }
+    return row;
+  }).join("");
+}
+await mkdir(path.join(output, "developers/manifest"), { recursive: true });
+await writeFile(path.join(output, "developers/manifest/index.html"), layout(
+  "Manifest reference", "PicoRunner manifest v1 fields, types and validation rules.", "developers/manifest/",
+  `<main id="main" class="wrap manifest-reference"><a href="${href("developers/")}">← Developer guide</a><h1>Manifest reference</h1><p>All fields supported by <code>picorunner.toml</code> version 1. Nested fields use dotted names; <code>[]</code> identifies an array item. Unlisted fields are not accepted.</p><div class="manifest-table-scroll" role="region" aria-label="Manifest fields" tabindex="0"><table class="manifest-table"><caption>PicoRunner manifest v1</caption><thead><tr><th scope="col">Field</th><th scope="col">Type</th><th scope="col">Required</th><th scope="col">Rules and defaults</th></tr></thead><tbody>${schemaRows(manifestSchema.properties, manifestSchema.required)}</tbody></table></div></main>`
+));
 await cp(path.join(root, "site/schemas"), path.join(output, "schemas"), { recursive: true });
 await cp(
   path.join(root, "skills/oven-curator"),

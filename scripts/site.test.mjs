@@ -172,7 +172,11 @@ test("root and project Pages builds have working local links and per-app command
       assert.equal(readFileSync(new URL("../site-dist/skills/picorunner-developer/SKILL.md", import.meta.url), "utf8"), readFileSync(new URL("../skills/picorunner-developer/SKILL.md", import.meta.url), "utf8"));
       assert(developers.includes("badge-generator"));
       assert(developers.includes("Read the PicoRunner developer skill"));
-      assert(developers.includes("schemas/picorunner-manifest-v1.json"));
+      assert(developers.includes("developers/manifest/"));
+      const reference = readFileSync(new URL("../site-dist/developers/manifest/index.html", import.meta.url), "utf8");
+      assert(reference.includes('<table class="manifest-table">'));
+      assert(reference.includes("runtime.kind"));
+      assert(reference.includes("setup.steps[].working_directory"));
       assert(existsSync(new URL("../site-dist/badges/launch.svg", import.meta.url)));
       const schema = JSON.parse(
         readFileSync(
