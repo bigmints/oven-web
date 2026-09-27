@@ -466,3 +466,9 @@ h2 code { font-size: .84em; letter-spacing: -.04em; }
 .manifest-json { margin-top: 2rem; }
 .manifest-json summary { cursor: pointer; font-weight: 600; padding-block: .75rem; }
 .manifest-json .docs-code { margin-top: .75rem; }
+
+.manifest-tabs { display: flex; gap: .4rem; margin-top: 2rem; border-bottom: 1px solid currentColor; padding-bottom: .5rem; }
+.manifest-tabs button { font: inherit; padding: .6rem 1.1rem; border: 1px solid transparent; border-radius: .4rem; background: transparent; color: inherit; cursor: pointer; }
+.manifest-tabs button[aria-selected="true"] { border-color: currentColor; font-weight: 700; }
+.manifest-tabs button:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+#manifest-table-panel[hidden], #manifest-json-panel[hidden] { display: none; }

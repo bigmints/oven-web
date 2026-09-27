@@ -178,3 +178,28 @@ if (launchPage) {
       "Ask the app’s creator for a new link.";
   }
 }
+
+// Accessible manifest format tabs: selection follows keyboard focus.
+const manifestTabs = [...document.querySelectorAll('.manifest-tabs [role="tab"]')];
+function selectManifestTab(selected) {
+  for (const tab of manifestTabs) {
+    const active = tab === selected;
+    tab.setAttribute('aria-selected', String(active));
+    tab.tabIndex = active ? 0 : -1;
+    document.getElementById(tab.getAttribute('aria-controls')).hidden = !active;
+  }
+}
+manifestTabs.forEach((tab, index) => {
+  tab.addEventListener('click', () => selectManifestTab(tab));
+  tab.addEventListener('keydown', (event) => {
+    let next;
+    if (event.key === 'ArrowRight') next = (index + 1) % manifestTabs.length;
+    else if (event.key === 'ArrowLeft') next = (index - 1 + manifestTabs.length) % manifestTabs.length;
+    else if (event.key === 'Home') next = 0;
+    else if (event.key === 'End') next = manifestTabs.length - 1;
+    else return;
+    event.preventDefault();
+    selectManifestTab(manifestTabs[next]);
+    manifestTabs[next].focus();
+  });
+});
