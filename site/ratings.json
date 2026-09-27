@@ -1,5 +1,21 @@
 {
   "schemaVersion": 1,
-  "updatedAt": null,
-  "apps": []
+  "updatedAt": "2026-09-27T11:44:57.123Z",
+  "apps": [
+    {
+      "id": "youbot",
+      "average": null,
+      "count": 0
+    },
+    {
+      "id": "flourish",
+      "average": null,
+      "count": 0
+    },
+    {
+      "id": "rise",
+      "average": null,
+      "count": 0
+    }
+  ]
 }
