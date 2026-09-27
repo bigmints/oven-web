@@ -1,11 +1,11 @@
 {
-  "version": "0.3.8",
-  "notes": "Deterministic setup and launch recovery, plus localhost WebSocket fixes.",
-  "pub_date": "2026-09-27T19:18:38.691Z",
+  "version": "0.3.9",
+  "notes": "Fix Nodepad and other slow-starting apps opening an incorrect IPv6 browser origin.",
+  "pub_date": "2026-09-27T19:52:09.979Z",
   "platforms": {
     "darwin-aarch64": {
-      "url": "https://github.com/bigmints/oven-site/releases/download/v0.3.8/PicoRunner_0.3.8_aarch64.app.tar.gz",
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRS1VoUkllUEp1L2NDNVFHRnN4VFdhcEw3ZjVKSWpjS1kvZXc1amxtc2xJazdVQzZOWmY2S3BJWGtTTnBpWUZzNlp6MjY0RlhUaDdKTFhEd1JBc051NmZ2WkljNENJNkFRPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkwNTM2NjM4CWZpbGU6UGljb1J1bm5lcl8wLjMuOF9hYXJjaDY0LmFwcC50YXIuZ3oKd2oyTEFSbWxmalBYaExKYk03VjJJbVJURGI0Zk1MS2dVcWhlcW9jdlA4d2J2NkR5aWVqd21OQlAyMEl4SlhwVC9DM2FWaGJtc2syeXdzTnBJU0djQ3c9PQo="
+      "url": "https://github.com/bigmints/oven-site/releases/download/v0.3.9/PicoRunner_0.3.9_aarch64.app.tar.gz",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRS1VoUkllUEp1L1dzV3pjTFEyUHNBcnltS3dMTzVWL1dQaVB3eGhmNk83VEN5K1BxVkU3Snc1UDNRTzEwUmJlOTRXL2EvMElsWW1yTElodVFwTnRyVHRkWVJETlJ2Q3dNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkwNTM4NjM4CWZpbGU6UGljb1J1bm5lcl8wLjMuOV9hYXJjaDY0LmFwcC50YXIuZ3oKZ0RYckJrclVPT0djM1hZbmtmdFBNYnlLZmk4SDY2eGpQVDdhbS9LZGpFNUVISnNMZXNKa20xSjd6UDF1ZW1Bek9IN0MydTdQVnBtSzFONjJKcjRQQmc9PQo="
     }
   }
 }
