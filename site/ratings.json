@@ -1,21 +1,21 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-27T12:21:25.495Z",
+  "updatedAt": "2026-09-27T17:15:48.986Z",
   "apps": [
     {
       "id": "youbot",
-      "average": null,
-      "count": 0
+      "average": 5,
+      "count": 1
     },
     {
       "id": "flourish",
-      "average": null,
-      "count": 0
+      "average": 5,
+      "count": 1
     },
     {
       "id": "rise",
-      "average": null,
-      "count": 0
+      "average": 5,
+      "count": 1
     }
   ]
 }
