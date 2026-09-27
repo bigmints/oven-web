@@ -30,11 +30,15 @@ window.addEventListener("message", async event => {
   try {
     if (valid.params.picorunner_surface === "desktop") {
       if (!config.collectorUrl) throw new Error("Native collector unavailable");
-      const response = await fetch(config.collectorUrl, {
-        method:"POST", headers:{"Content-Type":"application/json"}, credentials:"omit",
-        body:JSON.stringify({type:"pico-analytics-event",id:event.data.id,client:valid.client,surface:"desktop",name:event.data.name,params:valid.params,test:event.data.test === true}), signal:AbortSignal.timeout(10000),
-      });
-      if (!response.ok || (await response.json()).accepted !== true) throw new Error("Collection failed");
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(),10000);
+      try {
+        const response = await fetch(config.collectorUrl, {
+          method:"POST", headers:{"Content-Type":"application/json"}, credentials:"omit",
+          body:JSON.stringify({type:"pico-analytics-event",id:event.data.id,client:valid.client,surface:"desktop",name:event.data.name,params:valid.params,test:event.data.test === true}), signal:controller.signal,
+        });
+        if (!response.ok || (await response.json()).accepted !== true) throw new Error("Collection failed");
+      } finally {clearTimeout(timeout);}
       reply(true);
       return;
     }

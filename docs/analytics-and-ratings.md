@@ -38,3 +38,7 @@ For a one-off export, provide an authorized short-lived token as `GA_ACCESS_TOKE
 - Existing unrelated website changes and desktop home-page changes were retained. Deployment evidence will be recorded after publishing.
 
 QA bundles built with `VITE_ANALYTICS_TEST=1` send `test_`-prefixed events with debug mode enabled. The export filters only `rate_app`, keeping native test votes out of public totals. Production builds omit this flag.
+
+## Native delivery correction
+
+Native WebKit QA proved that cookie-dependent gtag in the embedded frame starts zero collect requests even though its callback fires. Desktop delivery now requires the stateless `collector/` service, using GA4 Measurement Protocol and a server-side secret. An unconfigured collector returns failure; the app must not store a successful rating in that case. The website continues using the verified browser tag. The collector source has five passing tests and independent review, but cloud identity, secret, billing, and deployment await explicit approval. See `collector/README.md`. The desktop release is held until an actual native test event is visible in GA.
