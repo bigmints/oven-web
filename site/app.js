@@ -93,7 +93,7 @@ for (const button of document.querySelectorAll("[data-copy]"))
   button.addEventListener("click", async () => {
     try {
       await navigator.clipboard.writeText(button.dataset.copy);
-      announce("Command copied. Paste it into your agent or Mac terminal.");
+      announce("Copied to your clipboard.");
     } catch {
       const selection = window.getSelection();
       const range = document.createRange();
@@ -108,7 +108,7 @@ for (const button of document.querySelectorAll("[data-copy]"))
 for (const link of document.querySelectorAll("[data-install]"))
   link.addEventListener("click", () => {
     announce(
-      "Opening PicoRunner. If nothing happens, use “Didn’t open?” below.",
+      "Opening PicoRunner. If nothing happens, use “Button not working?” below.",
     );
   });
 
@@ -164,20 +164,20 @@ if (launchPage) {
   const error = document.querySelector("#launch-error");
   if (repository) {
     summary.textContent =
-      "PicoRunner will show the repository and its setup for review before downloading anything.";
+      "PicoRunner will show you this app’s details before you choose to install it.";
     repositoryNode.textContent = repository;
     button.href = `picorunner://install?repository=${encodeURIComponent(repository)}`;
     button.hidden = false;
     button.addEventListener("click", () => {
-      announce("Opening PicoRunner. You will review the repository in the app.");
+      announce("Opening PicoRunner. You can review the app before installing.");
     });
     source.href = repository;
     source.hidden = false;
     error.textContent = "";
   } else {
     summary.textContent = "This launch link is incomplete.";
-    repositoryNode.textContent = "No valid public GitHub repository was provided.";
+    repositoryNode.textContent = "This link is missing a valid GitHub app address.";
     error.textContent =
-      "Ask the project maintainer for a new Launch on PicoRunner link.";
+      "Ask the app’s creator for a new link.";
   }
 }

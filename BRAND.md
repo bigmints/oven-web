@@ -1,38 +1,82 @@
-# PicoRunner identity
+# PicoRunner visual identity
 
-Use **PicoRunner** in visible copy and **picorunner.com** for public links.
-The desktop bundle identifier is `com.bigmints.picorunner`.
+PicoRunner uses a dark charcoal interface, teal accents, and **Manrope**. The
+intertwined symbol remains the PicoRunner mark. The website wordmark is set in
+Manrope at weight 750 rather than the previous heavy outlined lettering.
 
-The approved identity is the **intertwined mark** from the workspace root
-`logo.svg`, paired with the existing heavy mixed-case lettering. Primary
-artwork is charcoal (`#253027`) on white; use the white reverse version on
-dark backgrounds. Keep the wordmark transparent and do not add effects.
+## Shared foundation
 
-The lettering is stored as vector outlines in `scripts/brand/wordmark.json`.
-It was outlined from locally licensed Arial Black; no font software is
-embedded or distributed. It has no runtime font dependency.
+`site/tokens.css` is the source of truth for colors, typography, spacing, borders,
+radii, and focus states. It is intended for both the website and desktop app.
+The bundled variable font is `site/fonts/Manrope-Variable.ttf`; its SIL Open Font
+License is included beside it. Font loading makes no request to Google Fonts.
 
-Regenerate SVGs with:
+- Background: `#111414`
+- Card: `#181c1c`
+- Raised surface: `#202626`
+- Border: `#2b3332`
+- Primary text: `#f0f5f4`
+- Secondary text: `#a2aeab`
+- Teal: `#36d6c0`, hover `#6ee7d7`
+- Text on teal: `#082d28`
+
+Use teal for primary actions, selected navigation, focus, and a small amount of
+headline emphasis. Use neutral borders and surfaces to organize content. Amber
+and violet identify independent apps; they are not alternate brand colors.
+Avoid ornamental gradients, oversized pills, and unnecessary panels. Keep
+shadows restrained; reserve the larger shadow for windows or floating messages.
+
+## Typography and components
+
+Use Manrope 400 for body text, 550–600 for headings, 650 for buttons, and 750 for
+the wordmark. Code uses the system monospace stack. Main buttons have a 6px
+radius, cards 10px, and large window previews 12–16px. Preserve a visible teal
+keyboard focus ring and respect reduced-motion settings.
+
+The website’s app-library illustration is a preview of the new visual direction,
+not a screenshot of the currently released app. Its cards link to real app pages.
+When applying this design to the desktop, reuse the token values and font,
+including the same surface hierarchy, selected sidebar style, icons, and buttons.
+The current task changes the website; desktop integration is a follow-up.
+
+## Voice
+
+Explain the action in everyday words: choose an app, install it, open it, update
+it. Say what the person gets. Keep instructions short and specific. Technical
+names belong only in developer instructions or where an app genuinely requires
+them. Do not claim an app is ready when testing is incomplete. Do not fill empty
+ratings with placeholder marketing text.
+
+## Assets
+
+The website uses `site/brand/mark-teal.svg`, a live Manrope wordmark,
+`site/favicon.svg`, and `site/brand/social-card.png` (1200 × 630).
+Regenerate these with ImageMagick installed:
 
 ```sh
-node scripts/build-brand.mjs
+node scripts/build-web-brand.mjs
 ```
 
-With ImageMagick installed, regenerate PNGs and synchronize the desktop:
+Older outlined wordmarks and app icon assets remain in `site/brand` for existing
+desktop releases. `scripts/build-brand.mjs` and `scripts/render-brand.mjs` are
+legacy desktop asset tooling; if used, rerun `build-web-brand.mjs` afterwards to
+restore the current website favicon and social card. App icon and signing work
+should be done as part of the desktop adoption, not the website build.
 
-```sh
-node scripts/render-brand.mjs --desktop ../node-launcher
-```
+Use **PicoRunner** in visible copy and **picorunner.com** for public links. The
+desktop bundle identifier is `com.bigmints.picorunner`. Historical repository
+names and the legacy `oven://` protocol remain only for compatibility.
 
-This copies shared SVGs, regenerates the transparent 36-by-36 RGBA tray
-silhouette, and invokes Tauri's icon builder. A desktop build and new signing/
-notarization are required after changing its icons or embedded assets.
+## Positioning
 
-Use `lockup.svg` in website navigation, `wordmark.svg` in About, and
-`icon.svg` in compact app UI. `app-icon.svg` contains its own macOS-safe
-inset. The share card is `social-card.png` at 1200 by 630 pixels.
+PicoRunner makes open-source projects easier for people without technical skills
+to run, and easier for developers—including first-time builders and vibe
+coders—to share with their community. Lead with both audiences, not a specific
+operating system. Mac is the currently available download; more platforms are
+planned. Do not name unreleased platforms or promise release dates.
 
-The selected concept and its exploration board are archived in
-`design/brand-v2`. The canonical production artwork is `site/brand`.
-Historical repository names and the legacy `oven://` protocol remain only
-for compatibility.
+The developer benefit is a simpler path to a first run: reusable setup steps, a
+launch link or README button, and a way to invite people beyond other developers
+to try the app and give feedback. Do not imply guaranteed users, revenue,
+automatic collection inclusion, a built-in feedback inbox, or universal project
+compatibility. Keep current download requirements explicit.

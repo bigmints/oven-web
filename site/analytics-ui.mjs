@@ -35,7 +35,8 @@ const summaries = [...document.querySelectorAll("[data-rating-summary]")];
 if (summaries.length) loadRatings(new URL("./ratings.json", import.meta.url).href).then(snapshot => {
   for (const node of summaries) {
     const entry = snapshot.apps[node.dataset.ratingSummary];
+    if (node.classList.contains("community-summary")) node.hidden = !entry?.count;
     node.textContent = !snapshot.updatedAt ? "Community ratings coming soon" : entry?.count ? `★ ${entry.average.toFixed(1)} / 5 · ${entry.count} ratings` : "No community ratings yet";
     if (snapshot.updatedAt) node.title = `Updated ${new Date(snapshot.updatedAt).toLocaleDateString()}. Ratings are not live.`;
   }
-}).catch(() => { for (const node of summaries) node.textContent = "Community ratings unavailable"; });
+}).catch(() => { for (const node of summaries) { node.textContent = "Community ratings unavailable"; if (node.classList.contains("community-summary")) node.hidden = true; } });

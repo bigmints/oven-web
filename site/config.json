@@ -1,7 +1,7 @@
 {
   "name": "PicoRunner",
-  "tagline": "Good apps. At home on your Mac.",
-  "description": "Find and install apps on your Mac with PicoRunner.",
+  "tagline": "Open-source apps. Open to everyone.",
+  "description": "Use open-source apps without figuring out the setup. Share what you build with people who don’t code.",
   "siteUrl": "https://picorunner.com/",
   "downloadUrl": "https://github.com/bigmints/oven-site/releases/download/v0.3.6/PicoRunner_0.3.6_aarch64.dmg",
   "sourceUrl": "https://github.com/bigmints/oven-web",
