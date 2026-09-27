@@ -24,7 +24,7 @@ window.addEventListener("message", async event => {
   const reply = ok => event.source.postMessage({type:"pico-analytics-result", id:event.data.id, ok}, event.origin);
   try {
     await loadTag();
-    window.gtag("config", config.measurementId, {send_page_view:false, client_id:valid.client, page_location:"https://picorunner.com/", page_referrer:"", allow_google_signals:false, allow_ad_personalization_signals:false});
+    window.gtag("config", config.measurementId, {send_page_view:false, client_id:valid.client, cookie_flags:"SameSite=None;Secure", cookie_update:false, page_location:"https://picorunner.com/", page_referrer:"", allow_google_signals:false, allow_ad_personalization_signals:false});
     window.gtag("event", valid.name, {...valid.params, send_to:config.measurementId, event_callback:() => reply(true)});
   } catch { reply(false); }
 });
