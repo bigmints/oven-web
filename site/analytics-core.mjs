@@ -52,7 +52,7 @@ function transport() {
     node.title = "PicoRunner analytics";
     node.referrerPolicy = "no-referrer";
     node.setAttribute("sandbox", "allow-scripts allow-same-origin");
-    node.src = `${ORIGIN}/analytics-bridge/`;
+    node.src = `${ORIGIN}/analytics-bridge/${testMode ? `?qa=${Date.now()}` : ""}`;
     const timeout = setTimeout(() => {
       cleanup();
       node.remove();

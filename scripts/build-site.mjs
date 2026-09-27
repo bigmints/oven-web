@@ -1,5 +1,6 @@
 import { readFile, writeFile, mkdir, rm, copyFile, cp } from "node:fs/promises";
 import { existsSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import {
@@ -482,7 +483,8 @@ console.log(
 
 await cp(path.join(root, "skills/picorunner-developer"), path.join(output, "skills/picorunner-developer"), { recursive: true });
 
+const bridgeVersion = createHash("sha256").update(await readFile(path.join(root,"site/analytics-bridge.mjs"))).digest("hex").slice(0,12);
 await mkdir(path.join(output, "analytics-bridge"), {recursive:true});
-await writeFile(path.join(output, "analytics-bridge/index.html"), `<!doctype html><html><head><meta charset="utf-8"><meta name="referrer" content="no-referrer"><title>PicoRunner analytics</title></head><body><script type="application/json" id="analytics-config">${JSON.stringify({measurementId:config.googleAnalyticsMeasurementId,appIds:catalog.apps.map(app => app.id)}).replaceAll("<", "\\u003c")}</script><script type="module" src="./analytics-bridge.mjs"></script></body></html>`);
+await writeFile(path.join(output, "analytics-bridge/index.html"), `<!doctype html><html><head><meta charset="utf-8"><meta name="referrer" content="no-referrer"><title>PicoRunner analytics</title></head><body><script type="application/json" id="analytics-config">${JSON.stringify({measurementId:config.googleAnalyticsMeasurementId,appIds:catalog.apps.map(app => app.id)}).replaceAll("<", "\\u003c")}</script><script type="module" src="./analytics-bridge.mjs?v=${bridgeVersion}"></script></body></html>`);
 for (const file of ["analytics-bridge.mjs", "analytics-validation.mjs"]) await copyFile(path.join(root,"site",file),path.join(output,"analytics-bridge",file));
 await copyFile(path.join(root,"site/ratings.json"),path.join(output,"ratings.json"));
