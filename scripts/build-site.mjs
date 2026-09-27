@@ -52,6 +52,17 @@ const esc = (value) =>
       ],
   );
 const href = (value) => `${base}${value}`;
+const assetVersions = Object.fromEntries(await Promise.all(
+  ["tokens.css", "styles.css", "app.js", "analytics-ui.mjs"].map(async file => [
+    file, createHash("sha256").update(await readFile(path.join(root, "site", file))).digest("hex").slice(0, 12),
+  ]),
+));
+const assetHref = file => `${href(file)}?v=${assetVersions[file]}`;
+const navigationItems = [["apps/", "Apps"], ["developers/", "For developers"], ["agents/", "For agents"]];
+const navigationLink = (target, label, route, className = "") => {
+  const current = route === target ? "page" : route.startsWith(target) ? "location" : null;
+  return `<a href="${href(target)}"${className ? ` class="${className}"` : ""}${current ? ` aria-current="${current}"` : ""}>${label}</a>`;
+};
 const statusLabel = {
   unverified: "Not checked",
   "source-reviewed": "Available to try",
@@ -175,11 +186,11 @@ function layout(title, description, route, content) {
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)} · PicoRunner</title><meta name="description" content="${esc(description)}"><meta name="color-scheme" content="dark"><meta name="theme-color" content="#111414">
 <meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:type" content="website"><meta property="og:site_name" content="PicoRunner"><meta property="og:image" content="https://picorunner.com/brand/social-card.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="PicoRunner. Open-source apps. Open to everyone."><meta name="twitter:card" content="summary_large_image">${canonical}
-<link rel="icon" href="${href("favicon.svg")}" type="image/svg+xml"><link rel="preload" href="${href("fonts/Manrope-Variable.ttf")}" as="font" type="font/ttf" crossorigin><link rel="stylesheet" href="${href("tokens.css")}"><link rel="stylesheet" href="${href("styles.css")}"><script defer src="${href("app.js")}"></script><script type="module" src="${href("analytics-ui.mjs")}"></script></head>
+<link rel="icon" href="${href("favicon.svg")}" type="image/svg+xml"><link rel="preload" href="${href("fonts/Manrope-Variable.ttf")}" as="font" type="font/ttf" crossorigin><link rel="stylesheet" href="${assetHref("tokens.css")}"><link rel="stylesheet" href="${assetHref("styles.css")}"><script defer src="${assetHref("app.js")}"></script><script type="module" src="${assetHref("analytics-ui.mjs")}"></script></head>
 <body><a class="skip" href="#main">Skip to content</a>
-<header class="header"><div class="header-inner wrap">${brand()}<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="nav-toggle-text">Menu</span><span class="nav-toggle-icon" aria-hidden="true"><span></span><span></span></span></button><nav id="site-nav" aria-label="Main navigation"><a href="${href("apps/")}">Apps</a><a href="${href("developers/")}">For developers</a><a href="${href("agents/")}">For agents</a><div class="nav-actions">${config.sourceUrl ? `<a class="nav-source" href="${esc(config.sourceUrl)}">GitHub ↗</a>` : ""}<a class="button primary" href="${href("download/")}">Download <span aria-hidden="true">↗</span></a></div></nav></div></header>
+<header class="header"><div class="header-inner wrap">${brand()}<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="nav-toggle-text">Menu</span><span class="nav-toggle-icon" aria-hidden="true"><span></span><span></span></span></button><nav id="site-nav" aria-label="Main navigation">${navigationItems.map(([target, label]) => navigationLink(target, label, route)).join("")}<div class="nav-actions">${config.sourceUrl ? `<a class="nav-source" href="${esc(config.sourceUrl)}">GitHub ↗</a>` : ""}${navigationLink("download/", 'Download <span aria-hidden="true">↗</span>', route, "button primary")}</div></nav></div></header>
 ${content}
-<footer class="footer wrap"><div class="footer-main"><div>${brand()}<p>Open-source apps, for everyone who wants to use them.</p></div><nav aria-label="Footer"><a href="${href("apps/")}">Browse apps</a><a href="${href("developers/")}">For developers</a><a href="${href("agents/")}">For agents</a><a href="${href("privacy/")}">Privacy</a>${config.sourceUrl ? `<a href="${esc(config.sourceUrl)}">GitHub ↗</a>` : ""}</nav></div><div class="footer-bottom"><small>© ${new Date().getUTCFullYear()} PicoRunner</small><button type="button" data-analytics-preferences>Analytics preferences</button><span>Open-source apps. Open to everyone.</span></div></footer>
+<footer class="footer wrap"><div class="footer-main"><div>${brand()}<p>Open-source apps, for everyone who wants to use them.</p></div><nav aria-label="Footer">${navigationItems.map(([target, label]) => navigationLink(target, label, route)).join("")}<a href="${href("privacy/")}">Privacy</a>${config.sourceUrl ? `<a href="${esc(config.sourceUrl)}">GitHub ↗</a>` : ""}</nav></div><div class="footer-bottom"><small>© ${new Date().getUTCFullYear()} PicoRunner</small><button type="button" data-analytics-preferences>Analytics preferences</button><span>Open-source apps. Open to everyone.</span></div></footer>
 <section class="analytics-choice" data-analytics-choice aria-label="Analytics preferences" hidden><p>Help us improve PicoRunner?</p><span>Allow anonymous usage analytics with Google Analytics.</span><div><button type="button" data-analytics-allow="yes">Allow analytics</button><button type="button" data-analytics-allow="no">No thanks</button><a href="${href("privacy/")}">Privacy</a></div></section><div id="announcement" class="announcement" role="status" aria-live="polite"></div></body></html>`;
 }
 function starLink(app) {

@@ -15,9 +15,6 @@ navToggle?.addEventListener("click", () => {
 });
 
 for (const link of siteNav?.querySelectorAll("a") || []) {
-  const url = new URL(link.href);
-  if (url.protocol === location.protocol && url.pathname === location.pathname)
-    link.setAttribute("aria-current", "page");
   link.addEventListener("click", () => setNavigationOpen(false));
 }
 

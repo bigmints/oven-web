@@ -89,6 +89,7 @@ test("root and project Pages builds have working local links and per-app command
         assert(html.includes(app.name));
       assert(html.includes("For developers"));
       }
+      let sharedHeader;
       for (const page of [
         "index.html",
         "apps/index.html",
@@ -96,16 +97,29 @@ test("root and project Pages builds have working local links and per-app command
         "agents/index.html",
         "launch/index.html",
         "download/index.html",
+        "privacy/index.html",
+        "404.html",
         ...catalog.apps.map((a) => `apps/${a.id}/index.html`),
       ]) {
         const html = readFileSync(
           new URL(`../site-dist/${page}`, import.meta.url),
           "utf8",
         );
+        const header = html.match(/<header class="header">[\s\S]*?<\/header>/)?.[0];
+        assert(header, `missing header: ${page}`);
+        const normalizedHeader = header.replace(/ aria-current="(?:page|location)"/g, "");
+        sharedHeader ??= normalizedHeader;
+        assert.equal(normalizedHeader, sharedHeader, `inconsistent navigation: ${page}`);
+        if (page.startsWith("apps/")) {
+          assert(header.includes(`href="${base}apps/" aria-current="${page === "apps/index.html" ? "page" : "location"}"`));
+        }
+        for (const asset of ["styles.css", "tokens.css", "app.js"]) {
+          assert(html.includes(`${base}${asset}?v=`), `unversioned shared asset: ${page}`);
+        }
         for (const [, link] of html.matchAll(/(?:href|src)="([^"#]+)"/g)) {
           if (!link.startsWith("/")) continue;
           assert(link.startsWith(base), `wrong base: ${link}`);
-          const relative = link.slice(base.length).split("#")[0];
+          const relative = link.slice(base.length).split(/[?#]/)[0];
           assert(
             existsSync(
               new URL(

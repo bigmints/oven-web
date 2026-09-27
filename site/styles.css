@@ -42,7 +42,7 @@ p { color: var(--color-muted); }
 .brand:hover { color: var(--color-text); }
 .brand img { width: 30px; height: 30px; }
 .header nav { flex: 1; display: flex; align-items: center; gap: 28px; font-size: 13px; font-weight: 550; color: var(--color-muted); }
-.header nav a[aria-current="page"] { color: var(--color-text); }
+.header nav > a[aria-current] { color: var(--color-text); text-decoration: underline; text-decoration-color: var(--color-accent); text-underline-offset: 7px; }
 .nav-actions { display: flex; align-items: center; gap: 24px; margin-left: auto; }
 .header .button { min-height: 34px; font-size: 11px; padding: 8px 14px; gap: 20px; }
 .nav-toggle { display: none; }
