@@ -472,3 +472,14 @@ h2 code { font-size: .84em; letter-spacing: -.04em; }
 .manifest-tabs button[aria-selected="true"] { border-color: currentColor; font-weight: 700; }
 .manifest-tabs button:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
 #manifest-table-panel[hidden], #manifest-json-panel[hidden] { display: none; }
+
+.ai-assistance { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 64px; padding-block: 72px; }
+.ai-assistance h2 { font-size: clamp(26px, 3.5vw, 40px); line-height: 1.18; letter-spacing: -.035em; margin-block: 16px 20px; }
+.ai-assistance-copy > p { max-width: 52ch; }
+.ai-assistance-steps { list-style: none; margin: 0; padding: 8px 28px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }
+.ai-assistance-steps li { display: flex; align-items: baseline; gap: 20px; padding-block: 22px; }
+.ai-assistance-steps li + li { border-top: 1px solid var(--color-border); }
+.ai-assistance-steps li > span { font: 12px var(--font-mono); color: var(--color-accent); }
+.ai-assistance-steps h3 { margin: 0 0 8px; font-size: 16px; }
+.ai-assistance-steps p { margin: 0; font-size: 13px; line-height: 1.8; }
+@media (max-width: 760px) { .ai-assistance { grid-template-columns: 1fr; gap: 24px; padding-block: 48px; } }
