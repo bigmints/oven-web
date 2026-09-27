@@ -158,6 +158,7 @@ const docsCodeBlock = (content, label, filename) =>
 const ratingForm = app => `<form class="community-rating" data-rating-app="${esc(app.id)}"><h2>Rate ${esc(app.name)}</h2><p data-rating-summary="${esc(app.id)}">Community ratings coming soon</p><fieldset><legend>Your rating</legend>${[1,2,3,4,5].map(n => `<label><input type="radio" name="rating" value="${n}" required> ${n} ★</label>`).join(" ")}</fieldset><p>Submitting sends this app’s ID and your rating to Google Analytics. One rating per browser; no sign-in required.</p><button class="button secondary" type="submit">Submit rating</button><p data-rating-status role="status" aria-live="polite"></p></form>`;
 const icon = (name, className = "") => {
   const paths = {
+    github: '<path d="M9 19c-4.3 1.3-4.3-2.5-6-3m12 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 19 4.77 5.07 5.07 0 0 0 18.91 1S17.73.65 15 2.48a13.38 13.38 0 0 0-7 0C5.27.65 4.09 1 4.09 1A5.07 5.07 0 0 0 4 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 8 18.13V22"/>',
     arrow: '<path d="M5 12h14m-5-5 5 5-5 5"/>',
     download: '<path d="M12 3v12m-4-4 4 4 4-4M5 16v4h14v-4"/>',
     grid: '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
@@ -190,7 +191,7 @@ ${content}
 function starLink(app) {
   if (!Number.isSafeInteger(app.stars) || app.stars < 0) return "";
   const count = new Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 }).format(app.stars);
-  return `<a class="github-stars" href="${esc(app.repository)}" aria-label="${esc(app.name)}: ${app.stars.toLocaleString("en")} GitHub stars" title="${app.stars.toLocaleString("en")} GitHub stars · Updated ${esc(app.starsUpdatedAt)}">☆ ${count}</a>`;
+  return `<a class="github-stars" href="${esc(app.repository)}" aria-label="${esc(app.name)}: ${app.stars.toLocaleString("en")} GitHub stars" title="${app.stars.toLocaleString("en")} GitHub stars · Updated ${esc(app.starsUpdatedAt)}">${icon("github", "github-stars-icon")}☆ ${count}</a>`;
 }
 const appIcon = app => `<span class="app-icon app-icon-${esc(app.id)}">${icon(app.id)}</span>`;
 const appCard = (app, filterable = false) => `<article class="app-card" ${filterable ? `data-app-card data-category="${esc(app.category)}" data-search="${esc([app.name, displayDescription(app), app.category, ...app.tags].join(" ").toLowerCase())}"` : ""}>

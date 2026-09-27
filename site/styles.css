@@ -449,3 +449,6 @@ h2 code { font-size: .84em; letter-spacing: -.04em; }
   .footer-bottom > span { margin: 0; flex-basis: 100%; }
 }
 @media (max-width: 520px) { .developer-value-grid { grid-template-columns: 1fr; } }
+
+.github-stars { gap: .3rem; }
+.github-stars .github-stars-icon { width: 14px; height: 14px; flex-shrink: 0; }
