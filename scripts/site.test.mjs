@@ -94,7 +94,6 @@ test("root and project Pages builds have working local links and per-app command
         "index.html",
         "apps/index.html",
         "developers/index.html",
-        "agents/index.html",
         "launch/index.html",
         "download/index.html",
         "privacy/index.html",
