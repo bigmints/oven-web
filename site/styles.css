@@ -1537,3 +1537,17 @@ button:disabled {
  .badge-generator > div { flex-direction: column; }
  .docs-badge-preview { align-items: start; flex-direction: column; }
 }
+
+.github-stars { display: inline-flex; align-items: center; white-space: nowrap; font-size: .85rem; color: inherit; text-decoration: none; }
+.github-stars:hover { text-decoration: underline; }
+.card-bottom { gap: 1rem; flex-wrap: wrap; }
+
+/* Community feedback and optional analytics. */
+.community-rating { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #cbd5cc; }
+.community-rating fieldset { border: 0; padding: 0; margin: 1rem 0; display: flex; flex-wrap: wrap; gap: .65rem; }
+.community-rating label { display: inline-flex; align-items: center; gap: .2rem; cursor: pointer; }
+.community-rating p, .community-summary { font-size: .85rem; }
+.analytics-choice { position: fixed; bottom: 1rem; left: 1rem; right: 1rem; max-width: 38rem; padding: 1rem; background: #fff; border: 1px solid #245344; border-radius: 12px; box-shadow: 0 4px 24px #0002; z-index: 100; }
+.analytics-choice[hidden] { display: none; }
+.analytics-choice button { padding: .55rem .8rem; margin: .25rem; cursor: pointer; }
+.analytics-choice a { margin-left: .5rem; }

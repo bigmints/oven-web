@@ -58,7 +58,14 @@ test("root and project Pages builds have working local links and per-app command
           catalog.apps.some((app) => app.category === category),
         ),
       );
+      const listing = readFileSync(new URL("../site-dist/apps/index.html", import.meta.url), "utf8");
       for (const app of output.apps) {
+        const original = catalog.apps.find((entry) => entry.id === app.id);
+        assert.equal(app.stars, original.stars);
+        if (app.stars !== undefined) {
+          assert(listing.includes(`${app.name}: ${app.stars.toLocaleString("en")} GitHub stars`));
+          assert(listing.includes(`href="${app.repository}" aria-label=`));
+        }
         if (app.compatibility.status === "blocked") {
           assert.equal(app.installUrl, null);
           assert.equal(app.agentCommand, null);

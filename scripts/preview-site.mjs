@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 const root = fileURLToPath(new URL("../site-dist/", import.meta.url));
 const port = Number(process.env.PORT || 4178);
 const base = process.env.SITE_BASE_PATH || "/";
-const types = {".html":"text/html", ".css":"text/css", ".js":"text/javascript", ".json":"application/json", ".svg":"image/svg+xml", ".md":"text/plain", ".txt":"text/plain", ".py":"text/plain"};
+const types = {".html":"text/html", ".css":"text/css", ".js":"text/javascript", ".mjs":"text/javascript", ".json":"application/json", ".svg":"image/svg+xml", ".md":"text/plain", ".txt":"text/plain", ".py":"text/plain"};
 http.createServer(async (req, res) => {
   try {
     const pathname = decodeURIComponent(new URL(req.url, "http://localhost").pathname);

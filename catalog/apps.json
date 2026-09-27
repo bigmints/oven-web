@@ -6,7 +6,11 @@
       "name": "Youbot",
       "description": "A self-hosted AI concierge for visitors. Set it up with Youbot's guide.",
       "category": "Productivity",
-      "tags": ["AI concierge", "Visitors", "Self-hosted"],
+      "tags": [
+        "AI concierge",
+        "Visitors",
+        "Self-hosted"
+      ],
       "repository": "https://github.com/bigmints/ubot",
       "packageName": "youbot-core",
       "preferredScript": "dev",
@@ -37,14 +41,20 @@
             "source": "https://github.com/bigmints/ubot/blob/3750b6fc29b7f15adf4d720836caf79042f9a883/install.sh"
           }
         ]
-      }
+      },
+      "stars": 1,
+      "starsUpdatedAt": "2026-09-27T09:43:59.829Z"
     },
     {
       "id": "flourish",
       "name": "Flourish",
       "description": "Track spending, savings, investments, and loans in a private finance workspace.",
       "category": "Personal finance",
-      "tags": ["Money", "Planning", "Local data"],
+      "tags": [
+        "Money",
+        "Planning",
+        "Local data"
+      ],
       "repository": "https://github.com/bigmints/flourish",
       "packageName": "flourish",
       "preferredScript": "dev",
@@ -84,14 +94,20 @@
           "command": "node scripts/dev.mjs --port 3210",
           "packageManager": "pnpm@10.29.3"
         }
-      }
+      },
+      "stars": 0,
+      "starsUpdatedAt": "2026-09-27T09:44:00.122Z"
     },
     {
       "id": "rise",
       "name": "Rise",
       "description": "Keep daily check-ins, health records, and follow-up reminders together.",
       "category": "Wellbeing",
-      "tags": ["Health records", "Check-ins", "Local data"],
+      "tags": [
+        "Health records",
+        "Check-ins",
+        "Local data"
+      ],
       "repository": "https://github.com/bigmints/rise",
       "packageName": "rise",
       "preferredScript": "dev",
@@ -131,7 +147,9 @@
           "command": "node scripts/dev.mjs --port 5173",
           "packageManager": null
         }
-      }
+      },
+      "stars": 0,
+      "starsUpdatedAt": "2026-09-27T09:44:00.403Z"
     }
   ]
 }

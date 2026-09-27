@@ -1,0 +1,32 @@
+import {validateEvent} from "./analytics-validation.mjs";
+const config = JSON.parse(document.querySelector("#analytics-config").textContent);
+let loading;
+function loadTag() {
+  if (loading) return loading;
+  loading = new Promise((resolve, reject) => {
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function() { window.dataLayer.push(arguments); };
+    window.gtag("consent", "default", {analytics_storage:"granted", ad_storage:"denied", ad_user_data:"denied", ad_personalization:"denied"});
+    window.gtag("js", new Date());
+    const script = document.createElement("script");
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${config.measurementId}`;
+    script.async = true;
+    script.onload = resolve;
+    script.onerror = () => { loading = undefined; script.remove(); reject(new Error("Tag unavailable")); };
+    document.head.append(script);
+  });
+  return loading;
+}
+window.addEventListener("message", async event => {
+  if (event.source !== parent) return;
+  const valid = validateEvent(event.data, event.origin, config.appIds);
+  if (!valid) return;
+  const reply = ok => event.source.postMessage({type:"pico-analytics-result", id:event.data.id, ok}, event.origin);
+  try {
+    await loadTag();
+    window.gtag("config", config.measurementId, {send_page_view:false, client_id:valid.client, page_location:"https://picorunner.com/", page_referrer:"", allow_google_signals:false, allow_ad_personalization_signals:false});
+    window.gtag("event", valid.name, {...valid.params, send_to:config.measurementId, event_callback:() => reply(true)});
+  } catch { reply(false); }
+});
+// No data is sent until the parent submits an explicitly allowed event.
+parent.postMessage({type:"pico-analytics-ready"}, "*");

@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "node scripts/build-site.mjs",
-    "check": "node scripts/validate-catalog.mjs && node --test scripts/site.test.mjs",
+    "check": "node scripts/validate-catalog.mjs && node --test scripts/site.test.mjs scripts/refresh-stars.test.mjs && node --test scripts/analytics.test.mjs",
     "preview": "node scripts/preview-site.mjs"
   }
 }

@@ -51,6 +51,11 @@ export function validateCatalog(catalog) {
       app.tags.some((t) => typeof t !== "string" || t.length > 60)
     )
       fail("invalid tags");
+    if (app.stars !== undefined || app.starsUpdatedAt !== undefined) {
+      if (!Number.isSafeInteger(app.stars) || app.stars < 0 ||
+          typeof app.starsUpdatedAt !== "string" || !Number.isFinite(Date.parse(app.starsUpdatedAt)))
+        fail("invalid GitHub stars metadata");
+    }
     const e = app.editorial;
     if (e?.audience !== "consumer") fail("only consumer apps belong in this catalog");
     if (

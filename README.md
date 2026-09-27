@@ -38,3 +38,11 @@ The site is built with `/oven-web/` as the base. For a custom domain, change `si
 ## Future submissions
 
 User submissions are planned. Add intake and moderation storage separately, keep candidates out of the published catalog until reviewed, and apply the same evidence standards to submitted and curator-discovered apps. No nonfunctional submission form or unattended installation API is included.
+
+## GitHub stars
+
+Optional `stars` (nonnegative integer) and `starsUpdatedAt` (ISO timestamp) fields are shared by the website and desktop Discover. Cards link to the source repository and show a compact count, with the exact count and snapshot timestamp in the tooltip. Missing counts are hidden; desktop ignores malformed optional metadata.
+
+The Pages workflow refreshes counts daily at 04:17 UTC and on manual runs from main, commits only `catalog/apps.json`, then builds/deploys that same snapshot. It uses the workflow's GitHub token; no client token is needed. Repository settings must allow Actions to write contents to main. Bot commits do not trigger another Pages run, so deployment happens in the original run. A concurrent branch change causes the push to fail safely and can be retried manually.
+
+Run `node scripts/refresh-stars.mjs` locally (optionally with `GITHUB_TOKEN` supplied through the environment). Individual failures retain their last successful count and timestamp. If all requests fail, the command leaves the file untouched and fails the workflow so the previous site stays available. This refresh only updates statistics and does not enable unattended catalogue curation.
