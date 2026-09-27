@@ -28,6 +28,16 @@ window.addEventListener("message", async event => {
     if (event.data.test === true) setTimeout(send,2000); else send();
   };
   try {
+    if (valid.params.picorunner_surface === "desktop") {
+      if (!config.collectorUrl) throw new Error("Native collector unavailable");
+      const response = await fetch(config.collectorUrl, {
+        method:"POST", headers:{"Content-Type":"application/json"}, credentials:"omit",
+        body:JSON.stringify({type:"pico-analytics-event",id:event.data.id,client:valid.client,surface:"desktop",name:event.data.name,params:valid.params,test:event.data.test === true}), signal:AbortSignal.timeout(10000),
+      });
+      if (!response.ok || (await response.json()).accepted !== true) throw new Error("Collection failed");
+      reply(true);
+      return;
+    }
     await loadTag();
     window.gtag("config", config.measurementId, {send_page_view:false, client_id:valid.client, cookie_flags:"SameSite=None;Secure", cookie_update:false, page_location:"https://picorunner.com/", page_referrer:"", allow_google_signals:false, allow_ad_personalization_signals:false});
     window.gtag("event", valid.name, {...valid.params, send_to:config.measurementId, event_callback:() => reply(true)});

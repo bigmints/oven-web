@@ -63,7 +63,7 @@ jobs:
             git push origin HEAD:main
           fi
       - run: node scripts/validate-catalog.mjs
-      - run: node --test scripts/site.test.mjs scripts/refresh-stars.test.mjs scripts/analytics.test.mjs
+      - run: node --test scripts/site.test.mjs scripts/refresh-stars.test.mjs scripts/analytics.test.mjs collector/server.test.mjs
       - name: Build
         env:
           SITE_BASE_PATH: /

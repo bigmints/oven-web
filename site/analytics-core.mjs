@@ -131,7 +131,7 @@ export async function sendEvent(
     const timer = setTimeout(() => {
       pending.delete(id);
       reject(new Error("Could not confirm submission. Please try later."));
-    }, 10000);
+    }, 20000);
     pending.set(id, {
       resolve: () => {
         clearTimeout(timer);
