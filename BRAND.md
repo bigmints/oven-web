@@ -69,6 +69,10 @@ names and the legacy `oven://` protocol remain only for compatibility.
 
 ## Positioning
 
+PicoRunner itself is not open source. References to open-source apps describe the
+projects people run with PicoRunner, not PicoRunner’s own licensing. Do not add
+a source-code or GitHub link for PicoRunner to the website navigation.
+
 PicoRunner makes open-source projects easier for people without technical skills
 to run, and easier for developers—including first-time builders and vibe
 coders—to share with their community. Keep these audiences separate: the homepage helps people find and run apps;
