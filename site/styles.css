@@ -462,3 +462,7 @@ h2 code { font-size: .84em; letter-spacing: -.04em; }
 .manifest-table td { min-width: 7rem; }
 .manifest-table td:last-child { min-width: 16rem; }
 .manifest-table code { overflow-wrap: anywhere; }
+
+.manifest-json { margin-top: 2rem; }
+.manifest-json summary { cursor: pointer; font-weight: 600; padding-block: .75rem; }
+.manifest-json .docs-code { margin-top: .75rem; }
