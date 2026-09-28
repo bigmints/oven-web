@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-27T19:58:28.993Z",
+  "updatedAt": "2026-09-28T09:07:54.608Z",
   "apps": [
     {
       "id": "youbot",
@@ -15,7 +15,7 @@
     {
       "id": "rise",
       "average": 5,
-      "count": 1
+      "count": 2
     }
   ]
 }
