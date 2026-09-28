@@ -1,11 +1,11 @@
 {
-  "version": "0.3.11",
-  "notes": "PicoRunner 0.3.11 fixes Paperclip installation, Univer port conflicts, and the OpenRouter sign-in icon.",
-  "pub_date": "2026-09-28T13:43:27.094Z",
+  "version": "0.3.12",
+  "notes": "PicoRunner 0.3.12",
+  "pub_date": "2026-09-28T14:32:30.151Z",
   "platforms": {
     "darwin-aarch64": {
-      "url": "https://github.com/bigmints/oven-site/releases/download/v0.3.11/PicoRunner_0.3.11_aarch64.app.tar.gz",
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRS1VoUkllUEp1L1JrRGFzbEpVL1lQOEt3OTQrU1FmSVF6cEwwUTE3dGJ3SjZTSnBOTldGUm9YMGdiVjhGQ2xxUzZmVmtDd2llNlhBaFR6UFV4eGRTdjBqMnpUNU90amdZPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkwNjAyOTMwCWZpbGU6UGljb1J1bm5lcl8wLjMuMTFfYWFyY2g2NC5hcHAudGFyLmd6CnR0L3U2TkNXVHBDSm9QeGVhelhYMVVrTUt3OVFvSTgyeE9hcEhlRkhoaXprZkl4a3JDR29nRnhneXJqdVJSM0N0eEgwNkl0U0RDRlBucmpCUW5yZUJnPT0K"
+      "url": "https://github.com/bigmints/oven-site/releases/download/v0.3.12/PicoRunner_0.3.12_aarch64.app.tar.gz",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRS1VoUkllUEp1L1ZYdUd0NlZhRVF0NnJmMEdFeGNELzJmbFZVVHByUStHS2c0QnQyZ1lqY1ZNSkE1Q2l3cHFrNDk4S0kzL0s2RUtDVE53NFhRTTRVcUFHMVRPRmlJRUFNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkwNjA1ODI3CWZpbGU6UGljb1J1bm5lcl8wLjMuMTJfYWFyY2g2NC5hcHAudGFyLmd6CitlWFhtNmZ6YXRlbmFsNXZRQVljUTdKcjBrVEZIdk1OUEMzaHJ3UXo1NmM3ekRWVm1FenNOSk04SDArTjcwNEU4eEhRMitaMjBVS1R0b0pwREMyUkR3PT0K"
     }
   }
 }
