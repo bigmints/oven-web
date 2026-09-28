@@ -1,11 +1,11 @@
 {
-  "version": "0.3.12",
-  "notes": "PicoRunner 0.3.12",
-  "pub_date": "2026-09-28T14:32:30.151Z",
+  "version": "0.3.13",
+  "notes": "PicoRunner 0.3.13",
+  "pub_date": "2026-09-28T15:43:19.944Z",
   "platforms": {
     "darwin-aarch64": {
-      "url": "https://github.com/bigmints/oven-site/releases/download/v0.3.12/PicoRunner_0.3.12_aarch64.app.tar.gz",
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRS1VoUkllUEp1L1ZYdUd0NlZhRVF0NnJmMEdFeGNELzJmbFZVVHByUStHS2c0QnQyZ1lqY1ZNSkE1Q2l3cHFrNDk4S0kzL0s2RUtDVE53NFhRTTRVcUFHMVRPRmlJRUFNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkwNjA1ODI3CWZpbGU6UGljb1J1bm5lcl8wLjMuMTJfYWFyY2g2NC5hcHAudGFyLmd6CitlWFhtNmZ6YXRlbmFsNXZRQVljUTdKcjBrVEZIdk1OUEMzaHJ3UXo1NmM3ekRWVm1FenNOSk04SDArTjcwNEU4eEhRMitaMjBVS1R0b0pwREMyUkR3PT0K"
+      "url": "https://github.com/bigmints/oven-site/releases/download/v0.3.13/PicoRunner_0.3.13_aarch64.app.tar.gz",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRS1VoUkllUEp1L1RGTCtGQk92b0lpQ21rejlaU3VEL1pHbmFuZ2V3NTBUemRZUFc4cmdjZk9iQ1puRXFhaVZCdU5MK3J1VlNHUjhUd1ZteFlOOHhHUU5vVDRINkhoRndJPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkwNjEwMTUwCWZpbGU6UGljb1J1bm5lcl8wLjMuMTNfYWFyY2g2NC5hcHAudGFyLmd6Cm5RbHVCNVlTRkdMUWtoVWMwTEFOWkRCK20rY1ZTcUgxUDZBZGNBRzhUN3ZJUS8vbEdMME82cXg3RzNHd2xNbC8zTUFrQ3J5Mzgvd3NlODVmNTNmNERnPT0K"
     }
   }
 }
