@@ -3,7 +3,7 @@ import { existsSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
-import { readmeSection, legalSection, projectActions } from "./app-details.mjs";
+import { readmeSection, legalSection, projectActions, projectCredit } from "./app-details.mjs";
 import {
   validateCatalog,
   installUrl,
@@ -156,7 +156,7 @@ const developerSkillUrl = "https://picorunner.com/skills/picorunner-developer/SK
 const developerAgentPrompt = `Read the PicoRunner developer skill at ${developerSkillUrl} and apply it to this repository. Update the app and its README as needed, validate what you can, and report what remains unverified.`;
 const docsCodeBlock = (content, label, filename) =>
   `<div class="docs-code"><div class="docs-code-header"><span>${esc(filename)}</span><button type="button" data-copy="${esc(content)}" aria-label="${esc(label)}">Copy</button></div><pre><code>${esc(content)}</code></pre></div>`;
-const ratingForm = app => `<form class="community-rating" data-rating-app="${esc(app.id)}"><h2>Rate ${esc(app.name)}</h2><p data-rating-summary="${esc(app.id)}">Community ratings coming soon</p><fieldset><legend>Your rating</legend>${[1,2,3,4,5].map(n => `<label><input type="radio" name="rating" value="${n}" required> ${n} ★</label>`).join(" ")}</fieldset><p>Submitting sends this app’s ID and your rating to Google Analytics. One rating per browser; no sign-in required.</p><button class="button secondary" type="submit">Submit rating</button><p data-rating-status role="status" aria-live="polite"></p></form>`;
+const ratingForm = app => `<form class="community-rating" data-rating-app="${esc(app.id)}"><h2>Rate ${esc(app.name)}</h2><p data-rating-summary="${esc(app.id)}">Tried this app? Share your experience.</p><fieldset><legend>Your rating</legend>${[1,2,3,4,5].map(n => `<label><input type="radio" name="rating" value="${n}" required> ${n} ★</label>`).join(" ")}</fieldset><p>Submitting sends this app’s ID and your rating to Google Analytics. One rating per browser; no sign-in required.</p><button class="button secondary" type="submit">Submit rating</button><p data-rating-status role="status" aria-live="polite"></p></form>`;
 const icon = (name, className = "") => {
   const paths = {
     arrow: '<path d="M5 12h14m-5-5 5 5-5 5"/>',
@@ -182,7 +182,7 @@ function layout(title, description, route, content) {
 <body><a class="skip" href="#main">Skip to content</a>
 <header class="header"><div class="header-inner wrap">${brand()}<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="nav-toggle-text">Menu</span><span class="nav-toggle-icon" aria-hidden="true"><span></span><span></span></span></button><nav id="site-nav" aria-label="Main navigation">${navigationItems.map(([target, label]) => navigationLink(target, label, route)).join("")}<div class="nav-actions">${navigationLink("download/", 'Download <span aria-hidden="true">↗</span>', route, "button primary")}</div></nav></div></header>
 ${content}
-<footer class="footer wrap"><div class="footer-main"><div>${brand()}<p>Open-source apps, for everyone who wants to use them.</p></div><nav aria-label="Footer">${navigationItems.map(([target, label]) => navigationLink(target, label, route)).join("")}<a href="${href("privacy/")}">Privacy</a></nav></div><div class="footer-bottom"><small>© ${new Date().getUTCFullYear()} PicoRunner</small><button type="button" data-analytics-preferences>Analytics preferences</button><span>Open-source apps. Open to everyone.</span></div></footer>
+<footer class="footer wrap"><div class="footer-main"><div>${brand()}<p>Independent creators. Useful apps. More people connected.</p></div><nav aria-label="Footer">${navigationItems.map(([target, label]) => navigationLink(target, label, route)).join("")}<a href="${href("privacy/")}">Privacy</a></nav></div><div class="footer-bottom"><small>© ${new Date().getUTCFullYear()} PicoRunner</small><button type="button" data-analytics-preferences>Analytics preferences</button><span>Open-source apps. Open to everyone.</span></div></footer>
 <section class="analytics-choice" data-analytics-choice aria-label="Analytics preferences" hidden><p>Help us improve PicoRunner?</p><span>Allow anonymous usage analytics with Google Analytics.</span><div><button type="button" data-analytics-allow="yes">Allow analytics</button><button type="button" data-analytics-allow="no">No thanks</button><a href="${href("privacy/")}">Privacy</a></div></section><div id="announcement" class="announcement" role="status" aria-live="polite"></div></body></html>`;
 }
 function starLink(app) {
@@ -192,14 +192,14 @@ function starLink(app) {
 }
 const appCard = (app, filterable = false) => `<article class="app-card" ${filterable ? `data-app-card data-category="${esc(app.category)}" data-search="${esc([app.name, displayDescription(app), app.category, ...app.tags].join(" ").toLowerCase())}"` : ""}>
   <div class="card-top"><div class="card-meta"><span class="category-label">${esc(app.category)}</span>${starLink(app)}</div></div>
-  <h3><a href="${href(`apps/${app.id}/`)}">${esc(app.name)}</a></h3><p>${esc(displayDescription(app))}</p>
+  <h3><a href="${href(`apps/${app.id}/`)}">${esc(app.name)}</a></h3>${projectCredit(app)}<p>${esc(displayDescription(app))}</p>
   <p class="community-summary" data-rating-summary="${esc(app.id)}" hidden></p>
   <div class="card-bottom"><span class="app-availability">${app.compatibility.status === "blocked" ? "Not in PicoRunner yet" : "Run on macOS"}</span><a class="text-link" href="${href(`apps/${app.id}/`)}" aria-label="View app: ${esc(app.name)}">View app ${icon("arrow")}</a></div>
 </article>`;
 const previewApps = [...catalog.apps].sort((a,b) => (a.compatibility.status === "blocked") - (b.compatibility.status === "blocked"));
 const tiles = previewApps.map(app => appCard(app, true)).join("");
 const featuredTiles = previewApps.map(app => appCard(app)).join("");
-const libraryPreview = `<figure class="library-preview" aria-label="Illustration of the PicoRunner app library in the new design">
+const libraryPreview = `<figure class="library-preview" aria-label="Illustration of the PicoRunner app library">
   <div class="window-bar"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>PicoRunner</span><span class="preview-label">Library preview</span></div>
   <div class="library-body"><div class="library-sidebar" aria-hidden="true"><div class="preview-brand"><img src="${href("brand/mark-teal.svg")}" width="25" height="25" alt="">Your space</div><span class="library-tab">${icon("grid")} Discover</span><span>${icon("folder")} My apps</span><div class="library-mac">${icon("mac")} On your computer</div></div>
   <div class="library-main"><div class="library-heading"><div><span class="eyebrow">A LITTLE SOMETHING FOR EVERY DAY</span><h2>Find your next favourite.</h2></div>${icon("search")}</div>
@@ -207,35 +207,37 @@ const libraryPreview = `<figure class="library-preview" aria-label="Illustration
   <div class="library-bottom"><span>${icon("check")} Choose what you install.</span><a href="${href("apps/")}">See all apps ${icon("arrow")}</a></div></div></div>
 </figure>`;
 await writeFile(path.join(output, "index.html"), layout(
-  "Run open-source apps without the complicated setup.", config.description, "",
+  "Discover open-source apps for everyday life.", config.description, "",
   `<main id="main">
   <section class="hero wrap"><div class="hero-copy"><a class="release-link" href="${href("download/")}"><span class="dot"></span>Meet PicoRunner<span class="release-version">v${esc(config.releaseVersion)}</span>${icon("arrow")}</a>
-  <h1>Run open-source apps.<br><em>Skip the complicated setup.</em></h1>
-  <p class="hero-description">PicoRunner installs and opens apps on your computer.<br class="desktop-break"> Find something useful. No coding needed.</p>
-  <div class="hero-actions"><a class="button primary" href="${href("apps/")}">Find an app ${icon("arrow")}</a><a class="button secondary" href="${href("download/")}">Get PicoRunner ${icon("arrow")}</a></div><p class="fine"><a href="${href("download/")}">Available for Mac today</a> · More platforms planned</p></div>
+  <h1>Open-source apps.<br><em>For your everyday ideas.</em></h1>
+  <p class="hero-description">Build a resume, create an animation, or find your focus. Discover what independent creators are building. PicoRunner helps you install and open their apps on your Mac—no coding needed.</p>
+  <div class="hero-actions"><a class="button primary" href="${href("apps/")}">Find an app ${icon("arrow")}</a><a class="button secondary" href="${href("download/")}">Get PicoRunner ${icon("arrow")}</a></div><p class="fine"><a href="${href("download/")}">For Apple Silicon Macs</a> · macOS 13.5 or later</p></div>
   ${libraryPreview}</section>
-  <section class="benefits wrap" aria-label="What PicoRunner does"><article>${icon("download")}<h2>Let us handle the setup.</h2><p>Choose an app. PicoRunner downloads what it needs and gets it ready to open.</p></article><article>${icon("grid")}<h2>Keep your apps together.</h2><p>Open, stop, and update your apps from one place on your computer.</p></article><article>${icon("check")}<h2>You’re in charge.</h2><p>See what’s about to be installed and decide whether to go ahead.</p></article></section>
+  <section class="benefits wrap" aria-label="What PicoRunner does"><article>${icon("download")}<h2>Find something that fits.</h2><p>See what each app does, who’s behind it, and what you need to get started.</p></article><article>${icon("grid")}<h2>Let PicoRunner handle setup.</h2><p>Choose an app and review its setup. PicoRunner downloads dependencies and helps you get it running.</p></article><article>${icon("check")}<h2>Make room for good tools.</h2><p>Keep your apps in one place. Open them when you need them, and manage them from your Mac.</p></article></section>
 
-  <section class="ai-assistance wrap" aria-labelledby="ai-assistance-heading"><div class="ai-assistance-copy"><span class="eyebrow">BUILT-IN AI ASSISTANCE</span><h2 id="ai-assistance-heading">A little help when an app gets stuck.</h2><p>Setup didn’t finish? App won’t open? Choose <strong>Help me fix this</strong>. PicoRunner’s built-in AI assistance checks what went wrong and helps get your app running again.</p><p class="fine">Connect your AI provider in Settings to use assistance. A supported account or API key and an internet connection are required.</p></div><ol class="ai-assistance-steps"><li><span>01</span><div><h3>Understand the problem</h3><p>It checks the failed action, recent app activity, and relevant project files.</p></div></li><li><span>02</span><div><h3>Get help with the fix</h3><p>Small file-only fixes can run automatically. Downloads and setup commands ask for your approval.</p></div></li><li><span>03</span><div><h3>Try your app again</h3><p>PicoRunner checks whether the app can start after the changes and shows the result.</p></div></li></ol></section>
-  <section class="catalog featured-catalog wrap"><div class="section-heading"><div><span class="eyebrow">FIND SOMETHING USEFUL</span><h2>Open-source projects you can put to use.</h2><p>Start with a small collection built by independent creators.</p></div><a class="text-link" href="${href("apps/")}">Browse all apps ${icon("arrow")}</a></div><div class="app-grid">${featuredTiles}</div><p class="catalog-note">We’re still testing these apps. Check each app’s page before you install.</p></section>
-  <section class="how-section wrap" id="how-it-works"><div class="section-heading"><div><span class="eyebrow">FROM FOUND TO OPEN</span><h2>A few clicks. Then it’s yours to use.</h2></div></div><ol class="steps"><li><span>01</span><h3>Find your app</h3><p>Browse the collection, or bring a link to an app you found on GitHub.</p></li><li><span>02</span><h3>Make it yours</h3><p>Review the setup in PicoRunner, then choose to install.</p></li><li><span>03</span><h3>Get on with your day</h3><p>Open your app from PicoRunner whenever you need it.</p></li></ol></section>
+
+  <section class="catalog featured-catalog wrap"><div class="section-heading"><div><span class="eyebrow">FIND SOMETHING USEFUL</span><h2>Open-source projects you can put to use.</h2><p>Explore tools for your next idea, your daily routine, or a moment of focus.</p></div><a class="text-link" href="${href("apps/")}">Browse all apps ${icon("arrow")}</a></div><div class="app-grid">${featuredTiles}</div><p class="catalog-note">Each app page introduces the project, its creators, and what you need to get started.</p></section>
+  <section class="how-section wrap" id="how-it-works"><div class="section-heading"><div><span class="eyebrow">FROM FOUND TO OPEN</span><h2>From a useful discovery to your next project.</h2></div></div><ol class="steps"><li><span>01</span><h3>Find your app</h3><p>Browse the collection, or bring a link to an app you found on GitHub.</p></li><li><span>02</span><h3>Install with PicoRunner</h3><p>Review the setup in PicoRunner, then choose to install.</p></li><li><span>03</span><h3>Put it to use</h3><p>Open your app from PicoRunner whenever you need it.</p></li></ol></section>
+  <section class="ai-assistance wrap" aria-labelledby="ai-assistance-heading"><div class="ai-assistance-copy"><span class="eyebrow">BUILT-IN AI ASSISTANCE</span><h2 id="ai-assistance-heading">Help with setup, when you need it.</h2><p>PicoRunner includes optional AI assistance for installation and launch issues. Choose <strong>Help me fix this</strong> to get help with your app’s setup.</p><p class="fine">Connect your AI provider in Settings to use assistance. A supported account or API key and an internet connection are required.</p></div><ol class="ai-assistance-steps"><li><span>01</span><div><h3>Understand the problem</h3><p>It checks the failed action, recent app activity, and relevant project files.</p></div></li><li><span>02</span><div><h3>Get help with the fix</h3><p>Small file-only fixes can run automatically. Downloads and setup commands ask for your approval.</p></div></li><li><span>03</span><div><h3>Try your app again</h3><p>PicoRunner checks whether the app can start after the changes and shows the result.</p></div></li></ol></section>
+  <section class="creator-section wrap" aria-labelledby="creator-heading"><div><span class="eyebrow">FOR THE PEOPLE WHO BUILD</span><h2 id="creator-heading">Your work deserves to be used.</h2><p>You bring the ideas and the code. PicoRunner helps more people discover what your app can do and get started with it.</p><p>Share a launch button from your README. Keep your project, credit, and community connected to the original source.</p><a class="button secondary" href="${href("developers/")}">Share your app ${icon("arrow")}</a></div><div class="creator-principles"><h3>The project comes first.</h3><p>Every catalog page points people back to the creators’ repository, presents the app in its own words, and makes its license visible.</p><h3>A little appreciation goes a long way.</h3><p>Found an app you love? Star the project on GitHub, share it with someone, or explore how to contribute.</p></div></section>
   <section class="faq wrap"><div><span class="eyebrow">GOOD TO KNOW</span><h2>A few things you might be wondering.</h2></div><div class="faq-list">
     <details><summary>What does “open source” mean?</summary><p>These are apps whose code is shared publicly, so people can see how they work and, depending on the license, change or contribute to them. You don’t need to read that code to use the app. PicoRunner helps with the setup.</p></details>
     <details><summary>Do I need to know how to code?</summary><p>No. You choose an app and approve its setup in PicoRunner. It takes care of the installation steps it supports. Some apps need extra details, such as a login or an AI service key; check the app’s page before you start.</p></details>
     <details><summary>Is PicoRunner only for Mac?</summary><p>Mac is the first supported platform, not the limit of the project. More platforms are planned. Today’s download works on Apple Silicon Macs with macOS 13.5 or later.</p></details>
-    <details><summary>Will every open-source project work?</summary><p>Not yet. You can bring a public GitHub link or a folder from your computer, but some projects need extra work before PicoRunner can run them. We show what we know about each app’s requirements and testing.</p></details>
+    <details><summary>Will every open-source project work?</summary><p>Compatibility depends on the project and its requirements. Each app page includes setup requirements and source or runtime evidence. You can also bring a public GitHub link or a local folder; projects outside the collection may need additional setup.</p></details>
     <details><summary>Where do my apps and data live?</summary><p>PicoRunner keeps your app library and downloads on your computer. Individual apps may use online services. Check their privacy details before adding personal information.</p></details>
   </div></section>
-  <section class="closing wrap"><img src="${href("brand/mark-teal.svg")}" width="48" height="48" alt=""><h2>Your next useful app is waiting.</h2><p>Find an app you like. Let PicoRunner take care of the setup.</p><div class="hero-actions"><a class="button primary" href="${href("apps/")}">Explore apps ${icon("arrow")}</a><a class="button secondary" href="${href("download/")}">Get PicoRunner ${icon("arrow")}</a></div></section>
+  <section class="closing wrap"><img src="${href("brand/mark-teal.svg")}" width="48" height="48" alt=""><h2>Discover what someone made for you.</h2><p>Explore the collection, find a tool you’ll use, and get to know the people behind it.</p><div class="hero-actions"><a class="button primary" href="${href("apps/")}">Explore apps ${icon("arrow")}</a><a class="button secondary" href="${href("download/")}">Get PicoRunner ${icon("arrow")}</a></div></section>
   </main>`));
 await mkdir(path.join(output, "apps"), { recursive: true });
 await writeFile(
   path.join(output, "apps/index.html"),
   layout(
     "Apps",
-    "Find apps for your money, wellbeing, and everyday work.",
+    "Discover open-source apps for focus, creativity, writing, and everyday life. Meet the projects and people behind them.",
     "apps/",
-    `<main id="main" class="catalog-page wrap" aria-labelledby="catalog-heading"><header class="catalog-header"><div><span class="eyebrow">THE APP COLLECTION</span><h1 id="catalog-heading">Find your next favourite.</h1><p>Open-source apps from independent creators. Pick one to see what it does and what you need to run it.</p></div><label class="search"><span class="sr-only">Search apps</span>${icon("search")}<input id="search" type="search" placeholder="Search apps"></label></header><div class="catalog-tools"><div class="filter-buttons" aria-label="Filter apps by category">${["All", ...visibleCategories].map((c) => `<button data-category-filter="${c}" aria-pressed="${c === "All"}">${c}</button>`).join("")}</div><p class="result-count" id="result-count" role="status">${catalog.apps.length} apps</p></div><div class="app-grid">${tiles}</div><div class="empty" id="empty" hidden><h2>No apps found</h2><p>Try another search or category.</p><button id="clear-search">Clear filters</button></div></main>`,
+    `<main id="main" class="catalog-page wrap" aria-labelledby="catalog-heading"><header class="catalog-header"><div><span class="eyebrow">THE APP COLLECTION</span><h1 id="catalog-heading">Find your next favourite.</h1><p>Useful tools, made and shared by open-source creators. Find an app for what you want to do, explore its features, and meet the project behind it.</p></div><label class="search"><span class="sr-only">Search apps</span>${icon("search")}<input id="search" type="search" placeholder="Search apps"></label></header><div class="catalog-tools"><div class="filter-buttons" aria-label="Filter apps by category">${["All", ...visibleCategories].map((c) => `<button data-category-filter="${c}" aria-pressed="${c === "All"}">${c}</button>`).join("")}</div><p class="result-count" id="result-count" role="status">${catalog.apps.length} apps</p></div><div class="app-grid">${tiles}</div><div class="empty" id="empty" hidden><h2>No apps found</h2><p>Try another search or category.</p><button id="clear-search">Clear filters</button></div></main>`,
   ),
 );
 for (const app of catalog.apps) {
@@ -255,7 +257,7 @@ for (const app of catalog.apps) {
       app.name,
       displayDescription(app),
       route,
-      `<main id="main" class="detail wrap"><a class="text-link" href="${href("apps/")}">← Apps</a><div class="detail-grid"><article><span class="eyebrow">${esc(app.category)}</span><h1>${esc(app.name)}</h1><p class="lead">${esc(displayDescription(app))}</p><a class="button secondary mobile-install" href="#get-app">${c.status === "blocked" ? "See availability" : `Get ${esc(app.name)}`} ↓</a>${projectActions(app)}<div class="project-popularity">${starLink(app)}</div>${readmeSection(app)}<h2>Before you install</h2><ul>${displayRequirements(app).map((r) => `<li>${esc(r)}</li>`).join("")}</ul>${legalSection(app)}<details class="technical-details"><summary>Source and compatibility evidence</summary><p class="status ${c.status}">${statusLabel[c.status]}</p><p>${supportSummary(app)}</p>${c.checkedAt ? `<p>Last checked ${esc(c.checkedAt)}.</p>` : ""}${evidence}</details></article><aside class="install-panel" id="get-app"><span class="eyebrow">${c.status === "blocked" ? "NOT AVAILABLE" : "GET THE APP"}</span><h2>${c.status === "blocked" ? `${esc(app.name)} is not in PicoRunner yet.` : `Get ${esc(app.name)}.`}</h2>${installAction}${ratingForm(app)}</aside></div></main>`,
+      `<main id="main" class="detail wrap"><a class="text-link" href="${href("apps/")}">← Apps</a><div class="detail-grid"><article><span class="eyebrow">${esc(app.category)}</span><h1>${esc(app.name)}</h1>${projectCredit(app)}<p class="lead">${esc(displayDescription(app))}</p><p class="app-use-case"><strong>Good for:</strong> ${esc(app.editorial.bestFor)}</p><a class="button secondary mobile-install" href="#get-app">${c.status === "blocked" ? "See availability" : `Get ${esc(app.name)}`} ↓</a>${projectActions(app)}<div class="project-popularity">${starLink(app)}</div>${readmeSection(app)}<h2>Before you install</h2><ul>${displayRequirements(app).map((r) => `<li>${esc(r)}</li>`).join("")}</ul>${legalSection(app)}<details class="technical-details"><summary>Source and compatibility evidence</summary><p class="status ${c.status}">${statusLabel[c.status]}</p><p>${supportSummary(app)}</p>${c.checkedAt ? `<p>Last checked ${esc(c.checkedAt)}.</p>` : ""}${evidence}</details></article><aside class="install-panel" id="get-app"><span class="eyebrow">${c.status === "blocked" ? "NOT AVAILABLE" : "GET THE APP"}</span><h2>${c.status === "blocked" ? `${esc(app.name)} is not in PicoRunner yet.` : `Get ${esc(app.name)}.`}</h2>${installAction}${ratingForm(app)}</aside></div></main>`,
     ),
   );
 }
@@ -284,9 +286,9 @@ const developerDocsContent = `<main id="main" class="developer-docs">
     <article class="docs-content">
   <section class="docs-intro">
     <div>
-      <p class="docs-breadcrumb"><span>For developers &amp; vibe coders</span><span aria-hidden="true">/</span><span>Share your app</span></p>
+      <p class="docs-breadcrumb"><span>For developers and creators</span><span aria-hidden="true">/</span><span>Share your app</span></p>
       <h1>Help more people use<br>what you build.</h1>
-      <p class="docs-summary">A useful app shouldn’t stop at “it works on my computer.” Give your community a simpler way to install it, try it, and tell you what they think—whether you built it with code, AI, or both.</p>
+      <p class="docs-summary">You’ve built something useful. Help it reach the people it was made for, including those who have never opened a terminal. PicoRunner gives your community a way to install and open your app, with a direct link back to your work.</p>
     </div>
     <div class="docs-actions"><a class="button primary" href="#agent">Start with your coding agent ${icon("arrow")}</a><a class="text-link" href="#manifest">Set it up yourself ${icon("arrow")}</a></div>
   </section>
@@ -296,18 +298,18 @@ const developerDocsContent = `<main id="main" class="developer-docs">
         <h2>A shorter path from sharing to trying.</h2>
         <div class="developer-value-grid">
           <article>${icon("link")}<h3>A link people can act on.</h3><p>Add a launch button to your README, or share its link with your community. People open your project in PicoRunner and choose whether to install it.</p></article>
-          <article>${icon("download")}<h3>Less setup to explain.</h3><p>Describe the setup once. PicoRunner follows those steps for each installation, instead of asking every person to learn the tools behind your app.</p></article>
-          <article>${icon("check")}<h3>Feedback from more than developers.</h3><p>Invite friends, early testers, and the people your app is meant for. An easier first run gives them a better chance to try it and share useful feedback with you.</p></article>
-          <article>${icon("folder")}<h3>Your project stays yours.</h3><p>Keep your code on GitHub and share directly. You don’t need a place in the PicoRunner collection to give someone a launch link.</p></article>
+          <article>${icon("download")}<h3>Your setup, made repeatable.</h3><p>Describe your app’s requirements and launch steps in one file. PicoRunner uses them to prepare the app on each person’s computer.</p></article>
+          <article>${icon("check")}<h3>Welcome a wider community.</h3><p>Invite people who care about what your app does, whatever their technical experience. Give them a path to trying your work and sharing useful feedback.</p></article>
+          <article>${icon("folder")}<h3>Your work gets the credit.</h3><p>Your code and community stay on GitHub. Catalog pages link to the original repository, credit the project, share its README, display its license, and invite people to star it.</p></article>
         </div>
         <div class="faq-list"><details><summary>Can I share an app I built with AI?</summary><p>Yes. Experienced developers, first-time builders, and vibe coders are all welcome. Your project needs to be public and work with PicoRunner’s setup. Follow the <a href="#overview">steps below</a> to prepare it, test it, and add a launch button.</p></details><details><summary>Does my app need to be in the collection first?</summary><p>No. You can share a launch link to a public GitHub project directly. People can review it in PicoRunner before installing. Being featured in the collection is a separate review.</p></details></div>
-        <p class="docs-caption">PicoRunner helps with installation and sharing. It does not guarantee that every project works or that it will be featured in the collection.</p>
+        <p class="docs-caption">Share directly with a launch link as soon as your app is ready. Catalog listings are curated separately; a listing is not required to use the launch button.</p>
       </section>
 
       <section id="overview" class="docs-section docs-overview">
         <p class="docs-kicker">How to share</p>
         <h2>Prepare it once. Share it with your community.</h2>
-        <p>Add a <code>picorunner.toml</code> file to your project. It tells PicoRunner how to install and open your app, check that it works, and keep people’s saved data when they update.</p>
+        <p>Add a <code>picorunner.toml</code> file to your project. It tells PicoRunner how to install and open your app, check that its service is ready, and preserve the data paths you declare when people update.</p>
         <ol class="docs-quickstart">
           <li><span>1</span><div><strong>Add the manifest</strong><p>Tell PicoRunner what your app needs and how to open it.</p></div></li>
           <li><span>2</span><div><strong>Test in PicoRunner</strong><p>Install it from scratch, open it, and try an update.</p></div></li>
@@ -319,7 +321,7 @@ const developerDocsContent = `<main id="main" class="developer-docs">
         <p class="docs-kicker">Step 1</p>
         <h2>Create <code>picorunner.toml</code></h2>
         <p>Start with this file at the repository root, then replace every example value with commands and paths already supported by your project.</p>
-        <div class="docs-callout"><strong>PicoRunner follows this file.</strong><p>If this file has a problem, setup stops so you can fix it.</p></div>
+        <div class="docs-callout"><strong>PicoRunner follows this file.</strong><p>It keeps your intended setup explicit and repeatable. Validation errors are shown before installation so you can correct the manifest.</p></div>
         ${docsCodeBlock(manifestExample, "Copy PicoRunner manifest example", "picorunner.toml")}
         <p class="docs-caption">Commands are argument arrays, never shell strings. Services must bind to <code>127.0.0.1</code>.</p>
       </section>
@@ -342,7 +344,7 @@ const developerDocsContent = `<main id="main" class="developer-docs">
       <section id="agent" class="docs-section">
         <p class="docs-kicker">Step 2</p>
         <h2>Get help from your coding agent</h2>
-        <p>Built your app with AI? Ask the same coding agent to help prepare it for PicoRunner. Give it the <a href="${href("skills/picorunner-developer/SKILL.md")}">PicoRunner developer skill</a>. It covers the manifest, app scripts, validation, and README launch badge.</p>
+        <p>Use a coding agent to help prepare your project for PicoRunner. Give it the <a href="${href("skills/picorunner-developer/SKILL.md")}">PicoRunner developer skill</a>. It covers the manifest, app scripts, validation, and README launch badge.</p>
         ${docsCodeBlock(developerAgentPrompt, "Copy PicoRunner developer skill prompt", "Agent prompt")}
       </section>
 
@@ -352,10 +354,10 @@ const developerDocsContent = `<main id="main" class="developer-docs">
         <ol class="docs-checklist">
           <li><span aria-hidden="true">01</span><div><strong>Check the file</strong><p>Run <code>taplo check picorunner.toml</code> to catch TOML syntax errors.</p></div></li>
           <li><span aria-hidden="true">02</span><div><strong>Test a clean installation</strong><p>Import the repository or a local folder. Review the plan and let PicoRunner install from the lockfile.</p></div></li>
-          <li><span aria-hidden="true">03</span><div><strong>Check that the app works</strong><p>Make sure the health check confirms that people can actually use the app.</p></div></li>
+          <li><span aria-hidden="true">03</span><div><strong>Check that the app works</strong><p>Confirm that the health check detects a ready service, then complete a primary task in the app to check the user experience.</p></div></li>
           <li><span aria-hidden="true">04</span><div><strong>Test an update</strong><p>Update the app and check that its saved files and data are still there.</p></div></li>
         </ol>
-        <div class="docs-note"><strong>Ready to share?</strong> Passing these checks does not automatically add your app to the PicoRunner collection.</div>
+        <div class="docs-note"><strong>Ready to share?</strong> Add the launch button below and invite your community to try your app. The curated collection has a separate review.</div>
       </section>
 
       <section id="readme-button" class="docs-section">
@@ -391,7 +393,7 @@ await writeFile(
   path.join(output, "developers/index.html"),
   layout(
     "Share your app",
-    "Help people try your open-source project. A simpler setup and a shareable launch button for developers and vibe coders.",
+    "Bring your open-source app to more people. Share a launch button, keep your community on GitHub, and let your work take the spotlight.",
     "developers/",
     developerDocsContent,
   ),
@@ -403,7 +405,7 @@ await writeFile(
     "Launch on PicoRunner",
     "Open this app in PicoRunner and choose whether to install it.",
     "launch/",
-    `<main id="main" class="launch-page wrap" data-launch-page><span class="eyebrow">LAUNCH ON PICORUNNER</span><h1>Open this app with PicoRunner.</h1><p class="lead" id="launch-summary">Checking the app link…</p><div class="launch-card"><code id="launch-repository"></code><a class="button primary" id="launch-button" hidden>Open PicoRunner <span aria-hidden="true">↗</span></a><p id="launch-error" role="alert"></p><details><summary>PicoRunner did not open?</summary><p>Install PicoRunner, open it once, then return to this page. You’ll see the app’s details before you choose to install.</p>${download("Download PicoRunner")}</details><a class="text-link" id="launch-source" hidden>View app on GitHub →</a></div></main>`,
+    `<main id="main" class="launch-page wrap" data-launch-page><span class="eyebrow">LAUNCH ON PICORUNNER</span><h1>Open this app with PicoRunner.</h1><p class="lead" id="launch-summary">Checking the app link…</p><div class="launch-card"><code id="launch-repository"></code><a class="button primary" id="launch-button" hidden>Open PicoRunner <span aria-hidden="true">↗</span></a><p id="launch-error" role="alert"></p><details><summary>PicoRunner did not open?</summary><p>Install PicoRunner, open it once, then return to this page. You’ll see the app’s details before you choose to install.</p>${download("Download PicoRunner")}</details><a class="text-link" id="launch-source" hidden>View the original project on GitHub →</a></div></main>`,
   ),
 );
 await mkdir(path.join(output, "privacy"), { recursive: true });
@@ -418,7 +420,7 @@ await writeFile(
     "Get PicoRunner",
     config.description,
     "download/",
-    `<main id="main" class="prose wrap"><span class="eyebrow">GET PICORUNNER</span><h1>Download PicoRunner.</h1>${config.downloadUrl ? `<p class="lead">Version ${esc(config.releaseVersion)} for Apple Silicon Macs. Requires macOS 13.5 or later.</p>${download("Download PicoRunner")}<h2>Install in three steps</h2><ol><li>Open the file you downloaded.</li><li>Drag PicoRunner into Applications.</li><li>Open PicoRunner and choose an app.</li></ol><p>Your app library and downloaded apps stay on your computer.</p><h2>More platforms are planned.</h2><p>Mac is our starting point. PicoRunner’s goal is to help more people use and share open-source apps, wherever they work. Additional platform downloads are not available yet.</p>` : `<p class="lead">The Mac app is being prepared.</p><p>You can browse the app collection while the download is unavailable.</p><a class="button secondary" href="${href("apps/")}">Browse apps →</a>`}</main>`,
+    `<main id="main" class="prose wrap"><span class="eyebrow">GET PICORUNNER</span><h1>Bring open-source apps to your Mac.</h1><p>Discover tools made by independent creators. Install, open, and manage them from one place with PicoRunner.</p>${config.downloadUrl ? `<p class="lead">Version ${esc(config.releaseVersion)} for Apple Silicon Macs. Requires macOS 13.5 or later.</p>${download("Download PicoRunner")}<h2>Install in three steps</h2><ol><li>Open the file you downloaded.</li><li>Drag PicoRunner into Applications.</li><li>Open PicoRunner and choose an app.</li></ol><p>Your app library and downloaded apps stay on your computer.</p><h2>More platforms are planned.</h2><p>Mac is our starting point. PicoRunner’s goal is to help more people use and share open-source apps, wherever they work. Additional platform downloads are not available yet.</p>` : `<p class="lead">The Mac app is being prepared.</p><p>You can browse the app collection while the download is unavailable.</p><a class="button secondary" href="${href("apps/")}">Browse apps →</a>`}</main>`,
   ),
 );
 const api = {
@@ -453,7 +455,7 @@ await writeFile(
     "Page not found",
     "Return to the app collection.",
     "404.html",
-    `<main id="main" class="prose wrap"><span class="eyebrow">404 · PAGE NOT FOUND</span><h1>We couldn’t find that page.</h1><p>The link may have changed. Let’s get you back to the apps.</p><a href="${base}">Back to the collection →</a></main>`,
+    `<main id="main" class="prose wrap"><span class="eyebrow">404 · PAGE NOT FOUND</span><h1>We couldn’t find that page.</h1><p>The link may have changed. Let’s get you back to the apps.</p><a href="${href("apps/")}">Back to the collection →</a></main>`,
   ),
 );
 if (config.siteUrl)

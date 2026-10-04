@@ -5,7 +5,7 @@ const esc = value => String(value).replace(/[&<>"']/g, c => ({
 export function readmeSection(app) {
   const readme = app.readme;
   if (!readme) return `<section class="readme-excerpt"><h2>About ${esc(app.name)}</h2><p>${esc(app.editorial.reason)}</p><a class="text-link" href="${esc(app.repository)}">Read the project README ↗</a></section>`;
-  return `<section class="readme-excerpt" aria-labelledby="readme-heading"><div class="section-label">FROM THE PROJECT README</div><h2 id="readme-heading">What ${esc(app.name)} does</h2>${readme.paragraphs.map(p => `<p>${esc(p)}</p>`).join('')}${readme.features.length ? `<h3>Features from the README</h3><ul>${readme.features.map(p => `<li>${esc(p)}</li>`).join('')}</ul>` : ''}<a class="text-link" href="${esc(readme.source)}" target="_blank" rel="noopener noreferrer">Read the full README ↗</a><p class="source-attribution">Excerpt from the upstream project at the reviewed source revision.</p></section>`;
+  return `<section class="readme-excerpt" aria-labelledby="readme-heading"><div class="section-label">FROM THE PROJECT README</div><h2 id="readme-heading">What ${esc(app.name)} does</h2>${readme.paragraphs.map(p => `<p>${esc(p)}</p>`).join('')}${readme.features.length ? `<h3>Features from the README</h3><ul>${readme.features.map(p => `<li>${esc(p)}</li>`).join('')}</ul>` : ''}<a class="text-link" href="${esc(readme.source)}" target="_blank" rel="noopener noreferrer">Read the full README ↗</a><p class="source-attribution">In the project’s own words, excerpted from the README at the reviewed source revision.</p></section>`;
 }
 
 export function legalSection(app) {
@@ -16,5 +16,13 @@ export function legalSection(app) {
 
 export function projectActions(app) {
   const github = new URL(app.repository).hostname === 'github.com';
-  return `<a class="detail-license" href="#legal-heading">${esc(app.editorial.license ? app.editorial.license + ' license' : 'License not confirmed')}</a><div class="project-actions" aria-label="Project links"><a class="button secondary" href="${esc(app.repository)}" target="_blank" rel="noopener noreferrer">${github ? 'View on GitHub' : 'Visit project'} ↗</a>${github ? `<a class="button secondary github-star-action" href="${esc(app.repository)}" target="_blank" rel="noopener noreferrer" aria-label="Star ${esc(app.name)} on GitHub">☆ Star on GitHub ↗</a>` : ''}</div>${github ? '<p class="project-action-note">Opens GitHub, where you can sign in and star the repository.</p>' : ''}`;
+  return `<a class="detail-license" href="#legal-heading">${esc(app.editorial.license ? app.editorial.license + ' license' : 'License not confirmed')}</a><div class="project-actions" aria-label="Project links"><a class="button secondary" href="${esc(app.repository)}" target="_blank" rel="noopener noreferrer">${github ? 'View on GitHub' : 'Visit project'} ↗</a>${github ? `<a class="button secondary github-star-action" href="${esc(app.repository)}" target="_blank" rel="noopener noreferrer" aria-label="Star ${esc(app.name)} on GitHub">☆ Star on GitHub ↗</a>` : ''}</div>${github ? '<p class="project-action-note">Appreciate this project? A GitHub star is a simple way to show it. Opens the repository, where you can sign in and star it.</p>' : ''}`;
+}
+
+export function projectCredit(app) {
+  const repository = new URL(app.repository);
+  const name = repository.hostname === 'github.com'
+    ? repository.pathname.replace(/^\/|\/$/g, '').replace(/\.git$/, '')
+    : repository.hostname;
+  return `<p class="project-credit">A project from <a href="${esc(app.repository)}" target="_blank" rel="noopener noreferrer">${esc(name)}</a> and its contributors.</p>`;
 }

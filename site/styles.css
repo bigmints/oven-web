@@ -65,7 +65,7 @@ p { color: var(--color-muted); }
 .release-version { padding-left: 10px; border-left: 1px solid var(--color-border); color: var(--color-subtle); }
 .hero h1 { margin: 28px 0 22px; font-size: clamp(42px, 5.2vw, 66px); line-height: 1.13; font-weight: 550; }
 .hero h1 em { color: var(--color-accent); font-style: normal; }
-.hero-description { font-size: 16px; line-height: 1.8; margin-bottom: 27px; }
+.hero-description { font-size: 16px; line-height: 1.8; max-width: 76ch; margin: 0 auto 27px; }
 .hero-actions { display: flex; align-items: center; justify-content: center; gap: 12px; }
 .hero .fine { margin: 15px 0 0; }
 .library-preview { margin: 54px auto 0; max-width: 960px; border: 1px solid var(--color-border-strong); border-radius: 12px 12px 0 0; background: var(--color-surface); box-shadow: 0 -14px 100px -50px #36d6c035, var(--shadow-panel); overflow: hidden; text-align: left; }
@@ -492,3 +492,18 @@ h2 code { font-size: .84em; letter-spacing: -.04em; }
 .ai-assistance-steps h3 { margin: 0 0 8px; font-size: 16px; }
 .ai-assistance-steps p { margin: 0; font-size: 13px; line-height: 1.8; }
 @media (max-width: 760px) { .ai-assistance { grid-template-columns: 1fr; gap: 24px; padding-block: 48px; } }
+
+/* Keep the upstream project visible alongside its app. */
+.project-credit, .app-card > .project-credit { font-size: 12px; line-height: 1.7; margin: 0 0 16px; color: var(--color-muted); overflow-wrap: anywhere; }
+.project-credit a { color: var(--color-accent); text-decoration: underline; text-underline-offset: 3px; }
+.detail .project-credit { font-size: 14px; }
+.app-use-case { margin-bottom: 24px; }
+.creator-section { display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; padding-block: 64px; border-block: 1px solid var(--color-border); }
+.creator-section h2 { font-size: clamp(28px, 3.5vw, 40px); line-height: 1.2; letter-spacing: -.035em; margin-block: 16px 20px; }
+.creator-section p { max-width: 54ch; }
+.creator-section .button { margin-top: 12px; }
+.creator-principles { padding: 28px; border-radius: var(--radius-md); background: var(--color-surface); }
+.creator-principles h3 { font-size: 18px; margin: 0 0 12px; }
+.creator-principles p + h3 { margin-top: 28px; }
+.creator-principles p:last-child { margin-bottom: 0; }
+@media (max-width: 760px) { .creator-section { grid-template-columns: 1fr; gap: 24px; padding-block: 48px; } }

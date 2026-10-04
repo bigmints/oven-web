@@ -1,7 +1,7 @@
 {
   "name": "PicoRunner",
   "tagline": "Open-source apps. Open to everyone.",
-  "description": "Run open-source apps without the complicated setup. PicoRunner installs and opens apps on your computer. No coding needed.",
+  "description": "Discover useful open-source apps from independent creators. PicoRunner helps you install and open them on your Mac, with no coding needed.",
   "siteUrl": "https://picorunner.com/",
   "downloadUrl": "https://github.com/bigmints/oven-site/releases/download/v0.3.13/PicoRunner_0.3.13_aarch64.dmg",
   "releaseVersion": "0.3.13",
