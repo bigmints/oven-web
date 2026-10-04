@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-04T18:06:07.357Z",
+  "updatedAt": "2026-10-04T18:07:12.887Z",
   "apps": [
     {
       "id": "youbot",
@@ -16,6 +16,26 @@
       "id": "rise",
       "average": 5,
       "count": 2
+    },
+    {
+      "id": "moodist",
+      "average": null,
+      "count": 0
+    },
+    {
+      "id": "open-resume",
+      "average": null,
+      "count": 0
+    },
+    {
+      "id": "dillinger",
+      "average": null,
+      "count": 0
+    },
+    {
+      "id": "scratch",
+      "average": null,
+      "count": 0
     }
   ]
 }
