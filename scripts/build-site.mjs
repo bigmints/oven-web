@@ -66,8 +66,8 @@ const navigationLink = (target, label, route, className = "") => {
 };
 const statusLabel = {
   unverified: "Not checked",
-  "source-reviewed": "Available to try",
-  verified: "Ready",
+  "source-reviewed": "Source reviewed",
+  verified: "Runtime verified",
   blocked: "Not available",
 };
 const appCopy = {
@@ -112,10 +112,10 @@ const supportSummary = (app) => {
   if (c.status === "verified")
     return `We tested this app with PicoRunner ${esc(c.launcherVersion)} on ${esc(c.platform)}.`;
   if (c.status === "source-reviewed")
-    return "You can try this app in PicoRunner, but we have not finished testing it.";
+    return "The README and launch scripts have been reviewed. A complete PicoRunner installation and usability check has not been recorded.";
   if (c.status === "blocked")
     return `${esc(app.name)} is not available through PicoRunner yet.`;
-  return "We have not tested this app with PicoRunner yet.";
+  return "No PicoRunner runtime verification is recorded for this app.";
 };
 const download = (label = `Get ${config.name}`) =>
   `<a class="button primary" href="${esc(config.downloadUrl || href("download/"))}">${esc(config.downloadUrl ? label : "Mac app · coming soon")} <span aria-hidden="true">↗</span></a>`;
@@ -194,7 +194,7 @@ const appCard = (app, filterable = false) => `<article class="app-card" ${filter
   <div class="card-top"><div class="card-meta"><span class="category-label">${esc(app.category)}</span>${starLink(app)}</div></div>
   <h3><a href="${href(`apps/${app.id}/`)}">${esc(app.name)}</a></h3><p>${esc(displayDescription(app))}</p>
   <p class="community-summary" data-rating-summary="${esc(app.id)}" hidden></p>
-  <div class="card-bottom"><span class="app-availability">${app.compatibility.status === "blocked" ? "Not in PicoRunner yet" : app.compatibility.status === "verified" ? "Ready to install" : "Still being tested"}</span><a class="text-link" href="${href(`apps/${app.id}/`)}" aria-label="View app: ${esc(app.name)}">View app ${icon("arrow")}</a></div>
+  <div class="card-bottom"><span class="app-availability">${app.compatibility.status === "blocked" ? "Not in PicoRunner yet" : "Run on macOS"}</span><a class="text-link" href="${href(`apps/${app.id}/`)}" aria-label="View app: ${esc(app.name)}">View app ${icon("arrow")}</a></div>
 </article>`;
 const previewApps = [...catalog.apps].sort((a,b) => (a.compatibility.status === "blocked") - (b.compatibility.status === "blocked"));
 const tiles = previewApps.map(app => appCard(app, true)).join("");
@@ -248,14 +248,14 @@ for (const app of catalog.apps) {
   const installAction =
     c.status === "blocked"
       ? `<p class="availability-note">${supportSummary(app)}</p><a class="button secondary" href="${esc(app.repository)}">Visit ${esc(app.name)} ↗</a>`
-      : `<a class="button primary" data-install href="${esc(installUrl(app))}">${c.status === "verified" ? "Install" : "Try in PicoRunner"} ↗</a><p>${c.status === "verified" ? "Review the app in PicoRunner, then choose whether to install it." : "This app is still being tested and may not work as expected."}</p><details><summary>Button not working?</summary><p>Download and open PicoRunner, then try again.</p>${download("Download PicoRunner")}</details>`;
+      : `<a class="button primary" data-install href="${esc(installUrl(app))}">Install with PicoRunner ↗</a><p>Opens PicoRunner to review and install this app.</p><details><summary>Button not working?</summary><p>Download and open PicoRunner, then try again.</p>${download("Download PicoRunner")}</details>`;
   await writeFile(
     path.join(output, route, "index.html"),
     layout(
       app.name,
       displayDescription(app),
       route,
-      `<main id="main" class="detail wrap"><a class="text-link" href="${href("apps/")}">← Apps</a><div class="detail-grid"><article><span class="eyebrow">${esc(app.category)}</span><h1>${esc(app.name)}</h1><p class="lead">${esc(displayDescription(app))}</p><a class="button secondary mobile-install" href="#get-app">${c.status === "blocked" ? "See availability" : `Get ${esc(app.name)}`} ↓</a>${projectActions(app)}<div class="project-popularity">${starLink(app)}</div>${readmeSection(app)}<h2>Before you install</h2><ul>${displayRequirements(app).map((r) => `<li>${esc(r)}</li>`).join("")}</ul><h2>Can I use it yet?</h2><p class="status ${c.status}">${statusLabel[c.status]}</p><p>${supportSummary(app)}</p>${legalSection(app)}<details class="technical-details"><summary>Source and compatibility evidence</summary>${c.checkedAt ? `<p>Last checked ${esc(c.checkedAt)}.</p>` : ""}${evidence}</details></article><aside class="install-panel" id="get-app"><span class="eyebrow">${c.status === "blocked" ? "NOT AVAILABLE" : "GET THE APP"}</span><h2>${c.status === "blocked" ? `${esc(app.name)} is not in PicoRunner yet.` : `Get ${esc(app.name)}.`}</h2>${installAction}${ratingForm(app)}</aside></div></main>`,
+      `<main id="main" class="detail wrap"><a class="text-link" href="${href("apps/")}">← Apps</a><div class="detail-grid"><article><span class="eyebrow">${esc(app.category)}</span><h1>${esc(app.name)}</h1><p class="lead">${esc(displayDescription(app))}</p><a class="button secondary mobile-install" href="#get-app">${c.status === "blocked" ? "See availability" : `Get ${esc(app.name)}`} ↓</a>${projectActions(app)}<div class="project-popularity">${starLink(app)}</div>${readmeSection(app)}<h2>Before you install</h2><ul>${displayRequirements(app).map((r) => `<li>${esc(r)}</li>`).join("")}</ul>${legalSection(app)}<details class="technical-details"><summary>Source and compatibility evidence</summary><p class="status ${c.status}">${statusLabel[c.status]}</p><p>${supportSummary(app)}</p>${c.checkedAt ? `<p>Last checked ${esc(c.checkedAt)}.</p>` : ""}${evidence}</details></article><aside class="install-panel" id="get-app"><span class="eyebrow">${c.status === "blocked" ? "NOT AVAILABLE" : "GET THE APP"}</span><h2>${c.status === "blocked" ? `${esc(app.name)} is not in PicoRunner yet.` : `Get ${esc(app.name)}.`}</h2>${installAction}${ratingForm(app)}</aside></div></main>`,
     ),
   );
 }
