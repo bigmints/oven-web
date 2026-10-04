@@ -50,7 +50,7 @@ test("root and project Pages builds have working local links and per-app command
       assert.equal(output.apps.length, catalog.apps.length);
       assert.deepEqual(
         output.apps.map((app) => app.id),
-        ["youbot", "flourish", "rise"],
+        catalog.apps.map((app) => app.id),
       );
       assert.deepEqual(
         output.categories,
