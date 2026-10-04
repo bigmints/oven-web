@@ -54,7 +54,7 @@ const esc = (value) =>
   );
 const href = (value) => `${base}${value}`;
 const assetVersions = Object.fromEntries(await Promise.all(
-  ["tokens.css", "styles.css", "app.js", "analytics-ui.mjs"].map(async file => [
+  ["tokens.css", "styles.css", "app.js", "analytics-ui.mjs", "badges/launch.svg"].map(async file => [
     file, createHash("sha256").update(await readFile(path.join(root, "site", file))).digest("hex").slice(0, 12),
   ]),
 ));
@@ -370,7 +370,7 @@ const developerDocsContent = `<main id="main" class="developer-docs">
           <p id="badge-error" class="field-message" role="alert"></p>
         </form>
         <div class="command badge-output" id="badge-output" hidden><code id="badge-markdown"></code><button type="button" id="copy-badge">Copy Markdown</button></div>
-        <div class="docs-badge-preview"><span>Preview</span><img class="launch-badge-preview" src="${href("badges/launch.svg")}" width="190" height="32" alt="Launch on PicoRunner badge preview"></div>
+        <div class="docs-badge-preview"><span>Preview</span><img class="launch-badge-preview" src="${assetHref("badges/launch.svg")}" width="190" height="32" alt="Launch on PicoRunner badge preview"></div>
       </section>
 
       <section id="publishing" class="docs-section docs-publishing">
