@@ -140,12 +140,13 @@ p { color: var(--color-muted); }
 .app-availability { color: var(--color-subtle); font-size: 11px; }
 .community-summary { color: var(--color-accent); }
 .catalog-page { padding-block: 64px 100px; min-height: 68vh; }
-.catalog-header { display: flex; justify-content: space-between; align-items: end; gap: 40px; margin-bottom: 44px; }
+.catalog-header { display: flex; flex-direction: column; align-items: stretch; gap: 28px; margin-bottom: 32px; }
 .catalog-header h1 { font-size: 44px; margin: 16px 0; }
 .catalog-header p { max-width: 500px; font-size: 14px; margin-bottom: 0; }
-.search { display: flex; gap: 10px; align-items: center; width: 250px; padding: 11px 13px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-surface); color: var(--color-subtle); flex-shrink: 0; }
+.search { display: flex; gap: 14px; align-items: center; width: 100%; min-height: 64px; padding: 18px 20px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); color: var(--color-subtle); flex-shrink: 0; }
+.search .icon { width: 24px; height: 24px; flex-shrink: 0; }
 .search:focus-within { border-color: var(--color-accent); box-shadow: var(--focus-ring); }
-.search input { width: 100%; padding: 0; border: 0; outline: 0; background: none; color: var(--color-text); font-size: 12px; }
+.search input { width: 100%; min-width: 0; padding: 0; border: 0; outline: 0; background: none; color: var(--color-text); font-size: 16px; }
 .search input::placeholder { color: var(--color-subtle); }
 .catalog-tools { display: flex; justify-content: space-between; gap: 24px; align-items: center; margin-bottom: 24px; }
 .filter-buttons { display: flex; gap: 6px; flex-wrap: wrap; }
