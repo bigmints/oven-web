@@ -46,6 +46,14 @@ test("all app details expose README excerpts, legal information and GitHub actio
   const youbot = readFileSync(new URL('../site-dist/apps/youbot/index.html', import.meta.url), 'utf8');
   assert(youbot.includes('License not confirmed'));
 });
+test("catalog surfaces do not substitute invented icons for official app logos", () => {
+  execFileSync(process.execPath, ["scripts/build-site.mjs"], {cwd: root});
+  for (const page of ["index.html", "apps/index.html", ...catalog.apps.map(app => `apps/${app.id}/index.html`)]) {
+    const html = readFileSync(new URL(`../site-dist/${page}`, import.meta.url), "utf8");
+    assert(!html.includes('class="app-icon'), `unofficial app icon on ${page}`);
+    assert(!html.includes('app-icon-'), `invented app branding on ${page}`);
+  }
+});
 test("evidence gate rejects unsupported claims and command injection", () => {
   assert.deepEqual(validateCatalog(catalog), []);
   const invalid = structuredClone(catalog);

@@ -48,7 +48,7 @@ When the user authorizes installing/testing candidate code, use an isolated mana
 
 ## Write a useful listing
 
-Use the upstream name and neutral, task-focused copy: what it does, who it helps, and the requirements a person needs to decide. Mention required API keys, accounts, network services, native tools and paid features. Local hosting does not imply offline operation, privacy, or absence of telemetry; verify those claims from code/behavior or qualify them. Do not reuse screenshots or logos without checking their license; the site supports letter icons.
+Use the upstream name and neutral, task-focused copy: what it does, who it helps, and the requirements a person needs to decide. Mention required API keys, accounts, network services, native tools and paid features. Local hosting does not imply offline operation, privacy, or absence of telemetry; verify those claims from code/behavior or qualify them. Use only an app's official logo from a verified upstream source, with its license or usage permission checked. Never invent, redraw, substitute a generic symbol, or turn initials into an app logo. If an official logo cannot be verified, display the app name without a logo. Do not reuse screenshots without checking their license.
 
 Every listing needs a stable slug, canonical repository, launch target, category/tags, a specific reason to include it, best use, requirements, license and compatibility record. Evidence links must be public and useful to a reviewer; scrub tokens, personal paths, private logs, and customer content. Preserve app IDs when upstream projects move. Never store raw shell commands in the catalog: the builder derives an escaped Mac command from the validated repository.
 

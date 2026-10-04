@@ -88,10 +88,8 @@ p { color: var(--color-muted); }
 .library-cards { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }
 .library-card { display: flex; align-items: start; flex-direction: column; padding: 16px; border: 1px solid var(--color-border); border-radius: 8px; background: #1c2221; transition: border-color .2s, background .2s; }
 .library-card:hover { border-color: var(--color-border-strong); background: var(--color-surface-hover); color: var(--color-text); }
-.library-card .app-icon { width: 35px; height: 35px; margin-bottom: 12px; border-radius: 9px; }
-.library-card .app-icon .icon { width: 20px; height: 20px; }
 .library-card strong { font-size: 12px; font-weight: 650; }
-.library-card > span:not(.app-icon) { font-size: 9px; color: var(--color-subtle); }
+.library-card > span:not(.preview-link) { font-size: 9px; color: var(--color-subtle); }
 .library-card .preview-link { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-top: 18px; color: var(--color-muted); }
 .preview-link .icon { width: 13px; height: 13px; }
 .library-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 19px; gap: 12px; color: var(--color-subtle); font-size: 9px; }
@@ -134,10 +132,6 @@ p { color: var(--color-muted); }
 .app-card { display: flex; flex-direction: column; min-width: 0; border: 1px solid var(--color-border); background: var(--color-surface); border-radius: var(--radius-md); padding: 26px; transition: border-color .18s, background .18s; }
 .app-card:hover { border-color: var(--color-border-strong); background: #1c2221; }
 .card-top { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 26px; }
-.app-icon { display: inline-flex; justify-content: center; align-items: center; width: 46px; height: 46px; border: 1px solid #ffffff0d; border-radius: 12px; background: var(--color-accent-soft); color: var(--color-accent); flex-shrink: 0; }
-.app-icon .icon { width: 26px; height: 26px; }
-.app-icon-youbot { background: #2d2941; color: #baadf5; }
-.app-icon-rise { background: #392e23; color: #efbb85; }
 .category-label { font-size: 11px; color: var(--color-subtle); }
 .app-card h3 { font-size: 21px; letter-spacing: -.04em; margin: 0 0 11px; }
 .app-card > p { font-size: 14px; line-height: 1.85; margin-bottom: 24px; }
@@ -165,8 +159,6 @@ p { color: var(--color-muted); }
 .detail { padding-block: 40px 90px; }
 .detail > a { margin-bottom: 38px; color: var(--color-subtle); }
 .detail-grid { display: grid; grid-template-columns: minmax(0,1fr) 350px; gap: 90px; }
-.detail article > .app-icon { width: 64px; height: 64px; margin-bottom: 28px; }
-.detail article > .app-icon .icon { width: 36px; height: 36px; }
 .detail h1 { margin: 12px 0 20px; font-size: 54px; }
 .detail article h2 { margin-top: 32px; font-size: 20px; }
 .detail article p, .detail article li { font-size: 14px; }
@@ -401,11 +393,10 @@ h2 code { font-size: .84em; letter-spacing: -.04em; }
   .library-heading h2 { font-size: 18px; margin-bottom: 18px; }
   .library-heading .eyebrow { font-size: 7px; }
   .library-cards { grid-template-columns: 1fr; gap: 8px; }
-  .library-card { display: grid; grid-template-columns: 34px minmax(0,1fr) auto; column-gap: 12px; padding: 12px; align-items: center; }
-  .library-card .app-icon { margin: 0; grid-row: 1 / 3; width: 34px; height: 34px; }
-  .library-card strong { grid-column: 2; font-size: 12px; }
-  .library-card > span:not(.app-icon):not(.preview-link) { grid-column: 2; font-size: 9px; }
-  .library-card .preview-link { grid-column: 3; grid-row: 1 / 3; margin: 0; font-size: 0 !important; }
+  .library-card { display: grid; grid-template-columns: minmax(0,1fr) auto; column-gap: 12px; padding: 12px; align-items: center; }
+  .library-card strong { grid-column: 1; font-size: 12px; }
+  .library-card > span:not(.preview-link) { grid-column: 1; font-size: 9px; }
+  .library-card .preview-link { grid-column: 2; grid-row: 1 / 3; margin: 0; font-size: 0 !important; }
   .library-card .preview-link .icon { width: 17px; height: 17px; }
   .library-bottom { font-size: 8px; }
   .benefits { grid-template-columns: 1fr; }
@@ -444,7 +435,7 @@ h2 code { font-size: .84em; letter-spacing: -.04em; }
 .project-links { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
 .github-stars { color: var(--color-subtle); font-size: 12px; }
 
-.card-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
+.card-meta { display: flex; width: 100%; justify-content: space-between; align-items: center; gap: 10px; }
 .card-meta .github-stars { font-size: 11px; }
 
 .mobile-install { display: none; }

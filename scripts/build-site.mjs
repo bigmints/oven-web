@@ -159,7 +159,6 @@ const docsCodeBlock = (content, label, filename) =>
 const ratingForm = app => `<form class="community-rating" data-rating-app="${esc(app.id)}"><h2>Rate ${esc(app.name)}</h2><p data-rating-summary="${esc(app.id)}">Community ratings coming soon</p><fieldset><legend>Your rating</legend>${[1,2,3,4,5].map(n => `<label><input type="radio" name="rating" value="${n}" required> ${n} ★</label>`).join(" ")}</fieldset><p>Submitting sends this app’s ID and your rating to Google Analytics. One rating per browser; no sign-in required.</p><button class="button secondary" type="submit">Submit rating</button><p data-rating-status role="status" aria-live="polite"></p></form>`;
 const icon = (name, className = "") => {
   const paths = {
-    github: '<path d="M9 19c-4.3 1.3-4.3-2.5-6-3m12 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 19 4.77 5.07 5.07 0 0 0 18.91 1S17.73.65 15 2.48a13.38 13.38 0 0 0-7 0C5.27.65 4.09 1 4.09 1A5.07 5.07 0 0 0 4 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 8 18.13V22"/>',
     arrow: '<path d="M5 12h14m-5-5 5 5-5 5"/>',
     download: '<path d="M12 3v12m-4-4 4 4 4-4M5 16v4h14v-4"/>',
     grid: '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
@@ -169,9 +168,6 @@ const icon = (name, className = "") => {
     play: '<path d="m9 5 11 7-11 7Z"/>',
     link: '<path d="m9 15 6-6m-7 3-2 2a4 4 0 0 0 6 6l2-2m-4-12 2-2a4 4 0 0 1 6 6l-2 2"/>',
     mac: '<rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/>',
-    flourish: '<path d="M12 21V10m0 5C4 15 3 10 4 5c5 0 8 3 8 7m0 0c0-5 3-8 8-9 1 6-2 10-8 11"/>',
-    rise: '<path d="M3 18h18M5 18a7 7 0 0 1 14 0M12 3v3M3 8l2 2m14 0 2-2"/>',
-    youbot: '<path d="M20 11a8 8 0 0 1-8 8H4v-7a8 8 0 1 1 16-1Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/>',
   };
   return `<svg class="icon ${className}" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name] || paths.grid}</svg>`;
 };
@@ -192,11 +188,10 @@ ${content}
 function starLink(app) {
   if (!Number.isSafeInteger(app.stars) || app.stars < 0) return "";
   const count = new Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 }).format(app.stars);
-  return `<a class="github-stars" href="${esc(app.repository)}" aria-label="${esc(app.name)}: ${app.stars.toLocaleString("en")} GitHub stars" title="${app.stars.toLocaleString("en")} GitHub stars · Updated ${esc(app.starsUpdatedAt)}">${icon("github", "github-stars-icon")}☆ ${count}</a>`;
+  return `<a class="github-stars" href="${esc(app.repository)}" aria-label="${esc(app.name)}: ${app.stars.toLocaleString("en")} GitHub stars" title="${app.stars.toLocaleString("en")} GitHub stars · Updated ${esc(app.starsUpdatedAt)}">☆ ${count}</a>`;
 }
-const appIcon = app => `<span class="app-icon app-icon-${esc(app.id)}">${icon(app.id)}</span>`;
 const appCard = (app, filterable = false) => `<article class="app-card" ${filterable ? `data-app-card data-category="${esc(app.category)}" data-search="${esc([app.name, displayDescription(app), app.category, ...app.tags].join(" ").toLowerCase())}"` : ""}>
-  <div class="card-top">${appIcon(app)}<div class="card-meta"><span class="category-label">${esc(app.category)}</span>${starLink(app)}</div></div>
+  <div class="card-top"><div class="card-meta"><span class="category-label">${esc(app.category)}</span>${starLink(app)}</div></div>
   <h3><a href="${href(`apps/${app.id}/`)}">${esc(app.name)}</a></h3><p>${esc(displayDescription(app))}</p>
   <p class="community-summary" data-rating-summary="${esc(app.id)}" hidden></p>
   <div class="card-bottom"><span class="app-availability">${app.compatibility.status === "blocked" ? "Not in PicoRunner yet" : app.compatibility.status === "verified" ? "Ready to install" : "Still being tested"}</span><a class="text-link" href="${href(`apps/${app.id}/`)}" aria-label="View app: ${esc(app.name)}">View app ${icon("arrow")}</a></div>
@@ -208,7 +203,7 @@ const libraryPreview = `<figure class="library-preview" aria-label="Illustration
   <div class="window-bar"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>PicoRunner</span><span class="preview-label">Library preview</span></div>
   <div class="library-body"><div class="library-sidebar" aria-hidden="true"><div class="preview-brand"><img src="${href("brand/mark-teal.svg")}" width="25" height="25" alt="">Your space</div><span class="library-tab">${icon("grid")} Discover</span><span>${icon("folder")} My apps</span><div class="library-mac">${icon("mac")} On your computer</div></div>
   <div class="library-main"><div class="library-heading"><div><span class="eyebrow">A LITTLE SOMETHING FOR EVERY DAY</span><h2>Find your next favourite.</h2></div>${icon("search")}</div>
-  <div class="library-cards">${previewApps.map(app => `<a class="library-card" href="${href(`apps/${app.id}/`)}" aria-label="Learn about ${esc(app.name)}">${appIcon(app)}<strong>${esc(app.name)}</strong><span>${esc(app.category)}</span><span class="preview-link">Explore app ${icon("arrow")}</span></a>`).join("")}</div>
+  <div class="library-cards">${previewApps.map(app => `<a class="library-card" href="${href(`apps/${app.id}/`)}" aria-label="Learn about ${esc(app.name)}"><strong>${esc(app.name)}</strong><span>${esc(app.category)}</span><span class="preview-link">Explore app ${icon("arrow")}</span></a>`).join("")}</div>
   <div class="library-bottom"><span>${icon("check")} Choose what you install.</span><a href="${href("apps/")}">See all apps ${icon("arrow")}</a></div></div></div>
 </figure>`;
 await writeFile(path.join(output, "index.html"), layout(
@@ -260,7 +255,7 @@ for (const app of catalog.apps) {
       app.name,
       displayDescription(app),
       route,
-      `<main id="main" class="detail wrap"><a class="text-link" href="${href("apps/")}">← Apps</a><div class="detail-grid"><article>${appIcon(app)}<span class="eyebrow">${esc(app.category)}</span><h1>${esc(app.name)}</h1><p class="lead">${esc(displayDescription(app))}</p><a class="button secondary mobile-install" href="#get-app">${c.status === "blocked" ? "See availability" : `Get ${esc(app.name)}`} ↓</a>${projectActions(app)}<div class="project-popularity">${starLink(app)}</div>${readmeSection(app)}<h2>Before you install</h2><ul>${displayRequirements(app).map((r) => `<li>${esc(r)}</li>`).join("")}</ul><h2>Can I use it yet?</h2><p class="status ${c.status}">${statusLabel[c.status]}</p><p>${supportSummary(app)}</p>${legalSection(app)}<details class="technical-details"><summary>Source and compatibility evidence</summary>${c.checkedAt ? `<p>Last checked ${esc(c.checkedAt)}.</p>` : ""}${evidence}</details></article><aside class="install-panel" id="get-app"><span class="eyebrow">${c.status === "blocked" ? "NOT AVAILABLE" : "GET THE APP"}</span><h2>${c.status === "blocked" ? `${esc(app.name)} is not in PicoRunner yet.` : `Get ${esc(app.name)}.`}</h2>${installAction}${ratingForm(app)}</aside></div></main>`,
+      `<main id="main" class="detail wrap"><a class="text-link" href="${href("apps/")}">← Apps</a><div class="detail-grid"><article><span class="eyebrow">${esc(app.category)}</span><h1>${esc(app.name)}</h1><p class="lead">${esc(displayDescription(app))}</p><a class="button secondary mobile-install" href="#get-app">${c.status === "blocked" ? "See availability" : `Get ${esc(app.name)}`} ↓</a>${projectActions(app)}<div class="project-popularity">${starLink(app)}</div>${readmeSection(app)}<h2>Before you install</h2><ul>${displayRequirements(app).map((r) => `<li>${esc(r)}</li>`).join("")}</ul><h2>Can I use it yet?</h2><p class="status ${c.status}">${statusLabel[c.status]}</p><p>${supportSummary(app)}</p>${legalSection(app)}<details class="technical-details"><summary>Source and compatibility evidence</summary>${c.checkedAt ? `<p>Last checked ${esc(c.checkedAt)}.</p>` : ""}${evidence}</details></article><aside class="install-panel" id="get-app"><span class="eyebrow">${c.status === "blocked" ? "NOT AVAILABLE" : "GET THE APP"}</span><h2>${c.status === "blocked" ? `${esc(app.name)} is not in PicoRunner yet.` : `Get ${esc(app.name)}.`}</h2>${installAction}${ratingForm(app)}</aside></div></main>`,
     ),
   );
 }
@@ -302,7 +297,7 @@ const developerDocsContent = `<main id="main" class="developer-docs">
         <div class="developer-value-grid">
           <article>${icon("link")}<h3>A link people can act on.</h3><p>Add a launch button to your README, or share its link with your community. People open your project in PicoRunner and choose whether to install it.</p></article>
           <article>${icon("download")}<h3>Less setup to explain.</h3><p>Describe the setup once. PicoRunner follows those steps for each installation, instead of asking every person to learn the tools behind your app.</p></article>
-          <article>${icon("youbot")}<h3>Feedback from more than developers.</h3><p>Invite friends, early testers, and the people your app is meant for. An easier first run gives them a better chance to try it and share useful feedback with you.</p></article>
+          <article>${icon("check")}<h3>Feedback from more than developers.</h3><p>Invite friends, early testers, and the people your app is meant for. An easier first run gives them a better chance to try it and share useful feedback with you.</p></article>
           <article>${icon("folder")}<h3>Your project stays yours.</h3><p>Keep your code on GitHub and share directly. You don’t need a place in the PicoRunner collection to give someone a launch link.</p></article>
         </div>
         <div class="faq-list"><details><summary>Can I share an app I built with AI?</summary><p>Yes. Experienced developers, first-time builders, and vibe coders are all welcome. Your project needs to be public and work with PicoRunner’s setup. Follow the <a href="#overview">steps below</a> to prepare it, test it, and add a launch button.</p></details><details><summary>Does my app need to be in the collection first?</summary><p>No. You can share a launch link to a public GitHub project directly. People can review it in PicoRunner before installing. Being featured in the collection is a separate review.</p></details></div>
