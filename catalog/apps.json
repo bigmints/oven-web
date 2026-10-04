@@ -27,7 +27,11 @@
         ],
         "availability": "Youbot's installer creates a private owner login and keeps its app and data in your user folder. PicoRunner does not yet run or manage that installer.",
         "license": null,
-        "audience": "consumer"
+        "audience": "consumer",
+        "legalNotes": [
+          "The README labels the project MIT, but a license file could not be verified at the reviewed commit. Check the upstream project for its current licensing terms.",
+          "Connected messaging services and configured AI providers receive the information needed for the requests you send through them."
+        ]
       },
       "compatibility": {
         "status": "blocked",
@@ -43,7 +47,14 @@
         ]
       },
       "stars": 1,
-      "starsUpdatedAt": "2026-10-04T10:36:25.303Z"
+      "starsUpdatedAt": "2026-10-04T10:36:25.303Z",
+      "readme": {
+        "source": "https://github.com/bigmints/ubot/blob/3750b6fc29b7f15adf4d720836caf79042f9a883/README.md",
+        "paragraphs": [
+          "Youbot is a self-hosted AI concierge that helps visitors using the information and boundaries its owner supplies. The owner configures the concierge, connects supported channels, follows visitor conversations, and takes over when a decision or personal reply is needed. Channel integrations and available actions depend on configuration and authorization."
+        ],
+        "features": []
+      }
     },
     {
       "id": "flourish",
@@ -69,7 +80,9 @@
           "Flourish has no built-in account system; keep it on your Mac or behind a private network"
         ],
         "license": "MIT",
-        "audience": "consumer"
+        "audience": "consumer",
+        "licenseSource": "https://github.com/bigmints/flourish/blob/bca2789a0fb6709f707fa938a2a2dd0a645a4a6f/LICENSE",
+        "copyright": "Copyright (c) 2026 Bigmints"
       },
       "compatibility": {
         "status": "source-reviewed",
@@ -96,7 +109,21 @@
         }
       },
       "stars": 1,
-      "starsUpdatedAt": "2026-10-04T10:36:25.547Z"
+      "starsUpdatedAt": "2026-10-04T10:36:25.547Z",
+      "readme": {
+        "source": "https://github.com/bigmints/flourish/blob/bca2789a0fb6709f707fa938a2a2dd0a645a4a6f/README.md",
+        "paragraphs": [
+          "Flourish is a self-hosted personal finance workspace for everyday spending, savings goals, investments, loans, and recurring payments. Your financial data stays in a local SQLite database."
+        ],
+        "features": [
+          "Bank, cash, and credit-card accounts",
+          "Monthly spending patterns and six-month trends",
+          "Savings goals and contribution history",
+          "Investment holdings, valuations, and cash flows",
+          "Review-before-save imports for CSV, XLSX, PDF, and screenshots",
+          "Local backups, restore checks, exports, and audit history"
+        ]
+      }
     },
     {
       "id": "rise",
@@ -122,7 +149,12 @@
           "Python 3.11 or newer is needed for Rise's local API"
         ],
         "license": "MIT",
-        "audience": "consumer"
+        "audience": "consumer",
+        "licenseSource": "https://github.com/bigmints/rise/blob/24a7b85744c14e4a9f866991500a571cb0e1af59/LICENSE",
+        "copyright": "Copyright (c) 2026 Bigmints",
+        "legalNotes": [
+          "Rise is a record-keeping tool, not a medical service. It does not diagnose, interpret results, recommend treatment, or replace professional care."
+        ]
       },
       "compatibility": {
         "status": "source-reviewed",
@@ -149,7 +181,21 @@
         }
       },
       "stars": 0,
-      "starsUpdatedAt": "2026-10-04T10:36:25.821Z"
+      "starsUpdatedAt": "2026-10-04T10:36:25.821Z",
+      "readme": {
+        "source": "https://github.com/bigmints/rise/blob/24a7b85744c14e4a9f866991500a571cb0e1af59/README.md",
+        "paragraphs": [
+          "Rise is a self-hosted wellness journal for daily check-ins, measurements, health records, medications, appointments, and follow-up reminders. It records what you enter without treating missing days as failures or offering medical advice."
+        ],
+        "features": [
+          "Daily fasting, weight, blood pressure, pulse, activity, and sleep check-ins",
+          "Configurable trackers with history and corrections",
+          "Medication schedules and as-needed dose logs",
+          "Appointments and follow-up reminders",
+          "A mobile-friendly interface and installable web app",
+          "Local SQLite storage"
+        ]
+      }
     },
     {
       "id": "moodist",
@@ -175,7 +221,21 @@
           "Internet connection for the initial dependency download",
           "Some sounds and embedded media may need internet access."
         ],
-        "license": "MIT"
+        "license": "MIT",
+        "licenseSource": "https://github.com/remvze/moodist/blob/11c0be2200116a3635880d600fd6953899cc51a3/LICENSE",
+        "copyright": "Copyright (c) 2023 MAZE",
+        "assetLicenses": [
+          {
+            "name": "Pixabay Content License",
+            "source": "https://pixabay.com/service/license-summary/",
+            "summary": "Applies to some third-party sounds, as documented in the README."
+          },
+          {
+            "name": "Creative Commons Zero (CC0)",
+            "source": "https://creativecommons.org/publicdomain/zero/1.0/",
+            "summary": "Applies to some third-party sounds, as documented in the README."
+          }
+        ]
       },
       "compatibility": {
         "status": "source-reviewed",
@@ -206,7 +266,22 @@
         ]
       },
       "stars": 3868,
-      "starsUpdatedAt": "2026-10-04T10:38:08.570881+00:00"
+      "starsUpdatedAt": "2026-10-04T10:38:08.570881+00:00",
+      "readme": {
+        "source": "https://github.com/remvze/moodist/blob/11c0be2200116a3635880d600fd6953899cc51a3/README.md",
+        "paragraphs": [
+          "Ambient sounds for focus and calm."
+        ],
+        "features": [
+          "84 curated ambient sounds you can layer into custom soundscapes.",
+          "Smooth fade transitions on play/stop and sleep timer shutdown.",
+          "Shareable mixes via URL with one-click import.",
+          "Presets to save, rename, delete, and instantly reapply mixes.",
+          "Built-in binaural beat and isochronic tone generators.",
+          "Built-in breathing exercise, Pomodoro, countdown, todo, and notepad tools.",
+          "Installable PWA with offline caching."
+        ]
+      }
     },
     {
       "id": "open-resume",
@@ -232,7 +307,8 @@
           "Internet connection for the initial dependency download",
           "No account or cloud service is required for the documented core resume workflow."
         ],
-        "license": "AGPL-3.0"
+        "license": "AGPL-3.0",
+        "licenseSource": "https://github.com/xitanggg/open-resume/blob/4f8255a2c763479837f69f1dccf2a3338730cd79/LICENSE"
       },
       "compatibility": {
         "status": "source-reviewed",
@@ -263,7 +339,18 @@
         ]
       },
       "stars": 8913,
-      "starsUpdatedAt": "2026-10-04T10:37:26.841141+00:00"
+      "starsUpdatedAt": "2026-10-04T10:37:26.841141+00:00",
+      "readme": {
+        "source": "https://github.com/xitanggg/open-resume/blob/4f8255a2c763479837f69f1dccf2a3338730cd79/README.md",
+        "paragraphs": [
+          "OpenResume is a powerful open-source resume builder and resume parser.",
+          "OpenResume's resume builder allows user to create a modern professional resume easily."
+        ],
+        "features": [
+          "The resume PDF is updated in real time as you enter your resume information, so you can easily see the final output.",
+          "If you already have an existing resume PDF, you have the option to import it directly, so you can update your resume design to a modern professional design in literally a few seconds."
+        ]
+      }
     },
     {
       "id": "dillinger",
@@ -290,7 +377,9 @@
           "Cloud sync requires separate OAuth credentials for each provider; basic writing does not use those integrations.",
           "PDF export uses a server-side Chromium dependency and has not been validated on macOS."
         ],
-        "license": "MIT"
+        "license": "MIT",
+        "licenseSource": "https://github.com/joemccann/dillinger/blob/17010b79c18553cf9c1757c297e128f9b950c9be/LICENSE",
+        "copyright": "Copyright (c) 2011-2020 Joe McCann"
       },
       "compatibility": {
         "status": "source-reviewed",
@@ -321,7 +410,22 @@
         ]
       },
       "stars": 8289,
-      "starsUpdatedAt": "2026-10-04T10:37:21.061299+00:00"
+      "starsUpdatedAt": "2026-10-04T10:37:21.061299+00:00",
+      "readme": {
+        "source": "https://github.com/joemccann/dillinger/blob/17010b79c18553cf9c1757c297e128f9b950c9be/README.md",
+        "paragraphs": [
+          "A modern, cloud-native Markdown editor built on Next.js \u2014 designed for speed, focus, and seamless sync."
+        ],
+        "features": [
+          "Monaco Editor (VS Code core)",
+          "Syntax highlighting for Markdown",
+          "Image paste support",
+          "Real-time preview",
+          "Scroll sync",
+          "Auto-save (local persistence)",
+          "Fullscreen, distraction-free writing"
+        ]
+      }
     },
     {
       "id": "scratch",
@@ -349,7 +453,8 @@
           "The editor is a large npm workspace; its first installation and build can take longer than smaller apps.",
           "Online assets and community features may require internet access; community publishing uses a Scratch account."
         ],
-        "license": "AGPL-3.0"
+        "license": "AGPL-3.0",
+        "licenseSource": "https://github.com/scratchfoundation/scratch-editor/blob/ce118023c9b1da401ac0612ab24e743c9ab5e7a1/LICENSE"
       },
       "compatibility": {
         "status": "source-reviewed",
@@ -384,7 +489,19 @@
         ]
       },
       "stars": 290,
-      "starsUpdatedAt": "2026-10-04T10:41:13.071079+00:00"
+      "starsUpdatedAt": "2026-10-04T10:41:13.071079+00:00",
+      "readme": {
+        "source": "https://github.com/scratchfoundation/scratch-editor/blob/ce118023c9b1da401ac0612ab24e743c9ab5e7a1/README.md",
+        "paragraphs": [
+          "This is a source code repository for the packages that make up the Scratch editor and a few additional support packages."
+        ],
+        "features": [
+          "scratch-gui provides the buttons, menus, and other elements that you interact with when creating and editing a project. It's also the \"glue\" that brings most of the other modules together at runtime.",
+          "scratch-paint provides a way to draw vector (SVG) or bitmap (PNG) images for costumes and backdrops.",
+          "scratch-render draws backdrops, sprites, and clones on the stage.",
+          "scratch-storage helps load project assets like images and sounds."
+        ]
+      }
     }
   ]
 }

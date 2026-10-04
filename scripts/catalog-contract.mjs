@@ -72,6 +72,29 @@ export function validateCatalog(catalog) {
       fail("invalid compatibility record");
       continue;
     }
+    const texts = (value, maxCount) => Array.isArray(value) && value.length <= maxCount &&
+      value.every(text => typeof text === "string" && text.trim() && text.length <= 1500);
+    const https = value => {
+      try { const url = new URL(value); return url.protocol === "https:" && !url.username && !url.password; }
+      catch { return false; }
+    };
+    const pinnedSource = value => {
+      try {
+        const url = new URL(value);
+        return https(value) && url.href.startsWith(`${app.repository}/blob/${c.commit}/`) &&
+          !url.search && !url.hash &&
+          !decodeURIComponent(url.pathname).split("/").some(part => part === ".." || part === ".");
+      } catch { return false; }
+    };
+    if (app.readme !== undefined && (!app.readme || !pinnedSource(app.readme.source) ||
+      !texts(app.readme.paragraphs, 4) || !app.readme.paragraphs.length || !texts(app.readme.features, 10)))
+      fail("README excerpts need a pinned project source and bounded plain text");
+    if (e?.licenseSource !== undefined && (!e.license || !pinnedSource(e.licenseSource))) fail("license source must point to the pinned project");
+    if (e?.copyright !== undefined && (typeof e.copyright !== "string" || !e.copyright.trim() || e.copyright.length > 500)) fail("invalid copyright notice");
+    if (e?.legalNotes !== undefined && !texts(e.legalNotes, 4)) fail("invalid legal notes");
+    if (e?.assetLicenses !== undefined && (!Array.isArray(e.assetLicenses) || e.assetLicenses.length > 8 ||
+      e.assetLicenses.some(license => !license || !texts([license.name, license.summary], 2) || !https(license.source))))
+      fail("asset licenses need a name, summary and public HTTPS source");
     if (c.status === "blocked" && !e?.availability?.trim())
       fail("unavailable apps need a plain-language availability explanation");
     if (

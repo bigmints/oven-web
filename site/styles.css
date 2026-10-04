@@ -173,6 +173,23 @@ p { color: var(--color-muted); }
 .detail article .lead { font-size: 19px; }
 .detail ul { padding-left: 20px; color: var(--color-muted); }
 .detail li + li { margin-top: 8px; }
+.project-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.project-actions .button { min-height: 40px; padding: 10px 15px; font-size: 12px; }
+.detail article .project-action-note, .detail article .source-attribution { font-size: 11px; color: var(--color-subtle); margin: 10px 0 0; }
+.project-popularity { margin-top: 14px; }
+.project-popularity .github-stars { display: inline-flex; align-items: center; gap: 6px; }
+.detail-license { display: inline-flex; padding: 5px 9px; margin-top: 10px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); color: var(--color-muted); font-size: 11px; }
+.readme-excerpt { margin-top: 34px; padding: 25px 28px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }
+.section-label { color: var(--color-subtle); font-size: 10px; font-weight: 650; letter-spacing: .08em; }
+.detail article .readme-excerpt h2 { margin-top: 10px; }
+.detail article h3 { font-size: 14px; margin-top: 22px; }
+.readme-excerpt .text-link { margin-top: 12px; }
+.app-legal { margin-top: 32px; padding-top: 6px; border-top: 1px solid var(--color-border); }
+.license-line { display: flex; flex-wrap: wrap; align-items: center; gap: 15px; }
+.license-badge { border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 6px 10px; font-size: 12px; font-weight: 650; }
+.app-legal a { color: var(--color-accent); }
+.app-legal li span { display: block; margin-top: 4px; font-size: 12px; }
+.detail article .copyright-notice, .detail article .legal-context { font-size: 12px; color: var(--color-subtle); }
 .install-panel { align-self: start; padding: 28px; border: 1px solid var(--color-border); background: var(--color-surface); border-radius: var(--radius-md); }
 .install-panel h2 { font-size: 27px; margin: 14px 0 20px; }
 .install-panel p, .install-panel summary { font-size: 12px; }

@@ -3,6 +3,7 @@ import { existsSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
+import { readmeSection, legalSection, projectActions } from "./app-details.mjs";
 import {
   validateCatalog,
   installUrl,
@@ -259,7 +260,7 @@ for (const app of catalog.apps) {
       app.name,
       displayDescription(app),
       route,
-      `<main id="main" class="detail wrap"><a class="text-link" href="${href("apps/")}">← Apps</a><div class="detail-grid"><article>${appIcon(app)}<span class="eyebrow">${esc(app.category)}</span><h1>${esc(app.name)}</h1><p class="lead">${esc(displayDescription(app))}</p><a class="button secondary mobile-install" href="#get-app">${c.status === "blocked" ? "See availability" : `Get ${esc(app.name)}`} ↓</a><h2>A little more about ${esc(app.name)}</h2><p>${esc(displayReason(app))}</p><h2>Before you install</h2><ul>${displayRequirements(app).map((r) => `<li>${esc(r)}</li>`).join("")}</ul><h2>Can I use it yet?</h2><p class="status ${c.status}">${statusLabel[c.status]}</p><p>${supportSummary(app)}</p><details class="technical-details"><summary>For developers</summary><p>License: ${esc(app.editorial.license || "See the original project")}</p>${c.checkedAt ? `<p>Last checked ${esc(c.checkedAt)}.</p>` : ""}${evidence}</details><div class="project-links"><a class="text-link" href="${esc(app.repository)}">View on GitHub ↗</a>${starLink(app)}</div></article><aside class="install-panel" id="get-app"><span class="eyebrow">${c.status === "blocked" ? "NOT AVAILABLE" : "GET THE APP"}</span><h2>${c.status === "blocked" ? `${esc(app.name)} is not in PicoRunner yet.` : `Get ${esc(app.name)}.`}</h2>${installAction}${ratingForm(app)}</aside></div></main>`,
+      `<main id="main" class="detail wrap"><a class="text-link" href="${href("apps/")}">← Apps</a><div class="detail-grid"><article>${appIcon(app)}<span class="eyebrow">${esc(app.category)}</span><h1>${esc(app.name)}</h1><p class="lead">${esc(displayDescription(app))}</p><a class="button secondary mobile-install" href="#get-app">${c.status === "blocked" ? "See availability" : `Get ${esc(app.name)}`} ↓</a>${projectActions(app)}<div class="project-popularity">${starLink(app)}</div>${readmeSection(app)}<h2>Before you install</h2><ul>${displayRequirements(app).map((r) => `<li>${esc(r)}</li>`).join("")}</ul><h2>Can I use it yet?</h2><p class="status ${c.status}">${statusLabel[c.status]}</p><p>${supportSummary(app)}</p>${legalSection(app)}<details class="technical-details"><summary>Source and compatibility evidence</summary>${c.checkedAt ? `<p>Last checked ${esc(c.checkedAt)}.</p>` : ""}${evidence}</details></article><aside class="install-panel" id="get-app"><span class="eyebrow">${c.status === "blocked" ? "NOT AVAILABLE" : "GET THE APP"}</span><h2>${c.status === "blocked" ? `${esc(app.name)} is not in PicoRunner yet.` : `Get ${esc(app.name)}.`}</h2>${installAction}${ratingForm(app)}</aside></div></main>`,
     ),
   );
 }

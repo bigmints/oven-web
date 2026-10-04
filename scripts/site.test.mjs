@@ -3,6 +3,7 @@ import test from "node:test";
 import { readFileSync, existsSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import { readmeSection, legalSection, projectActions } from "./app-details.mjs";
 import {
   validateCatalog,
   agentCommand,
@@ -12,6 +13,39 @@ const root = fileURLToPath(new URL("../", import.meta.url));
 const catalog = JSON.parse(
   readFileSync(new URL("../catalog/apps.json", import.meta.url)),
 );
+test("README and legal sections escape upstream text and reject unsafe source links", () => {
+  const app = structuredClone(catalog.apps.find(app => app.id === "moodist"));
+  app.readme.paragraphs = ['<script>alert("README")</script>'];
+  app.editorial.legalNotes = ['<img src=x onerror=alert(1)>'];
+  assert(readmeSection(app).includes('&lt;script&gt;'));
+  assert(!readmeSection(app).includes('<script>'));
+  assert(!legalSection(app).includes('<img'));
+  assert(projectActions(app).includes('Star on GitHub'));
+  for (const source of ['javascript:alert(1)', 'https://evil.test/README.md', `${app.repository}/blob/${app.compatibility.commit}/../README.md`, `${app.repository}/blob/${app.compatibility.commit}/%ZZ`]) {
+    app.readme.source = source;
+    assert(validateCatalog({schemaVersion: 1, apps: [app]}).some(error => error.includes('README excerpts')));
+  }
+  app.readme = structuredClone(catalog.apps.find(app => app.id === "moodist").readme);
+  app.editorial.assetLicenses[0].source = 'javascript:alert(1)';
+  assert(validateCatalog({schemaVersion: 1, apps: [app]}).some(error => error.includes('asset licenses')));
+});
+test("all app details expose README excerpts, legal information and GitHub actions", () => {
+  execFileSync(process.execPath, ["scripts/build-site.mjs"], {cwd: root});
+  for (const app of catalog.apps) {
+    const html = readFileSync(new URL(`../site-dist/apps/${app.id}/index.html`, import.meta.url), "utf8");
+    assert(app.readme.paragraphs.length);
+    assert(html.includes(readmeSection(app)));
+    assert(html.includes(legalSection(app)));
+    assert(html.includes(projectActions(app)));
+    assert(html.indexOf('License and legal') < html.indexOf('<details class="technical-details">'));
+    assert(html.includes('rel="noopener noreferrer"'));
+  }
+  const moodist = readFileSync(new URL('../site-dist/apps/moodist/index.html', import.meta.url), 'utf8');
+  assert(moodist.includes('Pixabay Content License'));
+  assert(moodist.includes('Creative Commons Zero (CC0)'));
+  const youbot = readFileSync(new URL('../site-dist/apps/youbot/index.html', import.meta.url), 'utf8');
+  assert(youbot.includes('License not confirmed'));
+});
 test("evidence gate rejects unsupported claims and command injection", () => {
   assert.deepEqual(validateCatalog(catalog), []);
   const invalid = structuredClone(catalog);
