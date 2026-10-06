@@ -116,7 +116,15 @@ export function validateCatalog(catalog) {
     )
       fail("evidence needs a summary and public HTTPS source");
     if (["source-reviewed", "verified"].includes(c.status)) {
-      if (!c.launch || typeof c.launch.packagePath !== "string" || c.launch.packageName !== app.packageName || c.launch.script !== app.preferredScript || typeof c.launch.command !== "string" || !c.launch.command.trim()) fail("reviewed entries need an exact recorded launch recipe");
+      const containerLaunch = c.launch?.kind === "container";
+      if (containerLaunch) {
+        if (c.launch.packageName !== app.packageName || app.preferredScript !== "start" ||
+            !/^[-./a-z0-9]+@sha256:[a-f0-9]{64}$/i.test(c.launch.image || "") ||
+            !Number.isSafeInteger(c.launch.internalPort) || c.launch.internalPort < 1 || c.launch.internalPort > 65535)
+          fail("reviewed container entries need an exact pinned image and browser port");
+      } else if (!c.launch || typeof c.launch.packagePath !== "string" || c.launch.packageName !== app.packageName || c.launch.script !== app.preferredScript || typeof c.launch.command !== "string" || !c.launch.command.trim()) {
+        fail("reviewed entries need an exact recorded launch recipe");
+      }
       if (
         !/^[a-f0-9]{40}$/.test(c.commit || "") ||
         !c.checkedAt ||

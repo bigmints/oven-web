@@ -502,6 +502,636 @@
           "scratch-storage helps load project assets like images and sounds."
         ]
       }
+    },
+    {
+      "id": "cyberchef",
+      "name": "CyberChef",
+      "description": "Convert and inspect text and data with visual operations in your browser.",
+      "category": "Productivity",
+      "tags": [
+        "Text conversion",
+        "Data",
+        "Utilities"
+      ],
+      "repository": "https://github.com/gchq/CyberChef",
+      "packageName": "CyberChef",
+      "preferredScript": "start",
+      "accent": "#587da9",
+      "glyph": "CC",
+      "editorial": {
+        "audience": "consumer",
+        "reason": "A practical toolbox for decoding, encoding, and examining everyday data without command-line setup.",
+        "bestFor": "Text and data transformations",
+        "requirements": [
+          "PicoRunner 0.3.14 or later on an Apple Silicon Mac",
+          "Docker Desktop installed and running",
+          "Internet access for the initial source and container image download",
+          "Operations run in a local browser tab; check individual recipes before using them with private data."
+        ],
+        "license": "Apache-2.0"
+      },
+      "compatibility": {
+        "status": "verified",
+        "checkedAt": "2026-10-06",
+        "commit": "609951ac13967da6d497e0600c922f56bfd0b7af",
+        "platform": "macOS 26.6.2 (Apple Silicon)",
+        "launcherVersion": "0.3.14",
+        "launch": {
+          "kind": "container",
+          "packageName": "CyberChef",
+          "image": "ghcr.io/gchq/cyberchef@sha256:f04a39926344faf8e4cbbc8c92fb125d2b466f9be62db09aff23c7c406101a51",
+          "internalPort": 8080
+        },
+        "evidence": [
+          {
+            "kind": "source",
+            "summary": "Pinned upstream README describes the app and its supported use.",
+            "source": "https://github.com/gchq/CyberChef/blob/609951ac13967da6d497e0600c922f56bfd0b7af/README.md"
+          },
+          {
+            "kind": "install",
+            "summary": "Fresh PicoRunner installation checked out the recorded source revision and pulled the pinned arm64 container image.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "launch",
+            "summary": "PicoRunner started the container and returned a loopback browser URL for CyberChef.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "health",
+            "summary": "Repeated local readiness checks reported the service responsive.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "smoke",
+            "summary": "In the same pinned image, the browser converted PicoRunner to Base64 UGljb1J1bm5lcg==.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "restart",
+            "summary": "PicoRunner stopped and restarted its own test installation; the browser service became ready again.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "cleanup",
+            "summary": "PicoRunner removed its test containers, network, disposable files, and registry record without touching existing apps.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          }
+        ]
+      },
+      "readme": {
+        "source": "https://github.com/gchq/CyberChef/blob/609951ac13967da6d497e0600c922f56bfd0b7af/README.md",
+        "paragraphs": [
+          "Convert and inspect text and data with visual operations in your browser."
+        ],
+        "features": [
+          "Chain visual data operations",
+          "Encode and decode common formats",
+          "Inspect results immediately"
+        ]
+      }
+    },
+    {
+      "id": "actual-budget",
+      "name": "Actual Budget",
+      "description": "Plan a budget and track accounts in a self-hosted personal finance workspace.",
+      "category": "Personal finance",
+      "tags": [
+        "Budgeting",
+        "Money",
+        "Planning"
+      ],
+      "repository": "https://github.com/actualbudget/actual",
+      "packageName": "Actual Budget",
+      "preferredScript": "start",
+      "accent": "#548c6a",
+      "glyph": "AB",
+      "editorial": {
+        "audience": "consumer",
+        "reason": "Make a working budget on your own Mac with a maintained open-source tool.",
+        "bestFor": "Personal and household budgeting",
+        "requirements": [
+          "PicoRunner 0.3.14 or later on an Apple Silicon Mac",
+          "Docker Desktop installed and running",
+          "Internet access for the initial source and container image download",
+          "Create a local account and budget after launch; protect your Mac and back up your budget data."
+        ],
+        "license": "MIT"
+      },
+      "compatibility": {
+        "status": "verified",
+        "checkedAt": "2026-10-06",
+        "commit": "6245a46417c9488c2d416443e909827e1c2788e6",
+        "platform": "macOS 26.6.2 (Apple Silicon)",
+        "launcherVersion": "0.3.14",
+        "launch": {
+          "kind": "container",
+          "packageName": "Actual Budget",
+          "image": "actualbudget/actual-server@sha256:24645e971da6bb1a1f953d6859e307a0b29be1e8b4130a35b3220c209b5b860c",
+          "internalPort": 5006
+        },
+        "evidence": [
+          {
+            "kind": "source",
+            "summary": "Pinned upstream README describes the app and its supported use.",
+            "source": "https://github.com/actualbudget/actual/blob/6245a46417c9488c2d416443e909827e1c2788e6/README.md"
+          },
+          {
+            "kind": "install",
+            "summary": "Fresh PicoRunner installation checked out the recorded source revision and pulled the pinned arm64 container image.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "launch",
+            "summary": "PicoRunner started the container and returned a loopback browser URL for Actual Budget.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "health",
+            "summary": "Repeated local readiness checks reported the service responsive.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "smoke",
+            "summary": "A disposable local budget was created in the same pinned image and remained after container restart.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "restart",
+            "summary": "PicoRunner stopped and restarted its own test installation; the browser service became ready again.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "cleanup",
+            "summary": "PicoRunner removed its test containers, network, disposable files, and registry record without touching existing apps.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          }
+        ]
+      },
+      "readme": {
+        "source": "https://github.com/actualbudget/actual/blob/6245a46417c9488c2d416443e909827e1c2788e6/README.md",
+        "paragraphs": [
+          "Plan a budget and track accounts in a self-hosted personal finance workspace."
+        ],
+        "features": [
+          "Create budgets",
+          "Track accounts and transactions",
+          "Review spending plans"
+        ]
+      }
+    },
+    {
+      "id": "memos",
+      "name": "Memos",
+      "description": "Capture short notes and keep them in a private self-hosted space.",
+      "category": "Productivity",
+      "tags": [
+        "Notes",
+        "Writing",
+        "Personal knowledge"
+      ],
+      "repository": "https://github.com/usememos/memos",
+      "packageName": "Memos",
+      "preferredScript": "start",
+      "accent": "#759666",
+      "glyph": "ME",
+      "editorial": {
+        "audience": "consumer",
+        "reason": "Quick notes are easy to capture and find without setting up a full knowledge system.",
+        "bestFor": "Short personal notes",
+        "requirements": [
+          "PicoRunner 0.3.14 or later on an Apple Silicon Mac",
+          "Docker Desktop installed and running",
+          "Internet access for the initial source and container image download",
+          "Create a local account after launch; back up the app's private data folder."
+        ],
+        "license": "MIT"
+      },
+      "compatibility": {
+        "status": "verified",
+        "checkedAt": "2026-10-06",
+        "commit": "f7a61867315ff7d3b2cd7347adfc161f32022227",
+        "platform": "macOS 26.6.2 (Apple Silicon)",
+        "launcherVersion": "0.3.14",
+        "launch": {
+          "kind": "container",
+          "packageName": "Memos",
+          "image": "neosmemo/memos@sha256:24c2707ddd8fbd2ceaa7a61ecab86a53cdcde640b24ce572b73da14b00b5785f",
+          "internalPort": 5230
+        },
+        "evidence": [
+          {
+            "kind": "source",
+            "summary": "Pinned upstream README describes the app and its supported use.",
+            "source": "https://github.com/usememos/memos/blob/f7a61867315ff7d3b2cd7347adfc161f32022227/README.md"
+          },
+          {
+            "kind": "install",
+            "summary": "Fresh PicoRunner installation checked out the recorded source revision and pulled the pinned arm64 container image.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "launch",
+            "summary": "PicoRunner started the container and returned a loopback browser URL for Memos.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "health",
+            "summary": "Repeated local readiness checks reported the service responsive.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "smoke",
+            "summary": "A disposable memo was saved in the same pinned image and remained after container restart.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "restart",
+            "summary": "PicoRunner stopped and restarted its own test installation; the browser service became ready again.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "cleanup",
+            "summary": "PicoRunner removed its test containers, network, disposable files, and registry record without touching existing apps.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          }
+        ]
+      },
+      "readme": {
+        "source": "https://github.com/usememos/memos/blob/f7a61867315ff7d3b2cd7347adfc161f32022227/README.md",
+        "paragraphs": [
+          "Capture short notes and keep them in a private self-hosted space."
+        ],
+        "features": [
+          "Write short notes",
+          "Browse note history",
+          "Keep notes in local app storage"
+        ]
+      }
+    },
+    {
+      "id": "audiobookshelf",
+      "name": "Audiobookshelf",
+      "description": "Organize and listen to your audiobook and podcast collection.",
+      "category": "Photos & media",
+      "tags": [
+        "Audiobooks",
+        "Podcasts",
+        "Library"
+      ],
+      "repository": "https://github.com/advplyr/audiobookshelf",
+      "packageName": "Audiobookshelf",
+      "preferredScript": "start",
+      "accent": "#9a6b9b",
+      "glyph": "AS",
+      "editorial": {
+        "audience": "consumer",
+        "reason": "A focused home for long-form audio with an approachable browser library.",
+        "bestFor": "Personal audiobook and podcast libraries",
+        "requirements": [
+          "PicoRunner 0.3.14 or later on an Apple Silicon Mac",
+          "Docker Desktop installed and running",
+          "Internet access for the initial source and container image download",
+          "Add your own media to PicoRunner's private library folder after installation; it starts empty.",
+          "Create a local administrator account after launch."
+        ],
+        "license": "GPL-3.0"
+      },
+      "compatibility": {
+        "status": "verified",
+        "checkedAt": "2026-10-06",
+        "commit": "743d9152208507a1dbf7c95c94290071338f44bd",
+        "platform": "macOS 26.6.2 (Apple Silicon)",
+        "launcherVersion": "0.3.14",
+        "launch": {
+          "kind": "container",
+          "packageName": "Audiobookshelf",
+          "image": "ghcr.io/advplyr/audiobookshelf@sha256:581d68b2a6fc7ebf58d81c878a9f387cbbc0d88ac9d37b298b9cee10168af85b",
+          "internalPort": 80
+        },
+        "evidence": [
+          {
+            "kind": "source",
+            "summary": "Pinned upstream README describes the app and its supported use.",
+            "source": "https://github.com/advplyr/audiobookshelf/blob/743d9152208507a1dbf7c95c94290071338f44bd/README.md"
+          },
+          {
+            "kind": "install",
+            "summary": "Fresh PicoRunner installation checked out the recorded source revision and pulled the pinned arm64 container image.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "launch",
+            "summary": "PicoRunner started the container and returned a loopback browser URL for Audiobookshelf.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "health",
+            "summary": "Repeated local readiness checks reported the service responsive.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "smoke",
+            "summary": "An empty test library was created in the same pinned image and remained after container restart.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "restart",
+            "summary": "PicoRunner stopped and restarted its own test installation; the browser service became ready again.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "cleanup",
+            "summary": "PicoRunner removed its test containers, network, disposable files, and registry record without touching existing apps.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          }
+        ]
+      },
+      "readme": {
+        "source": "https://github.com/advplyr/audiobookshelf/blob/743d9152208507a1dbf7c95c94290071338f44bd/README.md",
+        "paragraphs": [
+          "Organize and listen to your audiobook and podcast collection."
+        ],
+        "features": [
+          "Organize audio libraries",
+          "Listen in the browser",
+          "Keep library settings between launches"
+        ]
+      }
+    },
+    {
+      "id": "navidrome",
+      "name": "Navidrome",
+      "description": "Browse and play a personal music library from a local web player.",
+      "category": "Photos & media",
+      "tags": [
+        "Music",
+        "Audio",
+        "Library"
+      ],
+      "repository": "https://github.com/navidrome/navidrome",
+      "packageName": "Navidrome",
+      "preferredScript": "start",
+      "accent": "#b47a57",
+      "glyph": "NA",
+      "editorial": {
+        "audience": "consumer",
+        "reason": "A lightweight music server for a collection you control.",
+        "bestFor": "Personal music collections",
+        "requirements": [
+          "PicoRunner 0.3.14 or later on an Apple Silicon Mac",
+          "Docker Desktop installed and running",
+          "Internet access for the initial source and container image download",
+          "Add music to PicoRunner's private music folder after installation; it starts empty.",
+          "Create a local administrator account after launch."
+        ],
+        "license": "GPL-3.0"
+      },
+      "compatibility": {
+        "status": "verified",
+        "checkedAt": "2026-10-06",
+        "commit": "95f67d2c4ef391967327f0c7dccd5d0d8b02f62e",
+        "platform": "macOS 26.6.2 (Apple Silicon)",
+        "launcherVersion": "0.3.14",
+        "launch": {
+          "kind": "container",
+          "packageName": "Navidrome",
+          "image": "deluan/navidrome@sha256:38dc2727bfcfd5ede290f8ada114fc90368146f265ae4701ddddbcbe2a44ee52",
+          "internalPort": 4533
+        },
+        "evidence": [
+          {
+            "kind": "source",
+            "summary": "Pinned upstream README describes the app and its supported use.",
+            "source": "https://github.com/navidrome/navidrome/blob/95f67d2c4ef391967327f0c7dccd5d0d8b02f62e/README.md"
+          },
+          {
+            "kind": "install",
+            "summary": "Fresh PicoRunner installation checked out the recorded source revision and pulled the pinned arm64 container image.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "launch",
+            "summary": "PicoRunner started the container and returned a loopback browser URL for Navidrome.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "health",
+            "summary": "Repeated local readiness checks reported the service responsive.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "smoke",
+            "summary": "A disposable administrator was created in the same pinned image and remained after container restart.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "restart",
+            "summary": "PicoRunner stopped and restarted its own test installation; the browser service became ready again.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "cleanup",
+            "summary": "PicoRunner removed its test containers, network, disposable files, and registry record without touching existing apps.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          }
+        ]
+      },
+      "readme": {
+        "source": "https://github.com/navidrome/navidrome/blob/95f67d2c4ef391967327f0c7dccd5d0d8b02f62e/README.md",
+        "paragraphs": [
+          "Browse and play a personal music library from a local web player."
+        ],
+        "features": [
+          "Scan a music library",
+          "Browse albums and artists",
+          "Play music in the browser"
+        ]
+      }
+    },
+    {
+      "id": "excalidraw",
+      "name": "Excalidraw",
+      "description": "Sketch diagrams and ideas on a simple whiteboard canvas.",
+      "category": "Creativity",
+      "tags": [
+        "Whiteboard",
+        "Drawing",
+        "Diagrams"
+      ],
+      "repository": "https://github.com/excalidraw/excalidraw",
+      "packageName": "Excalidraw",
+      "preferredScript": "start",
+      "accent": "#7772c7",
+      "glyph": "EX",
+      "editorial": {
+        "audience": "consumer",
+        "reason": "Get from a blank canvas to a shareable visual explanation quickly.",
+        "bestFor": "Informal sketches and visual notes",
+        "requirements": [
+          "PicoRunner 0.3.14 or later on an Apple Silicon Mac",
+          "Docker Desktop installed and running",
+          "Internet access for the initial source and container image download",
+          "Export drawings to a file; persistence across browser sessions was not established in this test.",
+          "Collaboration features may need separate services."
+        ],
+        "license": "MIT"
+      },
+      "compatibility": {
+        "status": "verified",
+        "checkedAt": "2026-10-06",
+        "commit": "ed10ac7dca7e40f3f4a31269b4bfba980d0db41e",
+        "platform": "macOS 26.6.2 (Apple Silicon)",
+        "launcherVersion": "0.3.14",
+        "launch": {
+          "kind": "container",
+          "packageName": "Excalidraw",
+          "image": "excalidraw/excalidraw@sha256:f7ee194addd607bf831d2af0f0a34463dd4225e426cf35199ef0b12a803398e9",
+          "internalPort": 80
+        },
+        "evidence": [
+          {
+            "kind": "source",
+            "summary": "Pinned upstream README describes the app and its supported use.",
+            "source": "https://github.com/excalidraw/excalidraw/blob/ed10ac7dca7e40f3f4a31269b4bfba980d0db41e/README.md"
+          },
+          {
+            "kind": "install",
+            "summary": "Fresh PicoRunner installation checked out the recorded source revision and pulled the pinned arm64 container image.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "launch",
+            "summary": "PicoRunner started the container and returned a loopback browser URL for Excalidraw.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "health",
+            "summary": "Repeated local readiness checks reported the service responsive.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "smoke",
+            "summary": "Text was added to a drawing in the same pinned image; the UI returned after container restart.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "restart",
+            "summary": "PicoRunner stopped and restarted its own test installation; the browser service became ready again.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "cleanup",
+            "summary": "PicoRunner removed its test containers, network, disposable files, and registry record without touching existing apps.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          }
+        ]
+      },
+      "readme": {
+        "source": "https://github.com/excalidraw/excalidraw/blob/ed10ac7dca7e40f3f4a31269b4bfba980d0db41e/README.md",
+        "paragraphs": [
+          "Sketch diagrams and ideas on a simple whiteboard canvas."
+        ],
+        "features": [
+          "Draw free-form diagrams",
+          "Add shapes and text",
+          "Export drawings"
+        ]
+      }
+    },
+    {
+      "id": "draw-io",
+      "name": "draw.io",
+      "description": "Create flowcharts, diagrams, and visual plans in your browser.",
+      "category": "Creativity",
+      "tags": [
+        "Flowcharts",
+        "Diagrams",
+        "Planning"
+      ],
+      "repository": "https://github.com/jgraph/drawio",
+      "packageName": "draw.io",
+      "preferredScript": "start",
+      "accent": "#b7824f",
+      "glyph": "DI",
+      "editorial": {
+        "audience": "consumer",
+        "reason": "A capable diagram editor for structured sketches, workflows, and plans.",
+        "bestFor": "Flowcharts and structured diagrams",
+        "requirements": [
+          "PicoRunner 0.3.14 or later on an Apple Silicon Mac",
+          "Docker Desktop installed and running",
+          "Internet access for the initial source and container image download",
+          "Save or export diagrams to a file; an unsaved browser canvas is not a backup."
+        ],
+        "license": "Apache-2.0",
+        "legalNotes": [
+          "draw.io is a trademark of its owners. PicoRunner is not affiliated with or endorsed by draw.io.",
+          "The application source is Apache-2.0; its official Docker packaging repository is GPL-3.0. Review both upstream notices if you redistribute the container."
+        ]
+      },
+      "compatibility": {
+        "status": "verified",
+        "checkedAt": "2026-10-06",
+        "commit": "2201e54124bfbbf09d8addec60e6f8d73eed6f92",
+        "platform": "macOS 26.6.2 (Apple Silicon)",
+        "launcherVersion": "0.3.14",
+        "launch": {
+          "kind": "container",
+          "packageName": "draw.io",
+          "image": "jgraph/drawio@sha256:185d36c8c0992f7c9f063d71c7ef93549f3e4c65483ac86b4b17093818fe87aa",
+          "internalPort": 8080
+        },
+        "evidence": [
+          {
+            "kind": "source",
+            "summary": "Pinned upstream README describes the app and its supported use.",
+            "source": "https://github.com/jgraph/drawio/blob/2201e54124bfbbf09d8addec60e6f8d73eed6f92/README.md"
+          },
+          {
+            "kind": "install",
+            "summary": "Fresh PicoRunner installation checked out the recorded source revision and pulled the pinned arm64 container image.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "launch",
+            "summary": "PicoRunner started the container and returned a loopback browser URL for draw.io.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "health",
+            "summary": "Repeated local readiness checks reported the service responsive.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "smoke",
+            "summary": "A shape was added to an untitled diagram in the same pinned image; the editor returned after container restart.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "restart",
+            "summary": "PicoRunner stopped and restarted its own test installation; the browser service became ready again.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          },
+          {
+            "kind": "cleanup",
+            "summary": "PicoRunner removed its test containers, network, disposable files, and registry record without touching existing apps.",
+            "source": "https://github.com/bigmints/oven-web/blob/main/curation/reports/2026-10-06-coolify-runtime.md"
+          }
+        ]
+      },
+      "readme": {
+        "source": "https://github.com/jgraph/drawio/blob/2201e54124bfbbf09d8addec60e6f8d73eed6f92/README.md",
+        "paragraphs": [
+          "Create flowcharts, diagrams, and visual plans in your browser."
+        ],
+        "features": [
+          "Create diagrams with shapes and connectors",
+          "Work with flowchart and UML shapes",
+          "Save or export diagram files"
+        ]
+      }
     }
   ]
 }

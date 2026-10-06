@@ -56,6 +56,9 @@ test("catalog surfaces do not substitute invented icons for official app logos",
 });
 test("evidence gate rejects unsupported claims and command injection", () => {
   assert.deepEqual(validateCatalog(catalog), []);
+  const unpinnedContainer = structuredClone(catalog.apps.find(app => app.id === "cyberchef"));
+  unpinnedContainer.compatibility.launch.image = "ghcr.io/gchq/cyberchef:latest";
+  assert(validateCatalog({ schemaVersion: 1, apps: [unpinnedContainer] }).some(error => error.includes("pinned image")));
   const invalid = structuredClone(catalog);
   invalid.apps[0].compatibility.status = "verified";
   invalid.apps[0].compatibility.evidence = invalid.apps[0].compatibility.evidence.filter(
@@ -203,8 +206,13 @@ test("root and project Pages builds have working local links and per-app command
       assert(apps.includes(`${catalog.apps.length} apps`));
       assert(apps.includes("View app"));
       assert(!apps.includes("setup status"));
-      assert(!apps.includes("Excalidraw"));
-      assert(!apps.includes("Actual Budget"));
+      assert(apps.includes("Excalidraw"));
+      assert(apps.includes("Actual Budget"));
+      for (const id of ["cyberchef", "actual-budget", "memos", "audiobookshelf", "navidrome", "excalidraw", "draw-io"]) {
+        const detail = readFileSync(new URL(`../site-dist/apps/${id}/index.html`, import.meta.url), "utf8");
+        assert(detail.includes("Install with PicoRunner"));
+        assert(detail.includes("0.3.14"));
+      }
       const developers = readFileSync(
         new URL("../site-dist/developers/index.html", import.meta.url),
         "utf8",
