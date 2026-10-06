@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-05T11:32:38.648Z",
+  "updatedAt": "2026-10-06T10:09:47.957Z",
   "apps": [
     {
       "id": "youbot",
@@ -36,6 +36,41 @@
       "id": "scratch",
       "average": 5,
       "count": 1
+    },
+    {
+      "id": "cyberchef",
+      "average": null,
+      "count": 0
+    },
+    {
+      "id": "actual-budget",
+      "average": null,
+      "count": 0
+    },
+    {
+      "id": "memos",
+      "average": null,
+      "count": 0
+    },
+    {
+      "id": "audiobookshelf",
+      "average": null,
+      "count": 0
+    },
+    {
+      "id": "navidrome",
+      "average": null,
+      "count": 0
+    },
+    {
+      "id": "excalidraw",
+      "average": null,
+      "count": 0
+    },
+    {
+      "id": "draw-io",
+      "average": null,
+      "count": 0
     }
   ]
 }
