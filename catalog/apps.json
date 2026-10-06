@@ -47,7 +47,7 @@
         ]
       },
       "stars": 1,
-      "starsUpdatedAt": "2026-10-05T11:32:39.081Z",
+      "starsUpdatedAt": "2026-10-06T11:18:41.311Z",
       "readme": {
         "source": "https://github.com/bigmints/ubot/blob/3750b6fc29b7f15adf4d720836caf79042f9a883/README.md",
         "paragraphs": [
@@ -109,7 +109,7 @@
         }
       },
       "stars": 1,
-      "starsUpdatedAt": "2026-10-05T11:32:39.284Z",
+      "starsUpdatedAt": "2026-10-06T11:18:41.542Z",
       "readme": {
         "source": "https://github.com/bigmints/flourish/blob/bca2789a0fb6709f707fa938a2a2dd0a645a4a6f/README.md",
         "paragraphs": [
@@ -181,7 +181,7 @@
         }
       },
       "stars": 0,
-      "starsUpdatedAt": "2026-10-05T11:32:39.529Z",
+      "starsUpdatedAt": "2026-10-06T11:18:41.784Z",
       "readme": {
         "source": "https://github.com/bigmints/rise/blob/24a7b85744c14e4a9f866991500a571cb0e1af59/README.md",
         "paragraphs": [
@@ -266,7 +266,7 @@
         ]
       },
       "stars": 3870,
-      "starsUpdatedAt": "2026-10-05T11:32:39.730Z",
+      "starsUpdatedAt": "2026-10-06T11:18:41.980Z",
       "readme": {
         "source": "https://github.com/remvze/moodist/blob/11c0be2200116a3635880d600fd6953899cc51a3/README.md",
         "paragraphs": [
@@ -338,8 +338,8 @@
           }
         ]
       },
-      "stars": 8909,
-      "starsUpdatedAt": "2026-10-05T11:32:39.994Z",
+      "stars": 8911,
+      "starsUpdatedAt": "2026-10-06T11:18:42.237Z",
       "readme": {
         "source": "https://github.com/xitanggg/open-resume/blob/4f8255a2c763479837f69f1dccf2a3338730cd79/README.md",
         "paragraphs": [
@@ -410,7 +410,7 @@
         ]
       },
       "stars": 8288,
-      "starsUpdatedAt": "2026-10-05T11:32:40.198Z",
+      "starsUpdatedAt": "2026-10-06T11:18:42.454Z",
       "readme": {
         "source": "https://github.com/joemccann/dillinger/blob/17010b79c18553cf9c1757c297e128f9b950c9be/README.md",
         "paragraphs": [
@@ -489,7 +489,7 @@
         ]
       },
       "stars": 290,
-      "starsUpdatedAt": "2026-10-05T11:32:40.454Z",
+      "starsUpdatedAt": "2026-10-06T11:18:42.729Z",
       "readme": {
         "source": "https://github.com/scratchfoundation/scratch-editor/blob/ce118023c9b1da401ac0612ab24e743c9ab5e7a1/README.md",
         "paragraphs": [
@@ -590,7 +590,9 @@
           "Encode and decode common formats",
           "Inspect results immediately"
         ]
-      }
+      },
+      "stars": 36028,
+      "starsUpdatedAt": "2026-10-06T11:18:42.970Z"
     },
     {
       "id": "actual-budget",
@@ -679,7 +681,9 @@
           "Track accounts and transactions",
           "Review spending plans"
         ]
-      }
+      },
+      "stars": 29331,
+      "starsUpdatedAt": "2026-10-06T11:18:43.208Z"
     },
     {
       "id": "memos",
@@ -768,7 +772,9 @@
           "Browse note history",
           "Keep notes in local app storage"
         ]
-      }
+      },
+      "stars": 63555,
+      "starsUpdatedAt": "2026-10-06T11:18:43.438Z"
     },
     {
       "id": "audiobookshelf",
@@ -858,7 +864,9 @@
           "Listen in the browser",
           "Keep library settings between launches"
         ]
-      }
+      },
+      "stars": 14556,
+      "starsUpdatedAt": "2026-10-06T11:18:43.669Z"
     },
     {
       "id": "navidrome",
@@ -948,7 +956,9 @@
           "Browse albums and artists",
           "Play music in the browser"
         ]
-      }
+      },
+      "stars": 23992,
+      "starsUpdatedAt": "2026-10-06T11:18:43.908Z"
     },
     {
       "id": "excalidraw",
@@ -1038,7 +1048,9 @@
           "Add shapes and text",
           "Export drawings"
         ]
-      }
+      },
+      "stars": 133591,
+      "starsUpdatedAt": "2026-10-06T11:18:44.138Z"
     },
     {
       "id": "draw-io",
@@ -1131,7 +1143,9 @@
           "Work with flowchart and UML shapes",
           "Save or export diagram files"
         ]
-      }
+      },
+      "stars": 8587,
+      "starsUpdatedAt": "2026-10-06T11:18:44.396Z"
     }
   ]
 }
