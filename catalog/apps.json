@@ -47,7 +47,7 @@
         ]
       },
       "stars": 1,
-      "starsUpdatedAt": "2026-10-12T12:03:26.460Z",
+      "starsUpdatedAt": "2026-10-13T11:51:11.733Z",
       "readme": {
         "source": "https://github.com/bigmints/ubot/blob/3750b6fc29b7f15adf4d720836caf79042f9a883/README.md",
         "paragraphs": [
@@ -109,7 +109,7 @@
         }
       },
       "stars": 1,
-      "starsUpdatedAt": "2026-10-12T12:03:26.710Z",
+      "starsUpdatedAt": "2026-10-13T11:51:12.070Z",
       "readme": {
         "source": "https://github.com/bigmints/flourish/blob/bca2789a0fb6709f707fa938a2a2dd0a645a4a6f/README.md",
         "paragraphs": [
@@ -181,7 +181,7 @@
         }
       },
       "stars": 0,
-      "starsUpdatedAt": "2026-10-12T12:03:26.986Z",
+      "starsUpdatedAt": "2026-10-13T11:51:12.311Z",
       "readme": {
         "source": "https://github.com/bigmints/rise/blob/24a7b85744c14e4a9f866991500a571cb0e1af59/README.md",
         "paragraphs": [
@@ -265,8 +265,8 @@
           }
         ]
       },
-      "stars": 3883,
-      "starsUpdatedAt": "2026-10-12T12:03:27.192Z",
+      "stars": 3888,
+      "starsUpdatedAt": "2026-10-13T11:51:12.571Z",
       "readme": {
         "source": "https://github.com/remvze/moodist/blob/11c0be2200116a3635880d600fd6953899cc51a3/README.md",
         "paragraphs": [
@@ -339,7 +339,7 @@
         ]
       },
       "stars": 8925,
-      "starsUpdatedAt": "2026-10-12T12:03:27.422Z",
+      "starsUpdatedAt": "2026-10-13T11:51:12.846Z",
       "readme": {
         "source": "https://github.com/xitanggg/open-resume/blob/4f8255a2c763479837f69f1dccf2a3338730cd79/README.md",
         "paragraphs": [
@@ -410,7 +410,7 @@
         ]
       },
       "stars": 8292,
-      "starsUpdatedAt": "2026-10-12T12:03:27.646Z",
+      "starsUpdatedAt": "2026-10-13T11:51:13.097Z",
       "readme": {
         "source": "https://github.com/joemccann/dillinger/blob/17010b79c18553cf9c1757c297e128f9b950c9be/README.md",
         "paragraphs": [
@@ -489,7 +489,7 @@
         ]
       },
       "stars": 296,
-      "starsUpdatedAt": "2026-10-12T12:03:27.879Z",
+      "starsUpdatedAt": "2026-10-13T11:51:13.451Z",
       "readme": {
         "source": "https://github.com/scratchfoundation/scratch-editor/blob/ce118023c9b1da401ac0612ab24e743c9ab5e7a1/README.md",
         "paragraphs": [
@@ -591,8 +591,8 @@
           "Inspect results immediately"
         ]
       },
-      "stars": 36089,
-      "starsUpdatedAt": "2026-10-12T12:03:28.078Z"
+      "stars": 36101,
+      "starsUpdatedAt": "2026-10-13T11:51:13.704Z"
     },
     {
       "id": "actual-budget",
@@ -682,8 +682,8 @@
           "Review spending plans"
         ]
       },
-      "stars": 29451,
-      "starsUpdatedAt": "2026-10-12T12:03:28.291Z"
+      "stars": 29467,
+      "starsUpdatedAt": "2026-10-13T11:51:13.977Z"
     },
     {
       "id": "memos",
@@ -773,8 +773,8 @@
           "Keep notes in local app storage"
         ]
       },
-      "stars": 63724,
-      "starsUpdatedAt": "2026-10-12T12:03:28.516Z"
+      "stars": 63757,
+      "starsUpdatedAt": "2026-10-13T11:51:14.235Z"
     },
     {
       "id": "audiobookshelf",
@@ -865,8 +865,8 @@
           "Keep library settings between launches"
         ]
       },
-      "stars": 14617,
-      "starsUpdatedAt": "2026-10-12T12:03:28.703Z"
+      "stars": 14629,
+      "starsUpdatedAt": "2026-10-13T11:51:14.496Z"
     },
     {
       "id": "navidrome",
@@ -957,8 +957,8 @@
           "Play music in the browser"
         ]
       },
-      "stars": 24117,
-      "starsUpdatedAt": "2026-10-12T12:03:28.927Z"
+      "stars": 24138,
+      "starsUpdatedAt": "2026-10-13T11:51:14.769Z"
     },
     {
       "id": "excalidraw",
@@ -1049,8 +1049,8 @@
           "Export drawings"
         ]
       },
-      "stars": 133709,
-      "starsUpdatedAt": "2026-10-12T12:03:29.146Z"
+      "stars": 133777,
+      "starsUpdatedAt": "2026-10-13T11:51:16.021Z"
     },
     {
       "id": "draw-io",
@@ -1144,8 +1144,8 @@
           "Save or export diagram files"
         ]
       },
-      "stars": 8708,
-      "starsUpdatedAt": "2026-10-12T12:03:29.398Z"
+      "stars": 8734,
+      "starsUpdatedAt": "2026-10-13T11:51:16.282Z"
     }
   ]
 }
