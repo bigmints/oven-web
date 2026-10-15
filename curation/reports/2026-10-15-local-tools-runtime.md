@@ -33,7 +33,7 @@ Catalog level: **verified**, for the recorded native route and representative ta
 ## Web Chess
 
 - Source: [Sir-Teo/web-chess](https://github.com/Sir-Teo/web-chess/tree/80633718b9875a45ed8b925574d579265e6df212). Application code is MIT; bundled Stockfish assets are GPL-3.0. Root package `web-chess`; `dev` is `vite`; no packageManager field.
-- Install: canonical GitHub URL, completed through PicoRunner in 34 seconds on attempt zero using npm. Tracked source files remained unchanged.
+- Install: canonical GitHub URL, completed through PicoRunner in 34 seconds on attempt zero using npm. Tracked source files remained unchanged. The supplied Web Chess result and registry do not record its exact Node version.
 - Launch and health: PicoRunner native discovery ran `npm run dev -- --port <assigned-port>`; the UI and local engine were ready on IPv6 loopback `localhost`.
 - Smoke: the human move e4 received local Stockfish e5. Exported PGN independently contains `1. e4 e5 *`; the two-ply game was saved to the library. Export SHA-256 `737f8185246de8c81417e8e72deefe5045f1285e99c1c1e9fcec3bed236484fd`.
 - Cleanup: the app was stopped and its listener disappeared. Its managed folder and registration were retained.
@@ -43,4 +43,4 @@ Catalog level: **source-reviewed**, with successful Mac install/launch/sanity ev
 
 ## Selection and scope
 
-The owner requested these three apps. OmniTools is included for everyday list, image and document tasks despite also containing developer utilities; its developer-oriented tools are not the editorial focus. Dienius serves personal day planning, and Web Chess serves chess practice. No logos or third-party screenshots are copied. Short README excerpts and license sources are pinned to the tested upstream commits. No deployment, merge, managed update, or unattended publisher run is part of this change.
+These three apps were selected under the owner's request for five suitable repositories. OmniTools is included for everyday list, image and document tasks despite also containing developer utilities; its developer-oriented tools are not the editorial focus. Dienius serves personal day planning, and Web Chess serves chess practice. No logos or third-party screenshots are copied. Short README excerpts and license sources are pinned to the tested upstream commits. No deployment, merge, managed update, or unattended publisher run is part of this change.
