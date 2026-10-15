@@ -414,7 +414,7 @@
       "readme": {
         "source": "https://github.com/joemccann/dillinger/blob/17010b79c18553cf9c1757c297e128f9b950c9be/README.md",
         "paragraphs": [
-          "A modern, cloud-native Markdown editor built on Next.js — designed for speed, focus, and seamless sync."
+          "A modern, cloud-native Markdown editor built on Next.js \u2014 designed for speed, focus, and seamless sync."
         ],
         "features": [
           "Monaco Editor (VS Code core)",
@@ -1204,32 +1204,32 @@
           },
           {
             "kind": "install",
-            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/fd8709ba902ba938ee64ea4eafafca18742d0493/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "Canonical GitHub import completed through PicoRunner using Node 24.21.0 and pnpm; native discovery selected the root dev script. Its pnpm lockfile changed in the disposable checkout."
           },
           {
             "kind": "launch",
-            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/fd8709ba902ba938ee64ea4eafafca18742d0493/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "PicoRunner launched the existing Vite dev script on an assigned port, without a manifest."
           },
           {
             "kind": "health",
-            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/fd8709ba902ba938ee64ea4eafafca18742d0493/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "The managed IPv6 loopback listener and sorting UI were reachable at localhost; IPv4 was not bound."
           },
           {
             "kind": "smoke",
-            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/fd8709ba902ba938ee64ea4eafafca18742d0493/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "Sorted and deduplicated a synthetic list; the downloaded output was independently checked as apple,kiwi,zebra."
           },
           {
             "kind": "restart",
-            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/fd8709ba902ba938ee64ea4eafafca18742d0493/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "A Sort bookmark survived PicoRunner Stop/Start."
           },
           {
             "kind": "cleanup",
-            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/fd8709ba902ba938ee64ea4eafafca18742d0493/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "Removed the synthetic bookmark and stopped the test app; the managed folder and registration were intentionally retained. No uninstall is claimed."
           }
         ]
@@ -1298,32 +1298,32 @@
           },
           {
             "kind": "install",
-            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/fd8709ba902ba938ee64ea4eafafca18742d0493/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "Canonical GitHub import completed through PicoRunner using npm and Node 24.21.0; tracked source files remained unchanged."
           },
           {
             "kind": "launch",
-            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/fd8709ba902ba938ee64ea4eafafca18742d0493/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "PicoRunner launched the existing root Vite dev script on an assigned port."
           },
           {
             "kind": "health",
-            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/fd8709ba902ba938ee64ea4eafafca18742d0493/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "PicoRunner reported running after repeated readiness checks; the planner loaded at /dienius/ on IPv6 loopback localhost."
           },
           {
             "kind": "smoke",
-            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/fd8709ba902ba938ee64ea4eafafca18742d0493/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "Created and completed a synthetic task; reload retained it, and independent JSON export inspection confirmed done:true."
           },
           {
             "kind": "restart",
-            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/fd8709ba902ba938ee64ea4eafafca18742d0493/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "PicoRunner Stop removed the listener; Start restored the same origin and completed task."
           },
           {
             "kind": "cleanup",
-            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/fd8709ba902ba938ee64ea4eafafca18742d0493/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "Deleted the synthetic task and stopped the test app. The managed folder and registration were intentionally retained; no uninstall is claimed."
           }
         ]
@@ -1361,7 +1361,7 @@
           "Keep the same browser profile and local address for saved browser data; export backups before changing them",
           "Managed updates were reported unavailable in the tested PicoRunner UI",
           "Local Stockfish needs no account or API key; optional online services have separate requirements",
-          "Restart persistence was not tested; keep PGN exports of games you want to retain"
+          "Keep PGN exports of games you want to retain; browser data depends on the profile and local address"
         ],
         "license": "MIT",
         "licenseSource": "https://github.com/Sir-Teo/web-chess/blob/80633718b9875a45ed8b925574d579265e6df212/LICENSE",
@@ -1375,7 +1375,7 @@
         ]
       },
       "compatibility": {
-        "status": "source-reviewed",
+        "status": "verified",
         "checkedAt": "2026-10-15",
         "commit": "80633718b9875a45ed8b925574d579265e6df212",
         "platform": "macOS 26.6.2 (25G83), Apple Silicon arm64",
@@ -1400,28 +1400,33 @@
           },
           {
             "kind": "install",
-            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
-            "summary": "Canonical GitHub import completed through PicoRunner using npm; tracked source files remained unchanged."
+            "source": "https://github.com/bigmints/oven-web/blob/fd8709ba902ba938ee64ea4eafafca18742d0493/curation/reports/2026-10-15-local-tools-runtime.md",
+            "summary": "Canonical GitHub import completed through PicoRunner using npm and Node 24.21.0; tracked source files remained unchanged."
           },
           {
             "kind": "launch",
-            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/fd8709ba902ba938ee64ea4eafafca18742d0493/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "PicoRunner launched the existing root Vite dev script on an assigned port, without a manifest."
           },
           {
             "kind": "health",
-            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/fd8709ba902ba938ee64ea4eafafca18742d0493/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "The chess UI and local Stockfish engine became ready on IPv6 loopback localhost."
           },
           {
             "kind": "smoke",
-            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
-            "summary": "Played e4 and received local Stockfish e5; exported PGN independently confirmed 1. e4 e5, and the two-ply game was saved. Restart persistence was not tested."
+            "source": "https://github.com/bigmints/oven-web/blob/fd8709ba902ba938ee64ea4eafafca18742d0493/curation/reports/2026-10-15-local-tools-runtime.md",
+            "summary": "Played e4 and received local Stockfish e5; exported PGN independently confirmed 1. e4 e5, and the two-ply game was saved."
+          },
+          {
+            "kind": "restart",
+            "source": "https://github.com/bigmints/oven-web/blob/fd8709ba902ba938ee64ea4eafafca18742d0493/curation/reports/2026-10-15-local-tools-runtime.md",
+            "summary": "PicoRunner Stop removed the listener; Start restored the same origin and reopening the saved library game restored e4 and e5."
           },
           {
             "kind": "cleanup",
-            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
-            "summary": "Stopped the test app and confirmed its listener disappeared. Managed folder and registration were retained."
+            "source": "https://github.com/bigmints/oven-web/blob/fd8709ba902ba938ee64ea4eafafca18742d0493/curation/reports/2026-10-15-local-tools-runtime.md",
+            "summary": "Stopped the test app after restart verification and confirmed its listener disappeared. Managed folder, registration and saved synthetic game were retained."
           }
         ]
       },
@@ -1431,6 +1436,103 @@
           "A browser chess app for playing, importing, and reviewing games with Stockfish-powered analysis."
         ],
         "features": []
+      }
+    },
+    {
+      "id": "pdfcraft",
+      "name": "PDFCraft",
+      "description": "Merge PDF documents and work with pages in a locally hosted browser workspace.",
+      "category": "Productivity",
+      "tags": [
+        "PDF",
+        "Documents",
+        "Merge files"
+      ],
+      "repository": "https://github.com/PDFCraftTool/pdfcraft",
+      "packageName": "pdfcraft",
+      "preferredScript": "dev",
+      "accent": "#bf5754",
+      "glyph": "PD",
+      "editorial": {
+        "audience": "consumer",
+        "reason": "Combine everyday PDF documents and download the result from a dedicated document workspace.",
+        "bestFor": "Combining PDF documents",
+        "requirements": [
+          "PicoRunner on an Apple Silicon Mac; tested with version 0.3.14 and Node 24.21.0 on macOS 26.6.2",
+          "Internet access for the initial source and dependency download",
+          "Native discovery launches the Next.js development server; production static-export hosting was not tested on Mac",
+          "Keep the same browser profile and local address for saved favorites; download processed documents you want to retain",
+          "Mac verification covered PDF-to-PDF merge and favorite persistence; other conversions and the workflow editor were not tested",
+          "Managed updates were not tested"
+        ],
+        "license": "AGPL-3.0",
+        "licenseSource": "https://github.com/PDFCraftTool/pdfcraft/blob/009569cb169de5dec1900be66bea3a3997945aad/LICENSE"
+      },
+      "compatibility": {
+        "status": "verified",
+        "checkedAt": "2026-10-15",
+        "commit": "009569cb169de5dec1900be66bea3a3997945aad",
+        "platform": "macOS 26.6.2 (25G83), Apple Silicon arm64",
+        "launcherVersion": "0.3.14",
+        "launch": {
+          "packagePath": "package.json",
+          "packageName": "pdfcraft",
+          "script": "dev",
+          "command": "next dev --turbopack",
+          "packageManager": null
+        },
+        "evidence": [
+          {
+            "kind": "source",
+            "source": "https://github.com/PDFCraftTool/pdfcraft/blob/009569cb169de5dec1900be66bea3a3997945aad/package.json",
+            "summary": "Pinned root package declares pdfcraft and dev: next dev --turbopack; packageManager is absent. This is the native development-server route, separate from the proposed production manifest."
+          },
+          {
+            "kind": "source",
+            "source": "https://github.com/PDFCraftTool/pdfcraft/blob/009569cb169de5dec1900be66bea3a3997945aad/LICENSE",
+            "summary": "Pinned license text and README identify the project as AGPL-3.0; no application copyright is inferred from the license-template notice."
+          },
+          {
+            "kind": "install",
+            "source": "https://github.com/bigmints/oven-web/blob/fd8709ba902ba938ee64ea4eafafca18742d0493/curation/reports/2026-10-15-local-tools-runtime.md",
+            "summary": "Canonical GitHub import completed through PicoRunner in 66 seconds on attempt zero using npm and Node 24.21.0. No manifest was generated and tracked source files remained unchanged."
+          },
+          {
+            "kind": "launch",
+            "source": "https://github.com/bigmints/oven-web/blob/fd8709ba902ba938ee64ea4eafafca18742d0493/curation/reports/2026-10-15-local-tools-runtime.md",
+            "summary": "PicoRunner native discovery launched the root dev script, next dev --turbopack, on an assigned port."
+          },
+          {
+            "kind": "health",
+            "source": "https://github.com/bigmints/oven-web/blob/fd8709ba902ba938ee64ea4eafafca18742d0493/curation/reports/2026-10-15-local-tools-runtime.md",
+            "summary": "PicoRunner reported running; the managed Next development server and merge UI were reachable at /en/ on IPv4 loopback."
+          },
+          {
+            "kind": "smoke",
+            "source": "https://github.com/bigmints/oven-web/blob/fd8709ba902ba938ee64ea4eafafca18742d0493/curation/reports/2026-10-15-local-tools-runtime.md",
+            "summary": "Merged two synthetic one-page PDFs and downloaded the result. Independent PDF parsing confirmed two pages with the exact expected input text in order."
+          },
+          {
+            "kind": "restart",
+            "source": "https://github.com/bigmints/oven-web/blob/fd8709ba902ba938ee64ea4eafafca18742d0493/curation/reports/2026-10-15-local-tools-runtime.md",
+            "summary": "PicoRunner Stop removed the listener; Start restored the app and retained a favorite. The synthetic favorite was removed after the test."
+          },
+          {
+            "kind": "cleanup",
+            "source": "https://github.com/bigmints/oven-web/blob/fd8709ba902ba938ee64ea4eafafca18742d0493/curation/reports/2026-10-15-local-tools-runtime.md",
+            "summary": "Stopped through PicoRunner and independently confirmed no listener on its recorded port. Managed folder and synthetic PDF evidence were retained; no uninstall is claimed."
+          }
+        ]
+      },
+      "readme": {
+        "source": "https://github.com/PDFCraftTool/pdfcraft/blob/009569cb169de5dec1900be66bea3a3997945aad/README.md",
+        "paragraphs": [
+          "This project is built with modern web technologies to provide a slick, app-like experience directly in the browser."
+        ],
+        "features": [
+          "Combine multiple PDFs into one document",
+          "Separate specific pages or divide by page ranges"
+        ]
       }
     }
   ]
