@@ -1204,32 +1204,32 @@
           },
           {
             "kind": "install",
-            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "Canonical GitHub import completed through PicoRunner using Node 24.21.0 and pnpm; native discovery selected the root dev script. Its pnpm lockfile changed in the disposable checkout."
           },
           {
             "kind": "launch",
-            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "PicoRunner launched the existing Vite dev script on an assigned port, without a manifest."
           },
           {
             "kind": "health",
-            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "The managed IPv6 loopback listener and sorting UI were reachable at localhost; IPv4 was not bound."
           },
           {
             "kind": "smoke",
-            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "Sorted and deduplicated a synthetic list; the downloaded output was independently checked as apple,kiwi,zebra."
           },
           {
             "kind": "restart",
-            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "A Sort bookmark survived PicoRunner Stop/Start."
           },
           {
             "kind": "cleanup",
-            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "Removed the synthetic bookmark and stopped the test app; the managed folder and registration were intentionally retained. No uninstall is claimed."
           }
         ]
@@ -1298,32 +1298,32 @@
           },
           {
             "kind": "install",
-            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "Canonical GitHub import completed through PicoRunner using npm and Node 24.21.0; tracked source files remained unchanged."
           },
           {
             "kind": "launch",
-            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "PicoRunner launched the existing root Vite dev script on an assigned port."
           },
           {
             "kind": "health",
-            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "PicoRunner reported running after repeated readiness checks; the planner loaded at /dienius/ on IPv6 loopback localhost."
           },
           {
             "kind": "smoke",
-            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "Created and completed a synthetic task; reload retained it, and independent JSON export inspection confirmed done:true."
           },
           {
             "kind": "restart",
-            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "PicoRunner Stop removed the listener; Start restored the same origin and completed task."
           },
           {
             "kind": "cleanup",
-            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "Deleted the synthetic task and stopped the test app. The managed folder and registration were intentionally retained; no uninstall is claimed."
           }
         ]
@@ -1400,27 +1400,27 @@
           },
           {
             "kind": "install",
-            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "Canonical GitHub import completed through PicoRunner using npm; tracked source files remained unchanged."
           },
           {
             "kind": "launch",
-            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "PicoRunner launched the existing root Vite dev script on an assigned port, without a manifest."
           },
           {
             "kind": "health",
-            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "The chess UI and local Stockfish engine became ready on IPv6 loopback localhost."
           },
           {
             "kind": "smoke",
-            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "Played e4 and received local Stockfish e5; exported PGN independently confirmed 1. e4 e5, and the two-ply game was saved. Restart persistence was not tested."
           },
           {
             "kind": "cleanup",
-            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "source": "https://github.com/bigmints/oven-web/blob/d362571f5c22f89d3c8320e943f1db9985d3dcc3/curation/reports/2026-10-15-local-tools-runtime.md",
             "summary": "Stopped the test app and confirmed its listener disappeared. Managed folder and registration were retained."
           }
         ]
