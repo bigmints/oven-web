@@ -1,8 +1,10 @@
-# Three local apps: source and Mac sanity checks
+# Four local apps: source and Mac sanity checks
 
-Recorded on 2026-10-15. Test host: macOS 26.6.2 (25G83), Apple Silicon arm64; PicoRunner 0.3.14. These are canonical GitHub imports through PicoRunner native discovery, not tests of the proposed upstream production manifests. Each selected the root package and its existing `dev` script (`vite`). Browser storage belongs to the browser profile and origin. The installed desktop fetches the current default branch, so a later installation can differ from the tested revision.
+Recorded on 2026-10-15. Test host: macOS 26.6.2 (25G83), Apple Silicon arm64; PicoRunner 0.3.14. These are canonical GitHub imports through PicoRunner native discovery, not tests of the proposed upstream production manifests. Each selected the root package and its existing `dev` script: `vite` for OmniTools, Dienius and Web Chess; `next dev --turbopack` for PDFCraft. Browser storage belongs to the browser profile and origin. The installed desktop fetches the current default branch, so a later installation can differ from the tested revision.
 
-The supplied Mac evidence archive was 85,175 bytes, SHA-256 `bb8edbb074857129de8fe85bb48c93cd2bd83bc4f1f145bb10de87a33217bd1f`. All 17 included file hashes passed. Export bytes were inspected independently. This report omits local paths, registration identifiers, process IDs, raw registries, and browser backup contents. The before/after comparison reported all 15 pre-existing apps unchanged.
+The initial supplied Mac evidence archive was 85,175 bytes, SHA-256 `bb8edbb074857129de8fe85bb48c93cd2bd83bc4f1f145bb10de87a33217bd1f`. All 17 included file hashes passed. Export bytes were inspected independently. This report omits local paths, registration identifiers, process IDs, raw registries, and browser backup contents. The initial before/after comparison reported all 15 pre-existing apps unchanged.
+
+The runtime owner supplied supplemental result files updated at 12:24:58 UTC: `chess-result.json` SHA-256 `81d2df82cf2f93f6f7cbeeabfc4f9487051785c443867010ed66c1b0bdae5a5d` and `pdfcraft-result.json` SHA-256 `c7f54c0bf1f9036e4d2d1fa9b394dc232dda458402fbfb9360ffb5239d729b73`. These supplements are separate from the earlier archive. Read-only checks independently matched both managed checkout HEADs to the source commits below and found no tracked changes. PDF page count and extracted text were independently compared with the two synthetic input PDFs. At 12:26:05 UTC the recorded Web Chess, PDFCraft and Jotty test ports had no listeners. Runtime testing remained owned by the separate Mac task; publication checks did not operate the UI or change its files/processes.
 
 ## OmniTools
 
@@ -33,14 +35,32 @@ Catalog level: **verified**, for the recorded native route and representative ta
 ## Web Chess
 
 - Source: [Sir-Teo/web-chess](https://github.com/Sir-Teo/web-chess/tree/80633718b9875a45ed8b925574d579265e6df212). Application code is MIT; bundled Stockfish assets are GPL-3.0. Root package `web-chess`; `dev` is `vite`; no packageManager field.
-- Install: canonical GitHub URL, completed through PicoRunner in 34 seconds on attempt zero using npm. Tracked source files remained unchanged. The supplied Web Chess result and registry do not record its exact Node version.
+- Install: canonical GitHub URL, completed through PicoRunner in 34 seconds on attempt zero using npm and Node 24.21.0. Tracked source files remained unchanged.
 - Launch and health: PicoRunner native discovery ran `npm run dev -- --port <assigned-port>`; the UI and local engine were ready on IPv6 loopback `localhost`.
 - Smoke: the human move e4 received local Stockfish e5. Exported PGN independently contains `1. e4 e5 *`; the two-ply game was saved to the library. Export SHA-256 `737f8185246de8c81417e8e72deefe5045f1285e99c1c1e9fcec3bed236484fd`.
-- Cleanup: the app was stopped and its listener disappeared. Its managed folder and registration were retained.
-- Missing: restart persistence was not tested. Native UI work was paused while the owner used PicoRunner. Managed updates were reported outside PicoRunner, and the proposed production-preview manifest was not tested on Mac.
+- Restart: the supplemental record reports PicoRunner Stop removed the listener, Start restored the same origin, and reopening the saved library game restored e4 and e5.
+- Cleanup: the app was stopped after restart verification and its listener disappeared. Its managed folder, registration and saved synthetic game were retained; no uninstall or game deletion is claimed.
+- Limits: managed updates were reported outside PicoRunner, and the proposed production-preview manifest was not tested on Mac.
 
-Catalog level: **source-reviewed**, with successful Mac install/launch/sanity evidence. The catalog's current verified contract requires restart evidence, which is absent; no placeholder restart assertion is added.
+Catalog level: **verified**, for the recorded native route and representative local chess workflow. The earlier source-reviewed assessment lacked restart evidence; the supplemental record now supplies it. All six runtime evidence kinds are present.
+
+## PDFCraft
+
+- Source: [PDFCraftTool/pdfcraft](https://github.com/PDFCraftTool/pdfcraft/tree/009569cb169de5dec1900be66bea3a3997945aad), AGPL-3.0. Root package `pdfcraft`; `dev` is exactly `next dev --turbopack`; no packageManager field. The pinned README and license establish the project license; the Free Software Foundation notice in the license text is not attributed to the application authors.
+- Install: canonical GitHub URL, completed through PicoRunner in 66 seconds on attempt zero using npm and Node 24.21.0. No manifest was generated and tracked source files remained unchanged.
+- Launch: native discovery selected the root `dev` script and PicoRunner ran `npm run dev -- --port <assigned-port>`.
+- Health: PicoRunner reported the app running; the Next development server and merge UI were reachable at `/en/` on IPv4 loopback `127.0.0.1`.
+- Smoke: merged two synthetic one-page PDFs and downloaded the result. Independent parsing confirmed two pages, in input order, with the exact expected text on each page. The 1,335-byte output has SHA-256 `e216e7195924992b979f6eadeaaa7942a5b0c487aeeacbc6b0df856f94cbe6ec`.
+- Restart: PicoRunner Stop removed the listener; Start restored the app and preserved a favorite. The synthetic favorite was removed after the test.
+- Cleanup: stopped through PicoRunner; the publication-side listener check also found no listener. The managed folder and synthetic PDF evidence were retained; no uninstall is claimed.
+- Limits: Mac sanity covered only PDF-to-PDF merge and favorite persistence. Other conversions, workflow editor behavior, managed updates, and the proposed production static-export manifest were not tested on Mac. This is native development-server evidence, separate from the upstream production-manifest PR and its Linux results.
+
+Catalog level: **verified**, for the recorded native route and representative PDF merge workflow. All six runtime evidence kinds are present. Selection assessment: usefulness 2/2 (combine everyday documents), local-execution value 2/2 (browser PDF processing), setup fit 2/2 (successful native import), first-use clarity 2/2 (completed merge/download), maintenance 2/2 (the tested revision includes a 2026-10-14 upstream merge). Total 10/10. Its focused PDF workspace complements OmniTools' general list/file utilities; this does not establish all advertised PDF features.
+
+## Jotty excluded
+
+The canonical GitHub attempt did not reach launch within 5m15s and was stopped after discovery requested a manifest for multiple apps or services. A separate local-folder import of upstream main at `54a3e1122280b7792458aea60d202a99e47aba4d` passed note save/reload/restart sanity, but that is neither a successful canonical import nor verification of the develop-targeted manifest. Jotty remains outside this catalog change. Its disposable account and note were retained in the isolated test folder; no credentials or note contents are published here.
 
 ## Selection and scope
 
-These three apps were selected under the owner's request for five suitable repositories. OmniTools is included for everyday list, image and document tasks despite also containing developer utilities; its developer-oriented tools are not the editorial focus. Dienius serves personal day planning, and Web Chess serves chess practice. No logos or third-party screenshots are copied. Short README excerpts and license sources are pinned to the tested upstream commits. No deployment, merge, managed update, or unattended publisher run is part of this change.
+These four apps were selected under the owner's request for five suitable repositories. OmniTools is included for everyday list, image and document tasks despite also containing developer utilities; its developer-oriented tools are not the editorial focus. Dienius serves personal day planning, Web Chess serves chess practice, and PDFCraft serves document tasks. Jotty is excluded for the canonical-import blocker above, so this change does not claim five verified additions. No logos or third-party screenshots are copied. Short README excerpts and license sources are pinned to the tested upstream commits. No deployment, merge, managed update, or unattended publisher run is part of this change.
