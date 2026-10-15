@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-15T09:11:04.357Z",
+  "updatedAt": "2026-10-15T19:30:39.339Z",
   "apps": [
     {
       "id": "youbot",
@@ -69,6 +69,31 @@
     },
     {
       "id": "draw-io",
+      "average": null,
+      "count": 0
+    },
+    {
+      "id": "omni-tools",
+      "average": null,
+      "count": 0
+    },
+    {
+      "id": "dienius",
+      "average": null,
+      "count": 0
+    },
+    {
+      "id": "web-chess",
+      "average": null,
+      "count": 0
+    },
+    {
+      "id": "pdfcraft",
+      "average": null,
+      "count": 0
+    },
+    {
+      "id": "mochord",
       "average": null,
       "count": 0
     }
