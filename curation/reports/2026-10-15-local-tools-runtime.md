@@ -1,10 +1,12 @@
-# Four local apps: source and Mac sanity checks
+# Five local apps: source and Mac sanity checks
 
-Recorded on 2026-10-15. Test host: macOS 26.6.2 (25G83), Apple Silicon arm64; PicoRunner 0.3.14. These are canonical GitHub imports through PicoRunner native discovery, not tests of the proposed upstream production manifests. Each selected the root package and its existing `dev` script: `vite` for OmniTools, Dienius and Web Chess; `next dev --turbopack` for PDFCraft. Browser storage belongs to the browser profile and origin. The installed desktop fetches the current default branch, so a later installation can differ from the tested revision.
+Recorded on 2026-10-15. Test host: macOS 26.6.2 (25G83), Apple Silicon arm64; PicoRunner 0.3.14. These are canonical GitHub imports through PicoRunner native discovery, not tests of the proposed upstream production manifests. Each selected the root package and its existing `dev` script: `vite` for OmniTools, Dienius, Web Chess and MoChord; `next dev --turbopack` for PDFCraft. Browser storage belongs to the browser profile and origin. The installed desktop fetches the current default branch, so a later installation can differ from the tested revision.
 
 The initial supplied Mac evidence archive was 85,175 bytes, SHA-256 `bb8edbb074857129de8fe85bb48c93cd2bd83bc4f1f145bb10de87a33217bd1f`. All 17 included file hashes passed. Export bytes were inspected independently. This report omits local paths, registration identifiers, process IDs, raw registries, and browser backup contents. The initial before/after comparison reported all 15 pre-existing apps unchanged.
 
 The runtime owner supplied supplemental result files updated at 12:24:58 UTC: `chess-result.json` SHA-256 `81d2df82cf2f93f6f7cbeeabfc4f9487051785c443867010ed66c1b0bdae5a5d` and `pdfcraft-result.json` SHA-256 `c7f54c0bf1f9036e4d2d1fa9b394dc232dda458402fbfb9360ffb5239d729b73`. These supplements are separate from the earlier archive. Read-only checks independently matched both managed checkout HEADs to the source commits below and found no tracked changes. PDF page count and extracted text were independently compared with the two synthetic input PDFs. At 12:26:05 UTC the recorded Web Chess, PDFCraft and Jotty test ports had no listeners. Runtime testing remained owned by the separate Mac task; publication checks did not operate the UI or change its files/processes.
+
+The subsequent `mochord-result.json`, updated at 12:30:39 UTC, has SHA-256 `11a8020b101c931c89ca3b0caaa950d50f96413a1f2d14cb82ac29edc4df1a32`. Its managed checkout HEAD and unchanged tracked source were independently checked read-only. MoChord evidence describes an observed UI workflow and restart; no exported file is claimed. The runtime owner reported all five selected test apps stopped. These updates use the exact test-owned result files, rather than asserting verification of the separately supplied newer Library archive.
 
 ## OmniTools
 
@@ -57,10 +59,25 @@ Catalog level: **verified**, for the recorded native route and representative lo
 
 Catalog level: **verified**, for the recorded native route and representative PDF merge workflow. All six runtime evidence kinds are present. Selection assessment: usefulness 2/2 (combine everyday documents), local-execution value 2/2 (browser PDF processing), setup fit 2/2 (successful native import), first-use clarity 2/2 (completed merge/download), maintenance 2/2 (the tested revision includes a 2026-10-14 upstream merge). Total 10/10. Its focused PDF workspace complements OmniTools' general list/file utilities; this does not establish all advertised PDF features.
 
-## Jotty excluded
+## MoChord
+
+- Source: [Mocha-Yuan/MoChord](https://github.com/Mocha-Yuan/MoChord/tree/ce9d5240e19695f419721e391012759d0d14fe2e), MIT, version 0.2.4. Root package `mochord`; `dev` is exactly `vite`; no packageManager field. The default main branch still matched this tested commit at publication review.
+- Install: canonical GitHub URL, completed through PicoRunner in 11 seconds using npm and Node 24.21.0. No repair, generated manifest or tracked source changes.
+- Launch: native discovery selected the root `dev` script and PicoRunner ran `npm run dev -- --port <assigned-port>`.
+- Health: the Vite development server and chord workspace were reachable on IPv6 loopback `localhost`.
+- Smoke: in guest mode, entering Am produced A, C and E with intervals 1, b3 and 5. Guitar diagrams rendered with 12 voicings; saving a shape displayed confirmation that Am was saved to this browser. The notes and intervals agree with an A minor triad; the UI observations come from the runtime owner's supplied record.
+- Restart: PicoRunner Stop removed the listener; Start created a new process at the same origin. Recent chord history retained Am and C.
+- Cleanup: stopped through PicoRunner. The managed source and disposable browser-local chord state were retained; no uninstall or browser-state deletion is claimed.
+- Limits: only local chord generation, diagrams, save confirmation and history persistence were covered. DeepSeek credentials, Supabase accounts/cloud sync, microphone permission, external AI features, audio output, tuner behavior and managed updates were not tested. The proposed production-preview manifest is separate from this native Vite development-server route.
+
+Catalog level: **verified**, for the recorded native guest route and representative chord workflow. All six runtime evidence kinds are present. Selection assessment: usefulness 2/2 (guitar chord learning), local-execution value 2/2 (guest chord work without a service account), setup fit 2/2 (11-second native import), first-use clarity 2/2 (Am notes and diagrams), maintenance 1/2 (the reviewed commit is the current default branch, with its latest push on 2026-06-28). Total 9/10. This adds a focused music-learning activity to the collection.
+
+## Excluded candidates
 
 The canonical GitHub attempt did not reach launch within 5m15s and was stopped after discovery requested a manifest for multiple apps or services. A separate local-folder import of upstream main at `54a3e1122280b7792458aea60d202a99e47aba4d` passed note save/reload/restart sanity, but that is neither a successful canonical import nor verification of the develop-targeted manifest. Jotty remains outside this catalog change. Its disposable account and note were retained in the isolated test folder; no credentials or note contents are published here.
 
+Signal is also excluded; this change supplies no complete canonical PicoRunner runtime evidence for it.
+
 ## Selection and scope
 
-These four apps were selected under the owner's request for five suitable repositories. OmniTools is included for everyday list, image and document tasks despite also containing developer utilities; its developer-oriented tools are not the editorial focus. Dienius serves personal day planning, Web Chess serves chess practice, and PDFCraft serves document tasks. Jotty is excluded for the canonical-import blocker above, so this change does not claim five verified additions. No logos or third-party screenshots are copied. Short README excerpts and license sources are pinned to the tested upstream commits. No deployment, merge, managed update, or unattended publisher run is part of this change.
+These five apps were selected under the owner's request for five suitable repositories. OmniTools is included for everyday list, image and document tasks despite also containing developer utilities; its developer-oriented tools are not the editorial focus. Dienius serves personal day planning, Web Chess serves chess practice, PDFCraft serves document tasks, and MoChord serves guitar chord learning. No logos or third-party screenshots are copied. Short README excerpts and license sources are pinned to the tested upstream commits. No deployment, merge, managed update, or unattended publisher run is part of this change.
