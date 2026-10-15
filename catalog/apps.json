@@ -1146,6 +1146,292 @@
       },
       "stars": 8773,
       "starsUpdatedAt": "2026-10-15T09:11:08.521Z"
+    },
+    {
+      "id": "omni-tools",
+      "name": "OmniTools",
+      "description": "Sort lists and work with everyday files using a collection of browser-based tools.",
+      "category": "Productivity",
+      "tags": [
+        "Everyday utilities",
+        "Lists",
+        "Files"
+      ],
+      "repository": "https://github.com/iib0011/omni-tools",
+      "packageName": "omni-tools",
+      "preferredScript": "dev",
+      "accent": "#4f86a6",
+      "glyph": "OM",
+      "editorial": {
+        "audience": "consumer",
+        "reason": "Handle small list, image and document jobs in one locally hosted workspace.",
+        "bestFor": "Everyday list and file tasks",
+        "requirements": [
+          "PicoRunner on an Apple Silicon Mac; tested with version 0.3.14 on macOS 26.6.2",
+          "Internet access for the initial source and dependency download",
+          "Keep the same browser profile and local address for saved browser data; export backups before changing them",
+          "Managed updates were reported unavailable in the tested PicoRunner UI",
+          "Core sorting needs no account; some advanced tools fetch additional online resources",
+          "Native installation uses pnpm and changed its lockfile in the test checkout"
+        ],
+        "license": "MIT",
+        "licenseSource": "https://github.com/iib0011/omni-tools/blob/cf41a30dda37e1f33deeeb03f959295c249c2beb/LICENSE",
+        "copyright": "Copyright (c) 2024 Ibrahima Gaye Coulibaly"
+      },
+      "compatibility": {
+        "status": "verified",
+        "checkedAt": "2026-10-15",
+        "commit": "cf41a30dda37e1f33deeeb03f959295c249c2beb",
+        "platform": "macOS 26.6.2 (25G83), Apple Silicon arm64",
+        "launcherVersion": "0.3.14",
+        "launch": {
+          "packagePath": "package.json",
+          "packageName": "omni-tools",
+          "script": "dev",
+          "command": "vite",
+          "packageManager": null
+        },
+        "evidence": [
+          {
+            "kind": "source",
+            "source": "https://github.com/iib0011/omni-tools/blob/cf41a30dda37e1f33deeeb03f959295c249c2beb/package.json",
+            "summary": "Pinned root package declares omni-tools and dev: vite; packageManager is absent. The catalog uses native discovery, not an unmerged manifest."
+          },
+          {
+            "kind": "source",
+            "source": "https://github.com/iib0011/omni-tools/blob/cf41a30dda37e1f33deeeb03f959295c249c2beb/LICENSE",
+            "summary": "Pinned license text identifies MIT application code."
+          },
+          {
+            "kind": "install",
+            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "summary": "Canonical GitHub import completed through PicoRunner using Node 24.21.0 and pnpm; native discovery selected the root dev script. Its pnpm lockfile changed in the disposable checkout."
+          },
+          {
+            "kind": "launch",
+            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "summary": "PicoRunner launched the existing Vite dev script on an assigned port, without a manifest."
+          },
+          {
+            "kind": "health",
+            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "summary": "The managed IPv6 loopback listener and sorting UI were reachable at localhost; IPv4 was not bound."
+          },
+          {
+            "kind": "smoke",
+            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "summary": "Sorted and deduplicated a synthetic list; the downloaded output was independently checked as apple,kiwi,zebra."
+          },
+          {
+            "kind": "restart",
+            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "summary": "A Sort bookmark survived PicoRunner Stop/Start."
+          },
+          {
+            "kind": "cleanup",
+            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "summary": "Removed the synthetic bookmark and stopped the test app; the managed folder and registration were intentionally retained. No uninstall is claimed."
+          }
+        ]
+      },
+      "readme": {
+        "source": "https://github.com/iib0011/omni-tools/blob/cf41a30dda37e1f33deeeb03f959295c249c2beb/README.md",
+        "paragraphs": [
+          "Welcome to OmniTools, a self-hosted web app offering a variety of online tools to simplify everyday tasks."
+        ],
+        "features": []
+      }
+    },
+    {
+      "id": "dienius",
+      "name": "Dienius",
+      "description": "Plan a visible day, complete tasks, and export a backup of your plan.",
+      "category": "Productivity",
+      "tags": [
+        "Day planner",
+        "Tasks",
+        "Routines"
+      ],
+      "repository": "https://github.com/dovjonikas/dienius",
+      "packageName": "dienius",
+      "preferredScript": "dev",
+      "accent": "#9b774c",
+      "glyph": "DI",
+      "editorial": {
+        "audience": "consumer",
+        "reason": "Bring the day, recurring routines and tasks into one visible personal planner.",
+        "bestFor": "Personal day planning",
+        "requirements": [
+          "PicoRunner on an Apple Silicon Mac; tested with version 0.3.14 on macOS 26.6.2",
+          "Internet access for the initial source and dependency download",
+          "Keep the same browser profile and local address for saved browser data; export backups before changing them",
+          "Managed updates were reported unavailable in the tested PicoRunner UI",
+          "Optional cross-device sync is configured separately and was not tested"
+        ],
+        "license": "MIT",
+        "licenseSource": "https://github.com/dovjonikas/dienius/blob/3ad3e1d7fbfaf8bc34fea35f981a39117e3d0944/LICENSE",
+        "copyright": "Copyright (c) 2026 Dovydas Jonikas"
+      },
+      "compatibility": {
+        "status": "verified",
+        "checkedAt": "2026-10-15",
+        "commit": "3ad3e1d7fbfaf8bc34fea35f981a39117e3d0944",
+        "platform": "macOS 26.6.2 (25G83), Apple Silicon arm64",
+        "launcherVersion": "0.3.14",
+        "launch": {
+          "packagePath": "package.json",
+          "packageName": "dienius",
+          "script": "dev",
+          "command": "vite",
+          "packageManager": null
+        },
+        "evidence": [
+          {
+            "kind": "source",
+            "source": "https://github.com/dovjonikas/dienius/blob/3ad3e1d7fbfaf8bc34fea35f981a39117e3d0944/package.json",
+            "summary": "Pinned root package declares dienius and dev: vite; packageManager is absent. The catalog uses native discovery, not an unmerged manifest."
+          },
+          {
+            "kind": "source",
+            "source": "https://github.com/dovjonikas/dienius/blob/3ad3e1d7fbfaf8bc34fea35f981a39117e3d0944/LICENSE",
+            "summary": "Pinned license text identifies MIT application code."
+          },
+          {
+            "kind": "install",
+            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "summary": "Canonical GitHub import completed through PicoRunner using npm and Node 24.21.0; tracked source files remained unchanged."
+          },
+          {
+            "kind": "launch",
+            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "summary": "PicoRunner launched the existing root Vite dev script on an assigned port."
+          },
+          {
+            "kind": "health",
+            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "summary": "PicoRunner reported running after repeated readiness checks; the planner loaded at /dienius/ on IPv6 loopback localhost."
+          },
+          {
+            "kind": "smoke",
+            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "summary": "Created and completed a synthetic task; reload retained it, and independent JSON export inspection confirmed done:true."
+          },
+          {
+            "kind": "restart",
+            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "summary": "PicoRunner Stop removed the listener; Start restored the same origin and completed task."
+          },
+          {
+            "kind": "cleanup",
+            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "summary": "Deleted the synthetic task and stopped the test app. The managed folder and registration were intentionally retained; no uninstall is claimed."
+          }
+        ]
+      },
+      "readme": {
+        "source": "https://github.com/dovjonikas/dienius/blob/3ad3e1d7fbfaf8bc34fea35f981a39117e3d0944/README.md",
+        "paragraphs": [
+          "A day planner for a brain that needs the plan to be visible, or it stops existing."
+        ],
+        "features": []
+      }
+    },
+    {
+      "id": "web-chess",
+      "name": "Web Chess",
+      "description": "Play chess against local Stockfish and save or export your games.",
+      "category": "Learning",
+      "tags": [
+        "Chess",
+        "Stockfish",
+        "Practice"
+      ],
+      "repository": "https://github.com/Sir-Teo/web-chess",
+      "packageName": "web-chess",
+      "preferredScript": "dev",
+      "accent": "#698657",
+      "glyph": "WE",
+      "editorial": {
+        "audience": "consumer",
+        "reason": "Practice against a local chess engine and keep games for later study.",
+        "bestFor": "Chess practice and game review",
+        "requirements": [
+          "PicoRunner on an Apple Silicon Mac; tested with version 0.3.14 on macOS 26.6.2",
+          "Internet access for the initial source and dependency download",
+          "Keep the same browser profile and local address for saved browser data; export backups before changing them",
+          "Managed updates were reported unavailable in the tested PicoRunner UI",
+          "Local Stockfish needs no account or API key; optional online services have separate requirements",
+          "Restart persistence was not tested; keep PGN exports of games you want to retain"
+        ],
+        "license": "MIT",
+        "licenseSource": "https://github.com/Sir-Teo/web-chess/blob/80633718b9875a45ed8b925574d579265e6df212/LICENSE",
+        "copyright": "Copyright (c) 2026 Web Chess contributors",
+        "assetLicenses": [
+          {
+            "name": "Stockfish GPL-3.0",
+            "source": "https://github.com/Sir-Teo/web-chess/blob/80633718b9875a45ed8b925574d579265e6df212/public/engine/Copying.txt",
+            "summary": "The application LICENSE identifies bundled Stockfish engine assets as GPL-3.0; the app code is MIT."
+          }
+        ]
+      },
+      "compatibility": {
+        "status": "source-reviewed",
+        "checkedAt": "2026-10-15",
+        "commit": "80633718b9875a45ed8b925574d579265e6df212",
+        "platform": "macOS 26.6.2 (25G83), Apple Silicon arm64",
+        "launcherVersion": "0.3.14",
+        "launch": {
+          "packagePath": "package.json",
+          "packageName": "web-chess",
+          "script": "dev",
+          "command": "vite",
+          "packageManager": null
+        },
+        "evidence": [
+          {
+            "kind": "source",
+            "source": "https://github.com/Sir-Teo/web-chess/blob/80633718b9875a45ed8b925574d579265e6df212/package.json",
+            "summary": "Pinned root package declares web-chess and dev: vite; packageManager is absent. The catalog uses native discovery, not an unmerged manifest."
+          },
+          {
+            "kind": "source",
+            "source": "https://github.com/Sir-Teo/web-chess/blob/80633718b9875a45ed8b925574d579265e6df212/LICENSE",
+            "summary": "Pinned license text identifies MIT application code."
+          },
+          {
+            "kind": "install",
+            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "summary": "Canonical GitHub import completed through PicoRunner using npm; tracked source files remained unchanged."
+          },
+          {
+            "kind": "launch",
+            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "summary": "PicoRunner launched the existing root Vite dev script on an assigned port, without a manifest."
+          },
+          {
+            "kind": "health",
+            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "summary": "The chess UI and local Stockfish engine became ready on IPv6 loopback localhost."
+          },
+          {
+            "kind": "smoke",
+            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "summary": "Played e4 and received local Stockfish e5; exported PGN independently confirmed 1. e4 e5, and the two-ply game was saved. Restart persistence was not tested."
+          },
+          {
+            "kind": "cleanup",
+            "source": "https://github.com/bigmints/oven-web/blob/ea0ed3568d3d7c452ce46b5e4ed3543b03080aab/curation/reports/2026-10-15-local-tools-runtime.md",
+            "summary": "Stopped the test app and confirmed its listener disappeared. Managed folder and registration were retained."
+          }
+        ]
+      },
+      "readme": {
+        "source": "https://github.com/Sir-Teo/web-chess/blob/80633718b9875a45ed8b925574d579265e6df212/README.md",
+        "paragraphs": [
+          "A browser chess app for playing, importing, and reviewing games with Stockfish-powered analysis."
+        ],
+        "features": []
+      }
     }
   ]
 }
