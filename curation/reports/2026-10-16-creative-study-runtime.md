@@ -1,16 +1,16 @@
 # Canonical PicoRunner checks — 16 October 2026
 
-Five canonical GitHub imports were exercised through PicoRunner 0.3.14 on macOS 26.6.2 (25G83), Apple Silicon arm64. The runtime worker performed installation, native development-server launch, browser task checks, Stop/Start persistence checks and final Stop. These observations cover the recorded commits and native `dev` scripts. They do not verify the proposed production manifests, managed updates, every feature, or future upstream changes.
+Six candidate canonical GitHub imports were exercised through PicoRunner 0.3.14 on macOS 26.6.2 (25G83), Apple Silicon arm64. The runtime worker performed installation, native development-server launch, browser task checks, Stop/Start persistence checks and final Stop. These observations cover the recorded commits and native `dev` scripts. They do not verify the proposed production manifests, managed updates, every feature, or future upstream changes.
 
 The publication worker independently checked the supplied archive, all 87 archive/per-app SHA-256 assertions, exact package and license bytes against the recorded Git commits, SVG content, PNG dimensions and SQL structure. It did not repeat the desktop tests. Library evidence: `PicoRunner-Mac-validation-2026-10-16.zip`, version 0; archive SHA-256 `e00c532c1d6d46897e167b2f7b8a92ec9650f8e8a726681c4b52bfd39570f294`. Personal paths and local app identifiers are omitted here. Exported test data is synthetic.
 
 ## Catalog eligibility correction
 
-Four consumer apps are eligible in this draft: Tela, Shotcandy, Habit Tracker and Smart Study Timer. drawDB was selected by the assistant as a scouting fallback; the user did not select it. The earlier owner-selection assertion was incorrect.
+Five consumer apps are eligible in this draft: Tela, Shotcandy, Habit Tracker, Smart Study Timer and 汉字 Flashcards. drawDB was selected by the assistant as a scouting fallback; the user did not select it. The earlier owner-selection assertion was incorrect.
 
 The [current curator rule](https://github.com/bigmints/oven-web/blob/144ed0bc4bc5dee9687151ec3c363e0b7580e862/skills/oven-curator/SKILL.md) says: "Exclude developer tools, API clients, database designers, formatters, coding utilities, DevOps dashboards and homelab administration." It also says: "A user may choose an unusual app despite its score; record the tradeoff." That second sentence concerns scoring; it does not authorize an assistant-selected developer-tool fallback. The catalog contract requires `editorial.audience` to be `consumer`.
 
-The user's broad request to prioritize consumer apps and add five more does not explicitly override the database-designer exclusion. drawDB therefore remains outside the eligible catalog. Its successful runtime test is preserved below without asserting consumer fit. The fifth eligible addition remains outstanding.
+The user's broad request to prioritize consumer apps and add five more does not explicitly override the database-designer exclusion. drawDB therefore remains outside the eligible catalog. Its successful runtime test is preserved below without asserting consumer fit. 汉字 Flashcards is the eligible consumer replacement, with completed source, contribution and native runtime checks below.
 
 ## Selection assessment
 
@@ -22,13 +22,14 @@ Scores are curator judgments from 0–2 for usefulness, local value, setup fit, 
 | Shotcandy | 2, 2, 2, 2, 1 / 9 | Distinct screenshot styling and local export workflow; native setup and core task passed. Required automated-suite failures limit wider confidence. |
 | Habit Tracker | 2, 2, 2, 2, 1 / 9 | Clear everyday habit task, browser-owned records and straightforward setup; completed portfolio-demo maintenance caveat remains. |
 | Smart Study Timer | 2, 2, 2, 2, 1 / 9 | Clear focused-study workflow, local state and simple setup; small project's longer-term maintenance remains uncertain. |
+| 汉字 Flashcards | 2, 2, 2, 2, 1 / 9 | Focused Chinese practice, browser-local progress and simple setup; required checks pass, with small-project maintenance and undocumented data/favicon provenance caveats. |
 | drawDB | 2, 2, 2, 1, 2 / 9 | Useful local schema design and SQL export with active source maintenance; database knowledge is required. Developer-facing scouting fallback selected by the assistant; excluded from the eligible consumer catalog. |
 
 ## Shared limits and cleanup
 
-All five install jobs completed at attempt zero and recorded that the process survived repeated readiness checks. Browser access and page reload corroborated readiness. Process-level listener ownership was not independently proven in every case; specifically, Tela's `lsof` check found no listener while the UI showed running. No socket-binding claim follows from these observations.
+The original five install jobs completed at attempt zero and recorded that the process survived repeated readiness checks. Browser access and page reload corroborated readiness. Process-level listener ownership was not independently proven in every case; specifically, Tela's `lsof` check found no listener while the UI showed running. No socket-binding claim follows from these observations.
 
-All five test apps were stopped through PicoRunner after their checks. Managed sources and synthetic browser data were retained, not uninstalled or deleted. The final UI showed 21 installed apps and one pre-existing app running. All 16 previous entries remained, but previous state was not entirely unchanged: a stale list control briefly started a pre-existing app, which was immediately restored to stopped without document edits; a different pre-existing app's recorded port changed with no lifecycle/configuration action issued in this batch, and the cause is unknown. No credentials were created, notification permissions granted, global package-manager settings changed, or optional services provisioned.
+All original five test apps were stopped through PicoRunner after their checks. Managed sources and synthetic browser data were retained, not uninstalled or deleted. The final UI showed 21 installed apps and one pre-existing app running. All 16 previous entries remained, but previous state was not entirely unchanged: a stale list control briefly started a pre-existing app, which was immediately restored to stopped without document edits; a different pre-existing app's recorded port changed with no lifecycle/configuration action issued in this batch, and the cause is unknown. No credentials were created, notification permissions granted, global package-manager settings changed, or optional services provisioned.
 
 ## tela
 
@@ -121,3 +122,20 @@ Export `schema-export.sql`: 302 bytes, SHA-256 `c5e1358970c07e7d4b57946862023493
 
 Independent execution of the exported DDL in an isolated in-memory SQLite database created `pico_authors` and `pico_books` with `pico_books.author_id` referencing `pico_authors.id`; no external database was contacted. This database design tool was selected by the assistant during scouting, not named or explicitly approved by the user. Its runtime evidence is retained for reference, but it is excluded from the eligible consumer catalog pending a user decision to override that scope or selection of a qualifying replacement.
 
+
+## 汉字 Flashcards — eligible replacement
+
+Repository: https://github.com/janschupke/flashcards
+
+Tested commit: `f2b20038c5f2bdf99cf01efd08968ca85c009a88` on `master`. Root package `chinese`; `dev` is `vite`; packageManager is absent (null). MIT repository license, copyright (c) 2025 Jan Schupke. The bundled character dataset and favicon have no separately documented external provenance; this is not an independent clearance of third-party assets. No favicon or dataset asset is copied into the catalog.
+
+Library evidence: `PicoRunner-Flashcards-validation-2026-10-16.zip`, version 0, SHA-256 `0ebb57cd6591c873574dd385c6748596642d838204124d77ccb05d3f0093366e`. All 16 member hashes passed. Package, license, README, Vite configuration, character data and About source bytes match the exact upstream commit.
+
+- **Install:** Canonical URL import completed through PicoRunner 0.3.14 in 17 seconds at attempt zero. Bundled Node 24.21.0 was confirmed. Tracked source remained unchanged; only PicoRunner metadata was added, with no manual source patch.
+- **Launch:** Native discovery selected `npm run dev -- --port 20189`, the root Vite development server, distinct from the proposed production-preview manifest.
+- **Health:** Ready checks passed, the browser page was usable at `http://localhost:20189/`, and the managed listener was confirmed on IPv6 loopback `[::1]:20189`.
+- **Smoke:** The app displayed 点/點 with pinyin hint diǎn. Entering `dian` was accepted as correct, showing one answer out of one and 100% success; it advanced to 妈/媽, and History recorded the answer.
+- **Restart:** Native Stop removed the listener. Start created a new process, and a hard reload of `/history` retained the same answer. Statistics retained 点/點, diǎn, one correct answer, one attempt and 100.0%.
+- **Cleanup:** Stopped through PicoRunner and confirmed the listener absent. Synthetic answer/history and managed source were retained. No uninstall, browser-data deletion or existing-app lifecycle action was performed in this replacement check.
+
+Separate publication checks passed clean `npm ci` and the full required `npm run check`: knip, typecheck, 420 unit tests, coverage, lint, formatting, production build and 33 Playwright browser tests (2 upstream skips). Coverage: statements 90.55%, branches 83.3%, functions 91.54%, lines 91.73%; all exceeded required 80% thresholds. The existing circular-chunk build warning remains. An assigned-port IPv4 manifest command returned HTTP 200 for the page and eight built assets; its owned process was stopped and port confirmed closed. Schema and encoded badge checks passed. These tests do not establish production-manifest acceptance or managed updates through PicoRunner. External dictionary links and every adaptive-learning scenario were not exercised in the native sanity check.
