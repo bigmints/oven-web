@@ -4,6 +4,14 @@ Five canonical GitHub imports were exercised through PicoRunner 0.3.14 on macOS 
 
 The publication worker independently checked the supplied archive, all 87 archive/per-app SHA-256 assertions, exact package and license bytes against the recorded Git commits, SVG content, PNG dimensions and SQL structure. It did not repeat the desktop tests. Library evidence: `PicoRunner-Mac-validation-2026-10-16.zip`, version 0; archive SHA-256 `e00c532c1d6d46897e167b2f7b8a92ec9650f8e8a726681c4b52bfd39570f294`. Personal paths and local app identifiers are omitted here. Exported test data is synthetic.
 
+## Catalog eligibility correction
+
+Four consumer apps are eligible in this draft: Tela, Shotcandy, Habit Tracker and Smart Study Timer. drawDB was selected by the assistant as a scouting fallback; the user did not select it. The earlier owner-selection assertion was incorrect.
+
+The [current curator rule](https://github.com/bigmints/oven-web/blob/144ed0bc4bc5dee9687151ec3c363e0b7580e862/skills/oven-curator/SKILL.md) says: "Exclude developer tools, API clients, database designers, formatters, coding utilities, DevOps dashboards and homelab administration." It also says: "A user may choose an unusual app despite its score; record the tradeoff." That second sentence concerns scoring; it does not authorize an assistant-selected developer-tool fallback. The catalog contract requires `editorial.audience` to be `consumer`.
+
+The user's broad request to prioritize consumer apps and add five more does not explicitly override the database-designer exclusion. drawDB therefore remains outside the eligible catalog. Its successful runtime test is preserved below without asserting consumer fit. The fifth eligible addition remains outstanding.
+
 ## Selection assessment
 
 Scores are curator judgments from 0–2 for usefulness, local value, setup fit, first-use clarity and maintenance confidence, respectively; they are not performance measurements or guarantees.
@@ -14,7 +22,7 @@ Scores are curator judgments from 0–2 for usefulness, local value, setup fit, 
 | Shotcandy | 2, 2, 2, 2, 1 / 9 | Distinct screenshot styling and local export workflow; native setup and core task passed. Required automated-suite failures limit wider confidence. |
 | Habit Tracker | 2, 2, 2, 2, 1 / 9 | Clear everyday habit task, browser-owned records and straightforward setup; completed portfolio-demo maintenance caveat remains. |
 | Smart Study Timer | 2, 2, 2, 2, 1 / 9 | Clear focused-study workflow, local state and simple setup; small project's longer-term maintenance remains uncertain. |
-| drawDB | 2, 2, 2, 1, 2 / 9 | Useful local schema design and SQL export with active source maintenance; database knowledge is required. Owner-selected developer-tool exception. |
+| drawDB | 2, 2, 2, 1, 2 / 9 | Useful local schema design and SQL export with active source maintenance; database knowledge is required. Developer-facing scouting fallback selected by the assistant; excluded from the eligible consumer catalog. |
 
 ## Shared limits and cleanup
 
@@ -111,5 +119,5 @@ No backend, sharing, external database, production build or full automated suite
 
 Export `schema-export.sql`: 302 bytes, SHA-256 `c5e1358970c07e7d4b57946862023493b260f3dd29c7a4a6797db7d2daff8cfd`.
 
-Independent execution of the exported DDL in an isolated in-memory SQLite database created `pico_authors` and `pico_books` with `pico_books.author_id` referencing `pico_authors.id`; no external database was contacted. This database design tool was explicitly selected by the owner despite the usual consumer-only filter.
+Independent execution of the exported DDL in an isolated in-memory SQLite database created `pico_authors` and `pico_books` with `pico_books.author_id` referencing `pico_authors.id`; no external database was contacted. This database design tool was selected by the assistant during scouting, not named or explicitly approved by the user. Its runtime evidence is retained for reference, but it is excluded from the eligible consumer catalog pending a user decision to override that scope or selection of a qualifying replacement.
 
