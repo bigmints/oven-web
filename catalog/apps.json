@@ -47,7 +47,7 @@
         ]
       },
       "stars": 1,
-      "starsUpdatedAt": "2026-10-15T09:11:04.939Z",
+      "starsUpdatedAt": "2026-10-16T09:03:35.596Z",
       "readme": {
         "source": "https://github.com/bigmints/ubot/blob/3750b6fc29b7f15adf4d720836caf79042f9a883/README.md",
         "paragraphs": [
@@ -109,7 +109,7 @@
         }
       },
       "stars": 1,
-      "starsUpdatedAt": "2026-10-15T09:11:05.239Z",
+      "starsUpdatedAt": "2026-10-16T09:03:35.943Z",
       "readme": {
         "source": "https://github.com/bigmints/flourish/blob/bca2789a0fb6709f707fa938a2a2dd0a645a4a6f/README.md",
         "paragraphs": [
@@ -181,7 +181,7 @@
         }
       },
       "stars": 0,
-      "starsUpdatedAt": "2026-10-15T09:11:05.478Z",
+      "starsUpdatedAt": "2026-10-16T09:03:36.196Z",
       "readme": {
         "source": "https://github.com/bigmints/rise/blob/24a7b85744c14e4a9f866991500a571cb0e1af59/README.md",
         "paragraphs": [
@@ -265,8 +265,8 @@
           }
         ]
       },
-      "stars": 3889,
-      "starsUpdatedAt": "2026-10-15T09:11:05.727Z",
+      "stars": 3891,
+      "starsUpdatedAt": "2026-10-16T09:03:36.434Z",
       "readme": {
         "source": "https://github.com/remvze/moodist/blob/11c0be2200116a3635880d600fd6953899cc51a3/README.md",
         "paragraphs": [
@@ -338,8 +338,8 @@
           }
         ]
       },
-      "stars": 8924,
-      "starsUpdatedAt": "2026-10-15T09:11:05.975Z",
+      "stars": 8928,
+      "starsUpdatedAt": "2026-10-16T09:03:36.713Z",
       "readme": {
         "source": "https://github.com/xitanggg/open-resume/blob/4f8255a2c763479837f69f1dccf2a3338730cd79/README.md",
         "paragraphs": [
@@ -410,11 +410,11 @@
         ]
       },
       "stars": 8293,
-      "starsUpdatedAt": "2026-10-15T09:11:06.215Z",
+      "starsUpdatedAt": "2026-10-16T09:03:36.965Z",
       "readme": {
         "source": "https://github.com/joemccann/dillinger/blob/17010b79c18553cf9c1757c297e128f9b950c9be/README.md",
         "paragraphs": [
-          "A modern, cloud-native Markdown editor built on Next.js \u2014 designed for speed, focus, and seamless sync."
+          "A modern, cloud-native Markdown editor built on Next.js — designed for speed, focus, and seamless sync."
         ],
         "features": [
           "Monaco Editor (VS Code core)",
@@ -489,7 +489,7 @@
         ]
       },
       "stars": 296,
-      "starsUpdatedAt": "2026-10-15T09:11:06.479Z",
+      "starsUpdatedAt": "2026-10-16T09:03:37.196Z",
       "readme": {
         "source": "https://github.com/scratchfoundation/scratch-editor/blob/ce118023c9b1da401ac0612ab24e743c9ab5e7a1/README.md",
         "paragraphs": [
@@ -591,8 +591,8 @@
           "Inspect results immediately"
         ]
       },
-      "stars": 36122,
-      "starsUpdatedAt": "2026-10-15T09:11:06.711Z"
+      "stars": 36133,
+      "starsUpdatedAt": "2026-10-16T09:03:37.431Z"
     },
     {
       "id": "actual-budget",
@@ -682,8 +682,8 @@
           "Review spending plans"
         ]
       },
-      "stars": 29499,
-      "starsUpdatedAt": "2026-10-15T09:11:06.991Z"
+      "stars": 29532,
+      "starsUpdatedAt": "2026-10-16T09:03:37.678Z"
     },
     {
       "id": "memos",
@@ -773,8 +773,8 @@
           "Keep notes in local app storage"
         ]
       },
-      "stars": 63802,
-      "starsUpdatedAt": "2026-10-15T09:11:07.286Z"
+      "stars": 63834,
+      "starsUpdatedAt": "2026-10-16T09:03:37.903Z"
     },
     {
       "id": "audiobookshelf",
@@ -865,8 +865,8 @@
           "Keep library settings between launches"
         ]
       },
-      "stars": 14648,
-      "starsUpdatedAt": "2026-10-15T09:11:07.672Z"
+      "stars": 14663,
+      "starsUpdatedAt": "2026-10-16T09:03:38.179Z"
     },
     {
       "id": "navidrome",
@@ -957,8 +957,8 @@
           "Play music in the browser"
         ]
       },
-      "stars": 24172,
-      "starsUpdatedAt": "2026-10-15T09:11:08.031Z"
+      "stars": 24184,
+      "starsUpdatedAt": "2026-10-16T09:03:38.428Z"
     },
     {
       "id": "excalidraw",
@@ -1049,8 +1049,8 @@
           "Export drawings"
         ]
       },
-      "stars": 133900,
-      "starsUpdatedAt": "2026-10-15T09:11:08.267Z"
+      "stars": 133962,
+      "starsUpdatedAt": "2026-10-16T09:03:38.675Z"
     },
     {
       "id": "draw-io",
@@ -1144,8 +1144,8 @@
           "Save or export diagram files"
         ]
       },
-      "stars": 8773,
-      "starsUpdatedAt": "2026-10-15T09:11:08.521Z"
+      "stars": 8809,
+      "starsUpdatedAt": "2026-10-16T09:03:38.911Z"
     },
     {
       "id": "omni-tools",
@@ -1240,7 +1240,9 @@
           "Welcome to OmniTools, a self-hosted web app offering a variety of online tools to simplify everyday tasks."
         ],
         "features": []
-      }
+      },
+      "stars": 10321,
+      "starsUpdatedAt": "2026-10-16T09:03:39.124Z"
     },
     {
       "id": "dienius",
@@ -1334,7 +1336,9 @@
           "A day planner for a brain that needs the plan to be visible, or it stops existing."
         ],
         "features": []
-      }
+      },
+      "stars": 0,
+      "starsUpdatedAt": "2026-10-16T09:03:39.438Z"
     },
     {
       "id": "web-chess",
@@ -1436,7 +1440,9 @@
           "A browser chess app for playing, importing, and reviewing games with Stockfish-powered analysis."
         ],
         "features": []
-      }
+      },
+      "stars": 6,
+      "starsUpdatedAt": "2026-10-16T09:03:39.797Z"
     },
     {
       "id": "pdfcraft",
@@ -1533,7 +1539,9 @@
           "Combine multiple PDFs into one document",
           "Separate specific pages or divide by page ranges"
         ]
-      }
+      },
+      "stars": 9341,
+      "starsUpdatedAt": "2026-10-16T09:03:39.996Z"
     },
     {
       "id": "mochord",
@@ -1628,7 +1636,9 @@
           "Put chord inspiration, guitar voicings, real-time tuning, rhythm practice, and AI-powered arrangement in one focused workspace."
         ],
         "features": []
-      }
+      },
+      "stars": 111,
+      "starsUpdatedAt": "2026-10-16T09:03:40.203Z"
     },
     {
       "id": "tela",
