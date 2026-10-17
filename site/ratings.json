@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-16T09:03:35.146Z",
+  "updatedAt": "2026-10-17T07:03:35.446Z",
   "apps": [
     {
       "id": "youbot",
@@ -94,6 +94,31 @@
     },
     {
       "id": "mochord",
+      "average": null,
+      "count": 0
+    },
+    {
+      "id": "tela",
+      "average": null,
+      "count": 0
+    },
+    {
+      "id": "shotcandy",
+      "average": null,
+      "count": 0
+    },
+    {
+      "id": "habit-tracker",
+      "average": null,
+      "count": 0
+    },
+    {
+      "id": "smart-study-timer",
+      "average": null,
+      "count": 0
+    },
+    {
+      "id": "chinese-flashcards",
       "average": null,
       "count": 0
     }
