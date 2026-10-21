@@ -263,8 +263,10 @@ for (const showcase of document.querySelectorAll('[data-product-showcase]')) {
     };
     const tick = now => {
       frame = 0;
-      if (previous) elapsed = (elapsed + Math.min(now - previous, 100)) % DEMO_DURATION;
-      previous = now; draw(); frame = requestAnimationFrame(tick);
+      if (previous) elapsed = Math.min(elapsed + Math.min(now - previous, 100), DEMO_DURATION);
+      previous = now; draw();
+      if (elapsed >= DEMO_DURATION) { paused = true; updateToggle(); return; }
+      frame = requestAnimationFrame(tick);
     };
     const schedule = () => {
       cancelAnimationFrame(frame); frame = 0; previous = 0;
@@ -273,7 +275,7 @@ for (const showcase of document.querySelectorAll('[data-product-showcase]')) {
       if (playing) frame = requestAnimationFrame(tick);
     };
     const updateToggle = () => {
-      toggle.setAttribute('aria-label', paused ? 'Play animation' : 'Pause animation');
+      toggle.setAttribute('aria-label', elapsed >= DEMO_DURATION ? 'Replay animation' : paused ? 'Play animation' : 'Pause animation');
       toggle.firstElementChild.textContent = paused ? '▶' : 'Ⅱ'; schedule();
     };
     const jump = index => { elapsed = CHAPTER_STARTS[index]; draw(); updateToggle(); };
@@ -293,7 +295,10 @@ for (const showcase of document.querySelectorAll('[data-product-showcase]')) {
       event.preventDefault(); jump(Number(link.dataset.demoJump));
       showcase.querySelector('.product-preview').scrollIntoView({behavior: motion.matches ? 'instant' : 'smooth', block:'start'});
     });
-    toggle.hidden = false; toggle.addEventListener('click', () => { paused = !paused; updateToggle(); });
+    toggle.hidden = false; toggle.addEventListener('click', () => {
+      if (elapsed >= DEMO_DURATION) { elapsed = 0; draw(); }
+      paused = !paused; updateToggle();
+    });
     window.addEventListener('resize', positionPointer, {passive:true});
     document.addEventListener('visibilitychange', schedule);
     motion.addEventListener('change', () => { paused = motion.matches; updateToggle(); });

@@ -14,7 +14,6 @@ export const DEMO_STEPS = Object.freeze([
   {id:'waiting', duration:1000, chapter:1, title:'Waiting for Moodist', hint:'Checking that the app is ready.'},
   {id:'opening', duration:800, chapter:1, title:'Opening Moodist', hint:'The app is ready. Opening it for you.'},
   {id:'ready', duration:4000, chapter:2},
-  {id:'reset', duration:700, chapter:2},
 ]);
 export const DEMO_DURATION = DEMO_STEPS.reduce((sum, step) => sum + step.duration, 0);
 export const CHAPTER_STARTS = [0,1,2].map(chapter => {
@@ -22,7 +21,7 @@ export const CHAPTER_STARTS = [0,1,2].map(chapter => {
   for (const step of DEMO_STEPS) { if (step.chapter === chapter) return start; start += step.duration; }
 });
 export function demoFrameAt(time) {
-  let remaining = Number.isFinite(time) ? Math.max(0, time) % DEMO_DURATION : 0;
+  let remaining = Number.isFinite(time) ? Math.min(Math.max(0, time), DEMO_DURATION - 1) : 0;
   let index = 0;
   while (remaining >= DEMO_STEPS[index].duration) remaining -= DEMO_STEPS[index++].duration;
   const step = DEMO_STEPS[index];
@@ -35,6 +34,6 @@ export function demoFrameAt(time) {
   return {...step, progress, query, filtered: query === 'Moodist', installed, running,
     installedCount: installed ? 3 : 2, runningCount: running ? 1 : 0,
     completed: [index >= at('inspecting'), index >= at('starting'), index >= at('opening'), index >= at('ready')],
-    resetting: step.id === 'reset',
+    resetting: false,
   };
 }

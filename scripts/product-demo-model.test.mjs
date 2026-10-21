@@ -31,7 +31,7 @@ test('installation, startup, readiness and opening happen in order before the li
   }
 });
 
-test('chapter jumps have coherent snapshots and the next loop resets the example', () => {
+test('chapter jumps have coherent snapshots and playback holds the final screen', () => {
   assert.deepEqual(CHAPTER_STARTS.map(time => demoFrameAt(time).chapter), [0,1,2]);
   const initial = demoFrameAt(0), ready = demoFrameAt(CHAPTER_STARTS[2]);
   assert.equal(initial.installedCount, 2);
@@ -39,6 +39,7 @@ test('chapter jumps have coherent snapshots and the next loop resets the example
   assert.equal(ready.installedCount, 3);
   assert.equal(ready.runningCount, 1);
   assert.equal(ready.id, 'ready');
-  assert.equal(demoFrameAt(DEMO_DURATION - 1).resetting, true);
-  assert.deepEqual(demoFrameAt(DEMO_DURATION), initial);
+  assert.equal(demoFrameAt(DEMO_DURATION - 1).resetting, false);
+  assert.equal(demoFrameAt(DEMO_DURATION).id, 'ready');
+  assert.deepEqual(demoFrameAt(DEMO_DURATION * 3), demoFrameAt(DEMO_DURATION));
 });
