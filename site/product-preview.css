@@ -1,5 +1,5 @@
 /* Keep a desktop app viewport at every screen width; catalog updates cannot resize it. */
-.product-preview { container-type: inline-size; position: relative; width: 100%; max-width: 960px; aspect-ratio: 16 / 9; margin: 54px auto 0; border: 1px solid var(--color-border-strong); border-radius: 12px; overflow: hidden; background: #111414; box-shadow: 0 -14px 100px -50px #36d6c035, var(--shadow-panel); text-align: left; }
+.product-preview { container-type: inline-size; position: relative; width: 100%; max-width: 960px; aspect-ratio: 16 / 9; margin: 64px auto clamp(64px, 8vw, 112px); border: 1px solid var(--color-border-strong); border-radius: 16px; overflow: hidden; background: #111414; box-shadow: 0 28px 64px -36px #0008, var(--shadow-panel); text-align: left; }
 .product-preview-screen { position: absolute; inset: 0; display: grid; grid-template-rows: 4.2cqw minmax(0,1fr); font-size: 1.3cqw; line-height: 1.4; color: #edf2f1; }
 .product-preview-screen svg { width: 1.8cqw; height: 1.8cqw; flex-shrink: 0; }
 .product-tabs { display: flex; align-items: center; gap: 2cqw; background: #1a1c1d; border-bottom: 1px solid #303735; color: #9eaaa7; }
