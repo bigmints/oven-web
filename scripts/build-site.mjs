@@ -4,6 +4,7 @@ import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import { productPreview } from "./product-preview.mjs";
+import { homeArtwork, homeJourney, homeAssistance } from "./home-visuals.mjs";
 import { readmeSection, legalSection, projectActions, projectCredit } from "./app-details.mjs";
 import {
   validateCatalog,
@@ -55,7 +56,7 @@ const esc = (value) =>
   );
 const href = (value) => `${base}${value}`;
 const assetVersions = Object.fromEntries(await Promise.all(
-  ["tokens.css", "styles.css", "product-preview.css", "app.js", "analytics-ui.mjs", "badges/launch.svg"].map(async file => [
+  ["tokens.css", "styles.css", "product-preview.css", "home.css", "app.js", "analytics-ui.mjs", "badges/launch.svg"].map(async file => [
     file, createHash("sha256").update(await readFile(path.join(root, "site", file))).digest("hex").slice(0, 12),
   ]),
 ));
@@ -179,7 +180,7 @@ function layout(title, description, route, content) {
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)} · PicoRunner</title><meta name="description" content="${esc(description)}"><meta name="color-scheme" content="dark"><meta name="theme-color" content="#111414">
 <meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:type" content="website"><meta property="og:site_name" content="PicoRunner"><meta property="og:image" content="https://picorunner.com/brand/social-card.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="PicoRunner. Open-source apps. Open to everyone."><meta name="twitter:card" content="summary_large_image">${canonical}
-<link rel="icon" href="${href("favicon.svg")}" type="image/svg+xml"><link rel="preload" href="${href("fonts/Manrope-Variable.ttf")}" as="font" type="font/ttf" crossorigin><link rel="stylesheet" href="${assetHref("tokens.css")}"><link rel="stylesheet" href="${assetHref("styles.css")}"><link rel="stylesheet" href="${assetHref("product-preview.css")}"><script defer src="${assetHref("app.js")}"></script><script type="module" src="${assetHref("analytics-ui.mjs")}"></script></head>
+<link rel="icon" href="${href("favicon.svg")}" type="image/svg+xml"><link rel="preload" href="${href("fonts/Manrope-Variable.ttf")}" as="font" type="font/ttf" crossorigin><link rel="stylesheet" href="${assetHref("tokens.css")}"><link rel="stylesheet" href="${assetHref("styles.css")}"><link rel="stylesheet" href="${assetHref("product-preview.css")}">${route === "" ? `<link rel="stylesheet" href="${assetHref("home.css")}">` : ""}<script defer src="${assetHref("app.js")}"></script><script type="module" src="${assetHref("analytics-ui.mjs")}"></script></head>
 <body><a class="skip" href="#main">Skip to content</a>
 <header class="header"><div class="header-inner wrap">${brand()}<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="nav-toggle-text">Menu</span><span class="nav-toggle-icon" aria-hidden="true"><span></span><span></span></span></button><nav id="site-nav" aria-label="Main navigation">${navigationItems.map(([target, label]) => navigationLink(target, label, route)).join("")}<div class="nav-actions">${navigationLink("download/", 'Download <span aria-hidden="true">↗</span>', route, "button primary")}</div></nav></div></header>
 ${content}
@@ -203,7 +204,7 @@ const tiles = previewApps.map(app => appCard(app, true)).join("");
 const featuredIds = ["excalidraw", "memos", "actual-budget"];
 const featuredApps = featuredIds.map(id => catalog.apps.find(app => app.id === id))
   .filter(app => app?.compatibility.status === "verified" && app.editorial.audience === "consumer");
-const featuredTiles = featuredApps.map(app => appCard(app)).join("");
+const featuredTiles = featuredApps.map(app => appCard(app).replace('<div class="card-top">', `${homeArtwork(app.id)}<div class="card-top">`)).join("");
 const libraryPreview = productPreview(href);
 await writeFile(path.join(output, "index.html"), layout(
   "Discover open-source apps for everyday life.", config.description, "",
@@ -216,18 +217,17 @@ await writeFile(path.join(output, "index.html"), layout(
 
 
 
-  <section class="catalog featured-catalog wrap"><div class="section-heading"><div><span class="eyebrow">HANDPICKED APPS</span><h2>A few worth trying.</h2><p>Sketch an idea, capture a thought, or get your budget in order.</p></div><a class="text-link" href="${href("apps/")}">Browse all apps ${icon("arrow")}</a></div><div class="app-grid">${featuredTiles}</div><p class="catalog-note">There’s more to discover in the full app collection.</p></section>
-  <section class="how-section wrap" id="how-it-works"><div class="section-heading"><div><span class="eyebrow">FROM FOUND TO OPEN</span><h2>From a useful discovery to your next project.</h2></div></div><ol class="steps"><li><span>01</span><h3>Find your app</h3><p>Browse the collection, or bring a link to an app you found on GitHub.</p></li><li><span>02</span><h3>Install with PicoRunner</h3><p>Review the setup in PicoRunner, then choose to install.</p></li><li><span>03</span><h3>Put it to use</h3><p>Open your app from PicoRunner whenever you need it.</p></li></ol></section>
-  <section class="ai-assistance wrap" aria-labelledby="ai-assistance-heading"><div class="ai-assistance-copy"><span class="eyebrow">BUILT-IN AI ASSISTANCE</span><h2 id="ai-assistance-heading">Help with setup, when you need it.</h2><p>PicoRunner includes optional AI assistance for installation and launch issues. Choose <strong>Help me fix this</strong> to get help with your app’s setup.</p><p class="fine">Connect your AI provider in Settings to use assistance. A supported account or API key and an internet connection are required.</p></div><ol class="ai-assistance-steps"><li><span>01</span><div><h3>Understand the problem</h3><p>It checks the failed action, recent app activity, and relevant project files.</p></div></li><li><span>02</span><div><h3>Get help with the fix</h3><p>Small file-only fixes can run automatically. Downloads and setup commands ask for your approval.</p></div></li><li><span>03</span><div><h3>Try your app again</h3><p>PicoRunner checks whether the app can start after the changes and shows the result.</p></div></li></ol></section>
-  <section class="creator-section wrap" aria-labelledby="creator-heading"><div><span class="eyebrow">FOR THE PEOPLE WHO BUILD</span><h2 id="creator-heading">Your work deserves to be used.</h2><p>You bring the ideas and the code. PicoRunner helps more people discover what your app can do and get started with it.</p><p>Share a launch button from your README. Keep your project, credit, and community connected to the original source.</p><a class="button secondary" href="${href("developers/")}">Share your app ${icon("arrow")}</a></div><div class="creator-principles"><h3>The project comes first.</h3><p>Every catalog page points people back to the creators’ repository, presents the app in its own words, and makes its license visible.</p><h3>A little appreciation goes a long way.</h3><p>Found an app you love? Star the project on GitHub, share it with someone, or explore how to contribute.</p></div></section>
-  <section class="faq wrap"><div><span class="eyebrow">GOOD TO KNOW</span><h2>A few things you might be wondering.</h2></div><div class="faq-list">
+  <section class="catalog featured-catalog wrap"><div class="section-heading"><div><span class="eyebrow">HANDPICKED APPS</span><h2>Small finds.<br>Big possibilities.</h2><p>Sketch an idea, save a thought, or make a little room in your budget.</p></div><a class="text-link" href="${href("apps/")}">Browse all apps ${icon("arrow")}</a></div><div class="app-grid">${featuredTiles}</div><p class="catalog-note">There’s more to discover in the full app collection.</p></section>
+  ${homeJourney()}
+  ${homeAssistance()}
+  <section class="faq wrap"><div><span class="eyebrow">GOOD TO KNOW</span><h2>Before you get started.</h2></div><div class="faq-list">
     <details><summary>What does “open source” mean?</summary><p>These are apps whose code is shared publicly, so people can see how they work and, depending on the license, change or contribute to them. You don’t need to read that code to use the app. PicoRunner helps with the setup.</p></details>
     <details><summary>Do I need to know how to code?</summary><p>No. You choose an app and approve its setup in PicoRunner. It takes care of the installation steps it supports. Some apps need extra details, such as a login or an AI service key; check the app’s page before you start.</p></details>
     <details><summary>Is PicoRunner only for Mac?</summary><p>Mac is the first supported platform, not the limit of the project. More platforms are planned. Today’s download works on Apple Silicon Macs with macOS 13.5 or later.</p></details>
     <details><summary>Will every open-source project work?</summary><p>Compatibility depends on the project and its requirements. Each app page includes setup requirements and source or runtime evidence. You can also bring a public GitHub link or a local folder; projects outside the collection may need additional setup.</p></details>
     <details><summary>Where do my apps and data live?</summary><p>PicoRunner keeps your app library and downloads on your computer. Individual apps may use online services. Check their privacy details before adding personal information.</p></details>
   </div></section>
-  <section class="closing wrap"><img src="${href("brand/mark-teal.svg")}" width="48" height="48" alt=""><h2>Discover what someone made for you.</h2><p>Explore the collection, find a tool you’ll use, and get to know the people behind it.</p><div class="hero-actions"><a class="button primary" href="${href("apps/")}">Explore apps ${icon("arrow")}</a><a class="button secondary" href="${href("download/")}">Get PicoRunner ${icon("arrow")}</a></div></section>
+  <section class="closing wrap"><img src="${href("brand/mark-teal.svg")}" width="48" height="48" alt=""><h2>Make room for your<br>next good idea.</h2><p>Useful apps from independent creators.<br>Find one that makes your day a little better.</p><div class="hero-actions"><a class="button primary" href="${href("apps/")}">Explore apps ${icon("arrow")}</a><a class="button secondary" href="${href("download/")}">Get PicoRunner ${icon("arrow")}</a></div></section>
   </main>`));
 await mkdir(path.join(output, "apps"), { recursive: true });
 await writeFile(
@@ -470,7 +470,7 @@ await writeFile(
 );
 await writeFile(path.join(output, ".nojekyll"), "");
 await writeFile(path.join(output, "CNAME"), "picorunner.com\n");
-for (const file of ["tokens.css", "styles.css", "product-preview.css", "app.js", "favicon.svg", "analytics-core.mjs", "analytics-ui.mjs"])
+for (const file of ["tokens.css", "styles.css", "product-preview.css", "home.css", "app.js", "favicon.svg", "analytics-core.mjs", "analytics-ui.mjs"])
   await copyFile(path.join(root, "site", file), path.join(output, file));
 await cp(path.join(root, "site/fonts"), path.join(output, "fonts"), { recursive: true });
 await cp(path.join(root, "site/badges"), path.join(output, "badges"), { recursive: true });

@@ -303,6 +303,13 @@ for (const showcase of document.querySelectorAll('[data-product-showcase]')) {
       event.preventDefault(); jump(next); tabs[next].focus();
     });
   });
+  for (const link of document.querySelectorAll('[data-demo-jump]')) {
+    link.addEventListener('click', event => {
+      event.preventDefault();
+      jump(Number(link.dataset.demoJump));
+      showcase.querySelector('.product-preview').scrollIntoView({behavior: motion.matches ? 'instant' : 'smooth', block: 'start'});
+    });
+  }
   toggle.hidden = false;
   toggle.addEventListener('click', () => { paused = !paused; updateToggle(); });
   document.addEventListener('visibilitychange', schedule);
