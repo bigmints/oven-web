@@ -317,3 +317,58 @@ for (const showcase of document.querySelectorAll('[data-product-showcase]')) {
   new IntersectionObserver(entries => { visible = entries[0].isIntersecting; schedule(); }, {threshold: .25}).observe(showcase);
   draw(); updateToggle();
 }
+
+// Home illustrations reveal once; only visible artwork receives scroll-linked updates.
+if (document.querySelector('.pick-art') && 'IntersectionObserver' in window) {
+  const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const root = document.documentElement;
+  const revealTargets = [...document.querySelectorAll('.featured-catalog .section-heading, .featured-catalog .app-card, .journey-copy, .journey-path > article, .help-window, .help-copy, .faq > div, .closing')];
+  const artwork = [...document.querySelectorAll('.pick-art')];
+  const visibleArtwork = new Set();
+  let motionFrame = 0;
+  const paint = () => {
+    motionFrame = 0;
+    if (preference.matches || document.hidden) return;
+    for (const element of visibleArtwork) {
+      const rect = element.getBoundingClientRect();
+      const progress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / (window.innerHeight + rect.height)));
+      element.style.setProperty('--scroll-drift', ((progress - .5) * 18).toFixed(2));
+      element.style.setProperty('--scroll-tilt', ((progress - .5) * 3).toFixed(2));
+    }
+  };
+  const requestPaint = () => {
+    if (!preference.matches && !motionFrame && !document.hidden) motionFrame = requestAnimationFrame(paint);
+  };
+  const revealObserver = new IntersectionObserver(entries => {
+    for (const entry of entries) if (entry.isIntersecting) {
+      entry.target.classList.add('is-revealed');
+      revealObserver.unobserve(entry.target);
+    }
+  }, {threshold: .12, rootMargin: '0px 0px -32px 0px'});
+  revealTargets.forEach(element => {
+    element.setAttribute('data-home-reveal', '');
+    if (element.matches('.featured-catalog .app-card')) {
+      const index = [...element.parentElement.children].indexOf(element);
+      element.style.setProperty('--reveal-delay', (index * 80) + 'ms');
+    }
+    revealObserver.observe(element);
+  });
+  const artworkObserver = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) visibleArtwork.add(entry.target);
+      else visibleArtwork.delete(entry.target);
+    }
+    requestPaint();
+  }, {rootMargin: '60px 0px'});
+  artwork.forEach(element => artworkObserver.observe(element));
+  const syncPreference = () => {
+    root.classList.toggle('scroll-motion', !preference.matches);
+    if (preference.matches) { cancelAnimationFrame(motionFrame); motionFrame = 0; }
+    else requestPaint();
+  };
+  preference.addEventListener('change', syncPreference);
+  window.addEventListener('scroll', requestPaint, {passive: true});
+  window.addEventListener('resize', requestPaint, {passive: true});
+  document.addEventListener('visibilitychange', requestPaint);
+  syncPreference();
+}
