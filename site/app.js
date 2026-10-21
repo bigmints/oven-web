@@ -203,3 +203,156 @@ manifestTabs.forEach((tab, index) => {
     manifestTabs[next].focus();
   });
 });
+
+// A catalog walkthrough driven by explicit app states, with targets measured from the UI.
+for (const showcase of document.querySelectorAll('[data-product-showcase]')) {
+  import(showcase.dataset.demoModel).then(({demoFrameAt, DEMO_DURATION, CHAPTER_STARTS}) => {
+    const tabs = [...showcase.querySelectorAll('[role="tab"]')];
+    const panels = tabs.map(tab => document.getElementById(tab.getAttribute('aria-controls')));
+    const caption = showcase.querySelector('[data-product-caption]');
+    const toggle = showcase.querySelector('[data-product-autoplay]');
+    const cursor = showcase.querySelector('.product-demo-cursor');
+    const title = showcase.querySelector('[data-demo-title]');
+    const hint = showcase.querySelector('[data-demo-hint]');
+    const newApp = panels[2].querySelector('[data-demo-new-app]');
+    const runningStatus = newApp.querySelector('.product-status');
+    const startLabel = newApp.querySelector('.product-start');
+    const stats = panels[2].querySelectorAll('.product-stats b');
+    const filters = panels[2].querySelectorAll('.product-filters b');
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let paused = motion.matches, visible = false, elapsed = 0, previous = 0, selected = -1, frame = 0;
+    let lastStep = '', pointerTarget = null;
+    const positionPointer = () => {
+      if (!pointerTarget) { cursor.style.opacity = '0'; return; }
+      const target = pointerTarget.getBoundingClientRect();
+      const viewport = showcase.querySelector('.product-preview').getBoundingClientRect();
+      cursor.style.opacity = '1';
+      cursor.style.left = `${target.left + target.width / 2 - viewport.left}px`;
+      cursor.style.top = `${target.top + target.height / 2 - viewport.top}px`;
+    };
+    const draw = () => {
+      const state = demoFrameAt(elapsed);
+      if (selected !== state.chapter) {
+        selected = state.chapter;
+        tabs.forEach((tab, i) => {
+          tab.setAttribute('aria-selected', String(i === selected)); tab.tabIndex = i === selected ? 0 : -1;
+          panels[i].hidden = i !== selected;
+        });
+        caption.textContent = tabs[selected].dataset.description;
+      }
+      showcase.dataset.demoAction = state.id;
+      showcase.dataset.demoFiltered = String(state.filtered);
+      showcase.dataset.demoClick = String(Boolean(state.click));
+      showcase.dataset.demoResetting = String(state.resetting);
+      showcase.querySelectorAll('[data-demo-search]').forEach(node => { node.textContent = state.query || 'Search apps…'; });
+      if (state.title) { title.textContent = state.title; hint.textContent = state.hint; }
+      showcase.querySelectorAll('[data-demo-step]').forEach((node, i) => node.classList.toggle('complete', state.completed[i]));
+      newApp.hidden = !state.installed;
+      newApp.classList.toggle('demo-running', state.running);
+      runningStatus.textContent = state.running ? '● Running' : '● Stopped';
+      startLabel.lastChild.textContent = state.running ? ' Open' : ' Start';
+      stats[0].textContent = String(state.installedCount); stats[1].textContent = String(state.runningCount);
+      stats[1].nextElementSibling.textContent = state.runningCount === 1 ? 'active app' : 'active apps';
+      stats[2].textContent = state.running ? '—' : '0 MB';
+      filters[0].textContent = String(state.installedCount); filters[1].textContent = String(state.runningCount);
+      if (state.id !== lastStep) {
+        lastStep = state.id;
+        pointerTarget = state.target ? panels[selected].querySelector(`[data-demo-target="${state.target}"]`) : null;
+        positionPointer();
+      }
+    };
+    const tick = now => {
+      frame = 0;
+      if (previous) elapsed = (elapsed + Math.min(now - previous, 100)) % DEMO_DURATION;
+      previous = now; draw(); frame = requestAnimationFrame(tick);
+    };
+    const schedule = () => {
+      cancelAnimationFrame(frame); frame = 0; previous = 0;
+      const playing = !paused && visible && !document.hidden && !motion.matches;
+      showcase.classList.toggle('demo-playing', playing);
+      if (playing) frame = requestAnimationFrame(tick);
+    };
+    const updateToggle = () => {
+      toggle.setAttribute('aria-label', paused ? 'Play animation' : 'Pause animation');
+      toggle.firstElementChild.textContent = paused ? '▶' : 'Ⅱ'; schedule();
+    };
+    const jump = index => { elapsed = CHAPTER_STARTS[index]; draw(); updateToggle(); };
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => jump(index));
+      tab.addEventListener('keydown', event => {
+        let next;
+        if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+        else if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
+        else if (event.key === 'Home') next = 0;
+        else if (event.key === 'End') next = tabs.length - 1;
+        else return;
+        event.preventDefault(); jump(next); tabs[next].focus();
+      });
+    });
+    for (const link of document.querySelectorAll('[data-demo-jump]')) link.addEventListener('click', event => {
+      event.preventDefault(); jump(Number(link.dataset.demoJump));
+      showcase.querySelector('.product-preview').scrollIntoView({behavior: motion.matches ? 'instant' : 'smooth', block:'start'});
+    });
+    toggle.hidden = false; toggle.addEventListener('click', () => { paused = !paused; updateToggle(); });
+    window.addEventListener('resize', positionPointer, {passive:true});
+    document.addEventListener('visibilitychange', schedule);
+    motion.addEventListener('change', () => { paused = motion.matches; updateToggle(); });
+    new IntersectionObserver(entries => { visible = entries[0].isIntersecting; schedule(); }, {threshold:.25}).observe(showcase);
+    draw(); updateToggle();
+  }).catch(error => console.error('PicoRunner preview could not start:', error));
+}
+
+// Home illustrations reveal once; only visible artwork receives scroll-linked updates.
+if (document.querySelector('.pick-art') && 'IntersectionObserver' in window) {
+  const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const root = document.documentElement;
+  const revealTargets = [...document.querySelectorAll('.featured-catalog .section-heading, .featured-catalog .app-card, .journey-copy, .journey-path > article, .help-window, .help-copy, .faq > div, .closing')];
+  const artwork = [...document.querySelectorAll('.pick-art')];
+  const visibleArtwork = new Set();
+  let motionFrame = 0;
+  const paint = () => {
+    motionFrame = 0;
+    if (preference.matches || document.hidden) return;
+    for (const element of visibleArtwork) {
+      const rect = element.getBoundingClientRect();
+      const progress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / (window.innerHeight + rect.height)));
+      element.style.setProperty('--scroll-drift', ((progress - .5) * 18).toFixed(2));
+      element.style.setProperty('--scroll-tilt', ((progress - .5) * 3).toFixed(2));
+    }
+  };
+  const requestPaint = () => {
+    if (!preference.matches && !motionFrame && !document.hidden) motionFrame = requestAnimationFrame(paint);
+  };
+  const revealObserver = new IntersectionObserver(entries => {
+    for (const entry of entries) if (entry.isIntersecting) {
+      entry.target.classList.add('is-revealed');
+      revealObserver.unobserve(entry.target);
+    }
+  }, {threshold: .12, rootMargin: '0px 0px -32px 0px'});
+  revealTargets.forEach(element => {
+    element.setAttribute('data-home-reveal', '');
+    if (element.matches('.featured-catalog .app-card')) {
+      const index = [...element.parentElement.children].indexOf(element);
+      element.style.setProperty('--reveal-delay', (index * 80) + 'ms');
+    }
+    revealObserver.observe(element);
+  });
+  const artworkObserver = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) visibleArtwork.add(entry.target);
+      else visibleArtwork.delete(entry.target);
+    }
+    requestPaint();
+  }, {rootMargin: '60px 0px'});
+  artwork.forEach(element => artworkObserver.observe(element));
+  const syncPreference = () => {
+    root.classList.toggle('scroll-motion', !preference.matches);
+    if (preference.matches) { cancelAnimationFrame(motionFrame); motionFrame = 0; }
+    else requestPaint();
+  };
+  preference.addEventListener('change', syncPreference);
+  window.addEventListener('scroll', requestPaint, {passive: true});
+  window.addEventListener('resize', requestPaint, {passive: true});
+  document.addEventListener('visibilitychange', requestPaint);
+  syncPreference();
+}
