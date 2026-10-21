@@ -204,118 +204,102 @@ manifestTabs.forEach((tab, index) => {
   });
 });
 
-// An in-app walkthrough: search, click, prepare, then launch. No real apps are installed.
+// A catalog walkthrough driven by explicit app states, with targets measured from the UI.
 for (const showcase of document.querySelectorAll('[data-product-showcase]')) {
-  const tabs = [...showcase.querySelectorAll('[role="tab"]')];
-  const panels = tabs.map(tab => document.getElementById(tab.getAttribute('aria-controls')));
-  const caption = showcase.querySelector('[data-product-caption]');
-  const toggle = showcase.querySelector('[data-product-autoplay]');
-  const cursor = showcase.querySelector('.product-demo-cursor');
-  const search = showcase.querySelector('[data-demo-search]');
-  const input = showcase.querySelector('[data-demo-url]');
-  const progress = showcase.querySelector('[data-demo-progress]');
-  const library = panels[2];
-  const runningCard = library.querySelector('.product-card:last-child');
-  const runningStatus = runningCard.querySelector('.product-status');
-  const startLabel = runningCard.querySelector('.product-start');
-  const runningCount = library.querySelector('.product-stats > div:nth-child(2) b');
-  const memory = library.querySelector('.product-stats > div:nth-child(3) b');
-  const runningFilter = library.querySelector('.product-filters > span:nth-child(2) b');
-  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let paused = motion.matches;
-  let visible = false;
-  let elapsed = 0;
-  let previous = 0;
-  let selected = -1;
-  let frame = 0;
-  const duration = 18000;
-  const select = index => {
-    if (selected === index) return;
-    selected = index;
-    tabs.forEach((tab, i) => {
-      tab.setAttribute('aria-selected', String(i === index));
-      tab.tabIndex = i === index ? 0 : -1;
-      panels[i].hidden = i !== index;
+  import(showcase.dataset.demoModel).then(({demoFrameAt, DEMO_DURATION, CHAPTER_STARTS}) => {
+    const tabs = [...showcase.querySelectorAll('[role="tab"]')];
+    const panels = tabs.map(tab => document.getElementById(tab.getAttribute('aria-controls')));
+    const caption = showcase.querySelector('[data-product-caption]');
+    const toggle = showcase.querySelector('[data-product-autoplay]');
+    const cursor = showcase.querySelector('.product-demo-cursor');
+    const title = showcase.querySelector('[data-demo-title]');
+    const hint = showcase.querySelector('[data-demo-hint]');
+    const newApp = panels[2].querySelector('[data-demo-new-app]');
+    const runningStatus = newApp.querySelector('.product-status');
+    const startLabel = newApp.querySelector('.product-start');
+    const stats = panels[2].querySelectorAll('.product-stats b');
+    const filters = panels[2].querySelectorAll('.product-filters b');
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let paused = motion.matches, visible = false, elapsed = 0, previous = 0, selected = -1, frame = 0;
+    let lastStep = '', pointerTarget = null;
+    const positionPointer = () => {
+      if (!pointerTarget) { cursor.style.opacity = '0'; return; }
+      const target = pointerTarget.getBoundingClientRect();
+      const viewport = showcase.querySelector('.product-preview').getBoundingClientRect();
+      cursor.style.opacity = '1';
+      cursor.style.left = `${target.left + target.width / 2 - viewport.left}px`;
+      cursor.style.top = `${target.top + target.height / 2 - viewport.top}px`;
+    };
+    const draw = () => {
+      const state = demoFrameAt(elapsed);
+      if (selected !== state.chapter) {
+        selected = state.chapter;
+        tabs.forEach((tab, i) => {
+          tab.setAttribute('aria-selected', String(i === selected)); tab.tabIndex = i === selected ? 0 : -1;
+          panels[i].hidden = i !== selected;
+        });
+        caption.textContent = tabs[selected].dataset.description;
+      }
+      showcase.dataset.demoAction = state.id;
+      showcase.dataset.demoFiltered = String(state.filtered);
+      showcase.dataset.demoClick = String(Boolean(state.click));
+      showcase.dataset.demoResetting = String(state.resetting);
+      showcase.querySelectorAll('[data-demo-search]').forEach(node => { node.textContent = state.query || 'Search apps…'; });
+      if (state.title) { title.textContent = state.title; hint.textContent = state.hint; }
+      showcase.querySelectorAll('[data-demo-step]').forEach((node, i) => node.classList.toggle('complete', state.completed[i]));
+      newApp.hidden = !state.installed;
+      newApp.classList.toggle('demo-running', state.running);
+      runningStatus.textContent = state.running ? '● Running' : '● Stopped';
+      startLabel.lastChild.textContent = state.running ? ' Open' : ' Start';
+      stats[0].textContent = String(state.installedCount); stats[1].textContent = String(state.runningCount);
+      stats[1].nextElementSibling.textContent = state.runningCount === 1 ? 'active app' : 'active apps';
+      stats[2].textContent = state.running ? '—' : '0 MB';
+      filters[0].textContent = String(state.installedCount); filters[1].textContent = String(state.runningCount);
+      if (state.id !== lastStep) {
+        lastStep = state.id;
+        pointerTarget = state.target ? panels[selected].querySelector(`[data-demo-target="${state.target}"]`) : null;
+        positionPointer();
+      }
+    };
+    const tick = now => {
+      frame = 0;
+      if (previous) elapsed = (elapsed + Math.min(now - previous, 100)) % DEMO_DURATION;
+      previous = now; draw(); frame = requestAnimationFrame(tick);
+    };
+    const schedule = () => {
+      cancelAnimationFrame(frame); frame = 0; previous = 0;
+      const playing = !paused && visible && !document.hidden && !motion.matches;
+      showcase.classList.toggle('demo-playing', playing);
+      if (playing) frame = requestAnimationFrame(tick);
+    };
+    const updateToggle = () => {
+      toggle.setAttribute('aria-label', paused ? 'Play animation' : 'Pause animation');
+      toggle.firstElementChild.textContent = paused ? '▶' : 'Ⅱ'; schedule();
+    };
+    const jump = index => { elapsed = CHAPTER_STARTS[index]; draw(); updateToggle(); };
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => jump(index));
+      tab.addEventListener('keydown', event => {
+        let next;
+        if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+        else if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
+        else if (event.key === 'Home') next = 0;
+        else if (event.key === 'End') next = tabs.length - 1;
+        else return;
+        event.preventDefault(); jump(next); tabs[next].focus();
+      });
     });
-    caption.textContent = tabs[index].dataset.description;
-  };
-  const draw = () => {
-    const t = elapsed;
-    select(t < 5000 ? 0 : t < 11000 ? 1 : 2);
-    let action = 'browse', x = 93, y = 85;
-    if (t >= 1000 && t < 2800) { action = 'search'; x = 80; y = 32; }
-    else if (t >= 2800 && t < 5000) { action = t > 4250 ? 'choose-click' : 'choose'; x = 24; y = 81; }
-    else if (t >= 5000 && t < 7000) { action = 'type'; x = 49; y = 48; }
-    else if (t >= 7000 && t < 7800) { action = 'install-click'; x = 63; y = 64; }
-    else if (t >= 7800 && t < 11000) { action = 'installing'; x = 77; y = 76; }
-    else if (t >= 11000 && t < 12800) { action = 'library'; x = 92; y = 85; }
-    else if (t >= 12800 && t < 14000) { action = 'start-click'; x = 82; y = 81; }
-    else if (t >= 14000) { action = t > 15900 ? 'open-click' : 'running'; x = 82; y = 81; }
-    showcase.dataset.demoAction = action;
-    cursor.style.left = x + '%'; cursor.style.top = y + '%';
-    const query = 'Moodist';
-    search.textContent = t < 1400 ? 'Search apps…' : query.slice(0, Math.max(0, Math.floor((t - 1400) / 130)));
-    const url = 'https://github.com/remvze/moodist';
-    input.textContent = url.slice(0, Math.max(0, Math.floor((t - 5300) / 45)));
-    const preparation = Math.min(1, Math.max(0, (t - 7800) / 2800));
-    progress.style.width = (preparation * 100) + '%';
-    showcase.querySelectorAll('[data-demo-step]').forEach((step, i) => step.classList.toggle('complete', preparation >= (i + 1) / 3));
-    const running = t >= 14000;
-    runningCard.classList.toggle('demo-running', running);
-    runningStatus.textContent = running ? '● Running' : '● Stopped';
-    startLabel.lastChild.textContent = running ? ' Open' : ' Start';
-    runningCount.textContent = running ? '1' : '0';
-    runningFilter.textContent = running ? '1' : '0';
-    memory.textContent = running ? '128 MB' : '0 MB';
-    showcase.style.setProperty('--demo-progress', (t / duration * 100) + '%');
-  };
-  const tick = now => {
-    frame = 0;
-    if (previous) elapsed = (elapsed + Math.min(now - previous, 100)) % duration;
-    previous = now;
-    draw();
-    frame = requestAnimationFrame(tick);
-  };
-  const schedule = () => {
-    cancelAnimationFrame(frame); frame = 0; previous = 0;
-    const playing = !paused && visible && !document.hidden && !motion.matches;
-    showcase.classList.toggle('demo-playing', playing);
-    if (playing) frame = requestAnimationFrame(tick);
-  };
-  const updateToggle = () => {
-    toggle.setAttribute('aria-label', paused ? 'Play animation' : 'Pause animation');
-    toggle.firstElementChild.textContent = paused ? '▶' : 'Ⅱ';
-    schedule();
-  };
-  const jump = index => {
-    elapsed = [0, 5200, 11200][index];
+    for (const link of document.querySelectorAll('[data-demo-jump]')) link.addEventListener('click', event => {
+      event.preventDefault(); jump(Number(link.dataset.demoJump));
+      showcase.querySelector('.product-preview').scrollIntoView({behavior: motion.matches ? 'instant' : 'smooth', block:'start'});
+    });
+    toggle.hidden = false; toggle.addEventListener('click', () => { paused = !paused; updateToggle(); });
+    window.addEventListener('resize', positionPointer, {passive:true});
+    document.addEventListener('visibilitychange', schedule);
+    motion.addEventListener('change', () => { paused = motion.matches; updateToggle(); });
+    new IntersectionObserver(entries => { visible = entries[0].isIntersecting; schedule(); }, {threshold:.25}).observe(showcase);
     draw(); updateToggle();
-  };
-  tabs.forEach((tab, index) => {
-    tab.addEventListener('click', () => jump(index));
-    tab.addEventListener('keydown', event => {
-      let next;
-      if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
-      else if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
-      else if (event.key === 'Home') next = 0;
-      else if (event.key === 'End') next = tabs.length - 1;
-      else return;
-      event.preventDefault(); jump(next); tabs[next].focus();
-    });
-  });
-  for (const link of document.querySelectorAll('[data-demo-jump]')) {
-    link.addEventListener('click', event => {
-      event.preventDefault();
-      jump(Number(link.dataset.demoJump));
-      showcase.querySelector('.product-preview').scrollIntoView({behavior: motion.matches ? 'instant' : 'smooth', block: 'start'});
-    });
-  }
-  toggle.hidden = false;
-  toggle.addEventListener('click', () => { paused = !paused; updateToggle(); });
-  document.addEventListener('visibilitychange', schedule);
-  motion.addEventListener('change', () => { paused = motion.matches; updateToggle(); });
-  new IntersectionObserver(entries => { visible = entries[0].isIntersecting; schedule(); }, {threshold: .25}).observe(showcase);
-  draw(); updateToggle();
+  }).catch(error => console.error('PicoRunner preview could not start:', error));
 }
 
 // Home illustrations reveal once; only visible artwork receives scroll-linked updates.

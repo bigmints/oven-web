@@ -56,7 +56,7 @@ const esc = (value) =>
   );
 const href = (value) => `${base}${value}`;
 const assetVersions = Object.fromEntries(await Promise.all(
-  ["tokens.css", "styles.css", "product-preview.css", "home.css", "app.js", "analytics-ui.mjs", "badges/launch.svg"].map(async file => [
+  ["tokens.css", "styles.css", "product-preview.css", "home.css", "product-demo-model.mjs", "app.js", "analytics-ui.mjs", "badges/launch.svg"].map(async file => [
     file, createHash("sha256").update(await readFile(path.join(root, "site", file))).digest("hex").slice(0, 12),
   ]),
 ));
@@ -205,7 +205,7 @@ const featuredIds = ["excalidraw", "memos", "actual-budget"];
 const featuredApps = featuredIds.map(id => catalog.apps.find(app => app.id === id))
   .filter(app => app?.compatibility.status === "verified" && app.editorial.audience === "consumer");
 const featuredTiles = featuredApps.map(app => appCard(app).replace('<div class="card-top">', `${homeArtwork(app.id)}<div class="card-top">`)).join("");
-const libraryPreview = productPreview(href);
+const libraryPreview = productPreview(href, assetHref);
 await writeFile(path.join(output, "index.html"), layout(
   "Discover open-source apps for everyday life.", config.description, "",
   `<main id="main">
@@ -470,7 +470,7 @@ await writeFile(
 );
 await writeFile(path.join(output, ".nojekyll"), "");
 await writeFile(path.join(output, "CNAME"), "picorunner.com\n");
-for (const file of ["tokens.css", "styles.css", "product-preview.css", "home.css", "app.js", "favicon.svg", "analytics-core.mjs", "analytics-ui.mjs"])
+for (const file of ["tokens.css", "styles.css", "product-preview.css", "home.css", "product-demo-model.mjs", "app.js", "favicon.svg", "analytics-core.mjs", "analytics-ui.mjs"])
   await copyFile(path.join(root, "site", file), path.join(output, file));
 await cp(path.join(root, "site/fonts"), path.join(output, "fonts"), { recursive: true });
 await cp(path.join(root, "site/badges"), path.join(output, "badges"), { recursive: true });
