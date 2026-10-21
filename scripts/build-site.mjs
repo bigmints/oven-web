@@ -209,7 +209,7 @@ await writeFile(path.join(output, "index.html"), layout(
   <p class="hero-description">Build a resume, create an animation, or find your focus. Discover what independent creators are building. PicoRunner helps you install and open their apps on your Mac—no coding needed.</p>
   <div class="hero-actions"><a class="button primary" href="${href("apps/")}">Find an app ${icon("arrow")}</a><a class="button secondary" href="${href("download/")}">Get PicoRunner ${icon("arrow")}</a></div><p class="fine"><a href="${href("download/")}">For Apple Silicon Macs</a> · macOS 13.5 or later</p></div>
   ${libraryPreview}</section>
-  <section class="benefits wrap" aria-label="What PicoRunner does"><article>${icon("download")}<h2>Find something that fits.</h2><p>See what each app does, who’s behind it, and what you need to get started.</p></article><article>${icon("grid")}<h2>Let PicoRunner handle setup.</h2><p>Choose an app and review its setup. PicoRunner downloads dependencies and helps you get it running.</p></article><article>${icon("check")}<h2>Make room for good tools.</h2><p>Keep your apps in one place. Open them when you need them, and manage them from your Mac.</p></article></section>
+
 
 
   <section class="catalog featured-catalog wrap"><div class="section-heading"><div><span class="eyebrow">FIND SOMETHING USEFUL</span><h2>Open-source projects you can put to use.</h2><p>Explore tools for your next idea, your daily routine, or a moment of focus.</p></div><a class="text-link" href="${href("apps/")}">Browse all apps ${icon("arrow")}</a></div><div class="app-grid">${featuredTiles}</div><p class="catalog-note">Each app page introduces the project, its creators, and what you need to get started.</p></section>

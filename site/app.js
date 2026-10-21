@@ -203,3 +203,60 @@ manifestTabs.forEach((tab, index) => {
     manifestTabs[next].focus();
   });
 });
+
+// Preview carousel: visible-only autoplay, with persistent manual pause and reduced-motion support.
+for (const showcase of document.querySelectorAll('[data-product-showcase]')) {
+  const tabs = [...showcase.querySelectorAll('[role="tab"]')];
+  const panels = tabs.map(tab => document.getElementById(tab.getAttribute('aria-controls')));
+  const caption = showcase.querySelector('[data-product-caption]');
+  const toggle = showcase.querySelector('[data-product-autoplay]');
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let selected = 0;
+  let paused = motion.matches;
+  let visible = false;
+  let hovered = false;
+  let focused = false;
+  let timer;
+  const select = index => {
+    selected = index;
+    tabs.forEach((tab, i) => {
+      tab.setAttribute('aria-selected', String(i === index));
+      tab.tabIndex = i === index ? 0 : -1;
+      panels[i].hidden = i !== index;
+    });
+    caption.textContent = tabs[index].dataset.description;
+  };
+  const schedule = () => {
+    clearInterval(timer);
+    if (!paused && visible && !hovered && !focused && !document.hidden)
+      timer = setInterval(() => select((selected + 1) % tabs.length), 7000);
+  };
+  const updateToggle = () => {
+    toggle.setAttribute('aria-label', paused ? 'Play slideshow' : 'Pause slideshow');
+    toggle.firstElementChild.textContent = paused ? '▶' : 'Ⅱ';
+    schedule();
+  };
+  tabs.forEach((tab, index) => {
+    const choose = target => { paused = true; select(target); updateToggle(); };
+    tab.addEventListener('click', () => choose(index));
+    tab.addEventListener('keydown', event => {
+      let next;
+      if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+      else if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
+      else if (event.key === 'Home') next = 0;
+      else if (event.key === 'End') next = tabs.length - 1;
+      else return;
+      event.preventDefault(); choose(next); tabs[next].focus();
+    });
+  });
+  toggle.hidden = false;
+  toggle.addEventListener('click', () => { paused = !paused; updateToggle(); });
+  showcase.addEventListener('pointerenter', event => { if (event.pointerType === 'mouse') { hovered = true; schedule(); } });
+  showcase.addEventListener('pointerleave', () => { hovered = false; schedule(); });
+  showcase.addEventListener('focusin', () => { focused = true; schedule(); });
+  showcase.addEventListener('focusout', event => { if (!showcase.contains(event.relatedTarget)) { focused = false; schedule(); } });
+  document.addEventListener('visibilitychange', schedule);
+  motion.addEventListener('change', () => { if (motion.matches) { paused = true; updateToggle(); } });
+  new IntersectionObserver(entries => { visible = entries[0].isIntersecting; schedule(); }, {threshold: .25}).observe(showcase);
+  updateToggle();
+}

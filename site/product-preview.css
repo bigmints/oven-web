@@ -48,3 +48,49 @@
 .product-start { display: flex; align-items: center; justify-content: center; gap: .7cqw; margin-top: 1.7cqw; padding: .65cqw; border-radius: .5cqw; background: #282c2b; font-size: 1.2cqw; }
 .product-start svg { width: 1.2cqw; height: 1.2cqw; }
 @media (max-width: 760px) { .product-preview { margin-top: 36px; border-radius: 8px; } }
+
+/* One stage, three screens, with benefit pills controlling the presentation. */
+.product-showcase { padding-bottom: clamp(64px, 8vw, 112px); }
+.product-showcase .product-preview { margin-bottom: 30px; }
+.product-slide { position: absolute; inset: 0; }
+.product-slide:not([hidden]) { animation: product-slide-in .45s ease both; }
+@keyframes product-slide-in { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+.product-controls { display: flex; justify-content: center; align-items: center; gap: 12px; }
+.product-pills { display: flex; align-items: center; justify-content: center; gap: 10px; }
+.product-pill { display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 13px 18px; border: 1px solid var(--color-border); border-radius: 999px; color: var(--color-muted); background: var(--color-surface); font-size: 12px; font-weight: 550; line-height: 1.4; transition: color .2s, background .2s, border-color .2s; }
+.product-pill svg { width: 16px; height: 16px; flex: 0 0 auto; }
+.product-pill:hover { color: var(--color-text); border-color: var(--color-border-strong); }
+.product-pill[aria-selected="true"] { background: var(--color-accent-soft); border-color: var(--color-accent); color: var(--color-accent); }
+.product-autoplay { display: grid; place-items: center; flex-shrink: 0; width: 38px; height: 38px; border: 1px solid var(--color-border); border-radius: 50%; background: var(--color-surface); color: var(--color-muted); font-size: 15px; }
+.product-caption { max-width: 640px; min-height: 3.4em; margin: 20px auto 0; padding-inline: 8px; text-align: center; font-size: 13px; line-height: 1.7; }
+.product-discover .product-filters { margin-top: 3cqw; }
+.product-discover-tools { display: flex; align-items: center; gap: 1cqw; padding: 1.2cqw 0 2cqw; border-top: 1px solid #2c3231; margin-top: 1.4cqw; color: #a2aeab; font-size: 1.1cqw; }
+.product-discover-tools > span { padding: .6cqw 1cqw; border: 1px solid #2c3231; border-radius: .5cqw; }
+.product-discover-tools > span:last-child { margin-left: auto; color: #55c7b8; }
+.product-discover-card { padding: 0; overflow: hidden; }
+.product-category { display: flex; align-items: center; justify-content: space-between; padding: 1.2cqw; font-size: .8cqw; letter-spacing: .05cqw; color: #a2aeab; border-bottom: 1px solid #2c3231; }
+.product-category span { font-size: .85cqw; letter-spacing: 0; }
+.product-discover-title { display: flex; gap: 1cqw; align-items: center; margin: 1.7cqw 1.2cqw 1.2cqw; }
+.product-discover-title strong { font-size: 1.6cqw; font-weight: 550; }
+.product-discover-title small { display: block; font-size: 1cqw; color: #a2aeab; }
+.product-discover-card p { margin: 0 1.2cqw; font-size: 1.1cqw; line-height: 1.6; min-height: 5.3cqw; }
+.product-install { display: flex; align-items: center; justify-content: space-between; margin: 1.4cqw 1.2cqw; padding: .8cqw 1cqw; border-radius: .5cqw; background: #55c7b8; color: #082d28; font-size: 1.2cqw; font-weight: 550; }
+.product-setup-backdrop { position: absolute; inset: 0; filter: blur(3px); opacity: .28; }
+.product-install-overlay { position: absolute; inset: 0; display: grid; place-items: center; background: #070d0bcc; }
+.product-install-dialog { width: 47cqw; padding: 2.3cqw; border: 1px solid #3a403e; border-radius: 1.5cqw; background: #1b1e1e; box-shadow: 0 2cqw 7cqw #0006; color: #edf2f1; font-size: 1.3cqw; }
+.product-dialog-top { display: flex; justify-content: space-between; color: #a2aeab; margin-bottom: 2cqw; font-size: 1.2cqw; }
+.product-dialog-top > span:last-child { font-size: 1.8cqw; line-height: 1; }
+.product-install-dialog > strong { display: block; font-size: 2.2cqw; font-weight: 600; }
+.product-install-dialog p { margin: .7cqw 0 2.6cqw; color: #a2aeab; font-size: 1.25cqw; }
+.product-dialog-label { margin-bottom: .7cqw; font-size: 1.1cqw; }
+.product-dialog-input { padding: 1.1cqw; background: #232a28; border: 1px solid #36413d; border-radius: .7cqw; font-size: 1.1cqw; }
+.product-install-dialog > small { display: block; margin-top: 1cqw; color: #a2aeab; font-size: .95cqw; }
+.product-dialog-actions { display: flex; justify-content: flex-end; margin: 2cqw 0; }
+.product-dialog-actions span { padding: 1cqw 1.6cqw; background: #55c7b8; color: #082d28; font-size: 1.15cqw; border-radius: .6cqw; font-weight: 600; }
+.product-dialog-help { font-size: 1.1cqw; margin-bottom: 1.5cqw; }
+.product-dialog-footer { padding-top: 1.5cqw; border-top: 1px solid #2c3231; text-align: right; color: #a2aeab; font-size: 1.1cqw; }
+@media (max-width: 900px) { .product-controls { gap: 8px; } .product-pills { gap: 7px; } .product-pill { padding: 11px 13px; font-size: 11px; gap: 7px; } }
+@media (max-width: 660px) { .product-controls { align-items: flex-start; } .product-pills { flex-wrap: wrap; flex: 1; gap: 8px; } .product-pill { padding: 10px 13px; font-size: 11px; } .product-autoplay { width: 34px; height: 34px; margin-top: 2px; } .product-caption { margin-top: 18px; min-height: 5.1em; font-size: 12px; } .product-showcase .product-preview { margin-bottom: 24px; } }
+@media (prefers-reduced-motion: reduce) { .product-slide:not([hidden]) { animation: none; } .product-pill { transition: none; } }
+
+.product-tab-idle { border-bottom-color: transparent; background: transparent; color: #a2aeab; }
