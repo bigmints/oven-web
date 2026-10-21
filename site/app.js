@@ -204,20 +204,33 @@ manifestTabs.forEach((tab, index) => {
   });
 });
 
-// Preview carousel: visible-only autoplay, with persistent manual pause and reduced-motion support.
+// An in-app walkthrough: search, click, prepare, then launch. No real apps are installed.
 for (const showcase of document.querySelectorAll('[data-product-showcase]')) {
   const tabs = [...showcase.querySelectorAll('[role="tab"]')];
   const panels = tabs.map(tab => document.getElementById(tab.getAttribute('aria-controls')));
   const caption = showcase.querySelector('[data-product-caption]');
   const toggle = showcase.querySelector('[data-product-autoplay]');
+  const cursor = showcase.querySelector('.product-demo-cursor');
+  const search = showcase.querySelector('[data-demo-search]');
+  const input = showcase.querySelector('[data-demo-url]');
+  const progress = showcase.querySelector('[data-demo-progress]');
+  const library = panels[2];
+  const runningCard = library.querySelector('.product-card:last-child');
+  const runningStatus = runningCard.querySelector('.product-status');
+  const startLabel = runningCard.querySelector('.product-start');
+  const runningCount = library.querySelector('.product-stats > div:nth-child(2) b');
+  const memory = library.querySelector('.product-stats > div:nth-child(3) b');
+  const runningFilter = library.querySelector('.product-filters > span:nth-child(2) b');
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let selected = 0;
   let paused = motion.matches;
   let visible = false;
-  let hovered = false;
-  let focused = false;
-  let timer;
+  let elapsed = 0;
+  let previous = 0;
+  let selected = -1;
+  let frame = 0;
+  const duration = 18000;
   const select = index => {
+    if (selected === index) return;
     selected = index;
     tabs.forEach((tab, i) => {
       tab.setAttribute('aria-selected', String(i === index));
@@ -226,19 +239,60 @@ for (const showcase of document.querySelectorAll('[data-product-showcase]')) {
     });
     caption.textContent = tabs[index].dataset.description;
   };
+  const draw = () => {
+    const t = elapsed;
+    select(t < 5000 ? 0 : t < 11000 ? 1 : 2);
+    let action = 'browse', x = 93, y = 85;
+    if (t >= 1000 && t < 2800) { action = 'search'; x = 80; y = 32; }
+    else if (t >= 2800 && t < 5000) { action = t > 4250 ? 'choose-click' : 'choose'; x = 24; y = 81; }
+    else if (t >= 5000 && t < 7000) { action = 'type'; x = 49; y = 48; }
+    else if (t >= 7000 && t < 7800) { action = 'install-click'; x = 63; y = 64; }
+    else if (t >= 7800 && t < 11000) { action = 'installing'; x = 77; y = 76; }
+    else if (t >= 11000 && t < 12800) { action = 'library'; x = 92; y = 85; }
+    else if (t >= 12800 && t < 14000) { action = 'start-click'; x = 82; y = 81; }
+    else if (t >= 14000) { action = t > 15900 ? 'open-click' : 'running'; x = 82; y = 81; }
+    showcase.dataset.demoAction = action;
+    cursor.style.left = x + '%'; cursor.style.top = y + '%';
+    const query = 'Moodist';
+    search.textContent = t < 1400 ? 'Search apps…' : query.slice(0, Math.max(0, Math.floor((t - 1400) / 130)));
+    const url = 'https://github.com/remvze/moodist';
+    input.textContent = url.slice(0, Math.max(0, Math.floor((t - 5300) / 45)));
+    const preparation = Math.min(1, Math.max(0, (t - 7800) / 2800));
+    progress.style.width = (preparation * 100) + '%';
+    showcase.querySelectorAll('[data-demo-step]').forEach((step, i) => step.classList.toggle('complete', preparation >= (i + 1) / 3));
+    const running = t >= 14000;
+    runningCard.classList.toggle('demo-running', running);
+    runningStatus.textContent = running ? '● Running' : '● Stopped';
+    startLabel.lastChild.textContent = running ? ' Open' : ' Start';
+    runningCount.textContent = running ? '1' : '0';
+    runningFilter.textContent = running ? '1' : '0';
+    memory.textContent = running ? '128 MB' : '0 MB';
+    showcase.style.setProperty('--demo-progress', (t / duration * 100) + '%');
+  };
+  const tick = now => {
+    frame = 0;
+    if (previous) elapsed = (elapsed + Math.min(now - previous, 100)) % duration;
+    previous = now;
+    draw();
+    frame = requestAnimationFrame(tick);
+  };
   const schedule = () => {
-    clearInterval(timer);
-    if (!paused && visible && !hovered && !focused && !document.hidden)
-      timer = setInterval(() => select((selected + 1) % tabs.length), 7000);
+    cancelAnimationFrame(frame); frame = 0; previous = 0;
+    const playing = !paused && visible && !document.hidden && !motion.matches;
+    showcase.classList.toggle('demo-playing', playing);
+    if (playing) frame = requestAnimationFrame(tick);
   };
   const updateToggle = () => {
-    toggle.setAttribute('aria-label', paused ? 'Play slideshow' : 'Pause slideshow');
+    toggle.setAttribute('aria-label', paused ? 'Play animation' : 'Pause animation');
     toggle.firstElementChild.textContent = paused ? '▶' : 'Ⅱ';
     schedule();
   };
+  const jump = index => {
+    elapsed = [0, 5200, 11200][index];
+    draw(); updateToggle();
+  };
   tabs.forEach((tab, index) => {
-    const choose = target => { paused = true; select(target); updateToggle(); };
-    tab.addEventListener('click', () => choose(index));
+    tab.addEventListener('click', () => jump(index));
     tab.addEventListener('keydown', event => {
       let next;
       if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
@@ -246,17 +300,13 @@ for (const showcase of document.querySelectorAll('[data-product-showcase]')) {
       else if (event.key === 'Home') next = 0;
       else if (event.key === 'End') next = tabs.length - 1;
       else return;
-      event.preventDefault(); choose(next); tabs[next].focus();
+      event.preventDefault(); jump(next); tabs[next].focus();
     });
   });
   toggle.hidden = false;
   toggle.addEventListener('click', () => { paused = !paused; updateToggle(); });
-  showcase.addEventListener('pointerenter', event => { if (event.pointerType === 'mouse') { hovered = true; schedule(); } });
-  showcase.addEventListener('pointerleave', () => { hovered = false; schedule(); });
-  showcase.addEventListener('focusin', () => { focused = true; schedule(); });
-  showcase.addEventListener('focusout', event => { if (!showcase.contains(event.relatedTarget)) { focused = false; schedule(); } });
   document.addEventListener('visibilitychange', schedule);
-  motion.addEventListener('change', () => { if (motion.matches) { paused = true; updateToggle(); } });
+  motion.addEventListener('change', () => { paused = motion.matches; updateToggle(); });
   new IntersectionObserver(entries => { visible = entries[0].isIntersecting; schedule(); }, {threshold: .25}).observe(showcase);
-  updateToggle();
+  draw(); updateToggle();
 }
