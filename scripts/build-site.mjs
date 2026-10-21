@@ -3,6 +3,7 @@ import { existsSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
+import { productPreview } from "./product-preview.mjs";
 import { readmeSection, legalSection, projectActions, projectCredit } from "./app-details.mjs";
 import {
   validateCatalog,
@@ -54,7 +55,7 @@ const esc = (value) =>
   );
 const href = (value) => `${base}${value}`;
 const assetVersions = Object.fromEntries(await Promise.all(
-  ["tokens.css", "styles.css", "app.js", "analytics-ui.mjs", "badges/launch.svg"].map(async file => [
+  ["tokens.css", "styles.css", "product-preview.css", "app.js", "analytics-ui.mjs", "badges/launch.svg"].map(async file => [
     file, createHash("sha256").update(await readFile(path.join(root, "site", file))).digest("hex").slice(0, 12),
   ]),
 ));
@@ -178,7 +179,7 @@ function layout(title, description, route, content) {
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)} · PicoRunner</title><meta name="description" content="${esc(description)}"><meta name="color-scheme" content="dark"><meta name="theme-color" content="#111414">
 <meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:type" content="website"><meta property="og:site_name" content="PicoRunner"><meta property="og:image" content="https://picorunner.com/brand/social-card.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="PicoRunner. Open-source apps. Open to everyone."><meta name="twitter:card" content="summary_large_image">${canonical}
-<link rel="icon" href="${href("favicon.svg")}" type="image/svg+xml"><link rel="preload" href="${href("fonts/Manrope-Variable.ttf")}" as="font" type="font/ttf" crossorigin><link rel="stylesheet" href="${assetHref("tokens.css")}"><link rel="stylesheet" href="${assetHref("styles.css")}"><script defer src="${assetHref("app.js")}"></script><script type="module" src="${assetHref("analytics-ui.mjs")}"></script></head>
+<link rel="icon" href="${href("favicon.svg")}" type="image/svg+xml"><link rel="preload" href="${href("fonts/Manrope-Variable.ttf")}" as="font" type="font/ttf" crossorigin><link rel="stylesheet" href="${assetHref("tokens.css")}"><link rel="stylesheet" href="${assetHref("styles.css")}"><link rel="stylesheet" href="${assetHref("product-preview.css")}"><script defer src="${assetHref("app.js")}"></script><script type="module" src="${assetHref("analytics-ui.mjs")}"></script></head>
 <body><a class="skip" href="#main">Skip to content</a>
 <header class="header"><div class="header-inner wrap">${brand()}<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="nav-toggle-text">Menu</span><span class="nav-toggle-icon" aria-hidden="true"><span></span><span></span></span></button><nav id="site-nav" aria-label="Main navigation">${navigationItems.map(([target, label]) => navigationLink(target, label, route)).join("")}<div class="nav-actions">${navigationLink("download/", 'Download <span aria-hidden="true">↗</span>', route, "button primary")}</div></nav></div></header>
 ${content}
@@ -199,13 +200,7 @@ const appCard = (app, filterable = false) => `<article class="app-card" ${filter
 const previewApps = [...catalog.apps].sort((a,b) => (a.compatibility.status === "blocked") - (b.compatibility.status === "blocked"));
 const tiles = previewApps.map(app => appCard(app, true)).join("");
 const featuredTiles = previewApps.map(app => appCard(app)).join("");
-const libraryPreview = `<figure class="library-preview" aria-label="Illustration of the PicoRunner app library">
-  <div class="window-bar"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>PicoRunner</span><span class="preview-label">Library preview</span></div>
-  <div class="library-body"><div class="library-sidebar" aria-hidden="true"><div class="preview-brand"><img src="${href("brand/mark-teal.svg")}" width="25" height="25" alt="">Your space</div><span class="library-tab">${icon("grid")} Discover</span><span>${icon("folder")} My apps</span><div class="library-mac">${icon("mac")} On your computer</div></div>
-  <div class="library-main"><div class="library-heading"><div><span class="eyebrow">A LITTLE SOMETHING FOR EVERY DAY</span><h2>Find your next favourite.</h2></div>${icon("search")}</div>
-  <div class="library-cards">${previewApps.map(app => `<a class="library-card" href="${href(`apps/${app.id}/`)}" aria-label="Learn about ${esc(app.name)}"><strong>${esc(app.name)}</strong><span>${esc(app.category)}</span><span class="preview-link">Explore app ${icon("arrow")}</span></a>`).join("")}</div>
-  <div class="library-bottom"><span>${icon("check")} Choose what you install.</span><a href="${href("apps/")}">See all apps ${icon("arrow")}</a></div></div></div>
-</figure>`;
+const libraryPreview = productPreview(href);
 await writeFile(path.join(output, "index.html"), layout(
   "Discover open-source apps for everyday life.", config.description, "",
   `<main id="main">
@@ -471,7 +466,7 @@ await writeFile(
 );
 await writeFile(path.join(output, ".nojekyll"), "");
 await writeFile(path.join(output, "CNAME"), "picorunner.com\n");
-for (const file of ["tokens.css", "styles.css", "app.js", "favicon.svg", "analytics-core.mjs", "analytics-ui.mjs"])
+for (const file of ["tokens.css", "styles.css", "product-preview.css", "app.js", "favicon.svg", "analytics-core.mjs", "analytics-ui.mjs"])
   await copyFile(path.join(root, "site", file), path.join(output, file));
 await cp(path.join(root, "site/fonts"), path.join(output, "fonts"), { recursive: true });
 await cp(path.join(root, "site/badges"), path.join(output, "badges"), { recursive: true });
