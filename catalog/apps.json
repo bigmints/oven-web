@@ -47,7 +47,7 @@
         ]
       },
       "stars": 1,
-      "starsUpdatedAt": "2026-10-24T08:54:13.648Z",
+      "starsUpdatedAt": "2026-10-25T09:11:06.120Z",
       "readme": {
         "source": "https://github.com/bigmints/ubot/blob/3750b6fc29b7f15adf4d720836caf79042f9a883/README.md",
         "paragraphs": [
@@ -109,7 +109,7 @@
         }
       },
       "stars": 1,
-      "starsUpdatedAt": "2026-10-24T08:54:13.884Z",
+      "starsUpdatedAt": "2026-10-25T09:11:06.420Z",
       "readme": {
         "source": "https://github.com/bigmints/flourish/blob/bca2789a0fb6709f707fa938a2a2dd0a645a4a6f/README.md",
         "paragraphs": [
@@ -181,7 +181,7 @@
         }
       },
       "stars": 0,
-      "starsUpdatedAt": "2026-10-24T08:54:14.114Z",
+      "starsUpdatedAt": "2026-10-25T09:11:06.774Z",
       "readme": {
         "source": "https://github.com/bigmints/rise/blob/24a7b85744c14e4a9f866991500a571cb0e1af59/README.md",
         "paragraphs": [
@@ -265,8 +265,8 @@
           }
         ]
       },
-      "stars": 3902,
-      "starsUpdatedAt": "2026-10-24T08:54:14.281Z",
+      "stars": 3905,
+      "starsUpdatedAt": "2026-10-25T09:11:07.054Z",
       "readme": {
         "source": "https://github.com/remvze/moodist/blob/11c0be2200116a3635880d600fd6953899cc51a3/README.md",
         "paragraphs": [
@@ -338,8 +338,8 @@
           }
         ]
       },
-      "stars": 8947,
-      "starsUpdatedAt": "2026-10-24T08:54:14.506Z",
+      "stars": 8949,
+      "starsUpdatedAt": "2026-10-25T09:11:07.366Z",
       "readme": {
         "source": "https://github.com/xitanggg/open-resume/blob/4f8255a2c763479837f69f1dccf2a3338730cd79/README.md",
         "paragraphs": [
@@ -409,12 +409,12 @@
           }
         ]
       },
-      "stars": 8294,
-      "starsUpdatedAt": "2026-10-24T08:54:14.707Z",
+      "stars": 8293,
+      "starsUpdatedAt": "2026-10-25T09:11:07.618Z",
       "readme": {
         "source": "https://github.com/joemccann/dillinger/blob/17010b79c18553cf9c1757c297e128f9b950c9be/README.md",
         "paragraphs": [
-          "A modern, cloud-native Markdown editor built on Next.js \u2014 designed for speed, focus, and seamless sync."
+          "A modern, cloud-native Markdown editor built on Next.js — designed for speed, focus, and seamless sync."
         ],
         "features": [
           "Monaco Editor (VS Code core)",
@@ -489,7 +489,7 @@
         ]
       },
       "stars": 304,
-      "starsUpdatedAt": "2026-10-24T08:54:14.985Z",
+      "starsUpdatedAt": "2026-10-25T09:11:07.948Z",
       "readme": {
         "source": "https://github.com/scratchfoundation/scratch-editor/blob/ce118023c9b1da401ac0612ab24e743c9ab5e7a1/README.md",
         "paragraphs": [
@@ -591,8 +591,8 @@
           "Inspect results immediately"
         ]
       },
-      "stars": 36192,
-      "starsUpdatedAt": "2026-10-24T08:54:15.183Z"
+      "stars": 36200,
+      "starsUpdatedAt": "2026-10-25T09:11:08.217Z"
     },
     {
       "id": "actual-budget",
@@ -682,8 +682,8 @@
           "Review spending plans"
         ]
       },
-      "stars": 29714,
-      "starsUpdatedAt": "2026-10-24T08:54:15.405Z"
+      "stars": 29732,
+      "starsUpdatedAt": "2026-10-25T09:11:08.543Z"
     },
     {
       "id": "memos",
@@ -773,8 +773,8 @@
           "Keep notes in local app storage"
         ]
       },
-      "stars": 64031,
-      "starsUpdatedAt": "2026-10-24T08:54:15.641Z"
+      "stars": 64048,
+      "starsUpdatedAt": "2026-10-25T09:11:08.869Z"
     },
     {
       "id": "audiobookshelf",
@@ -865,8 +865,8 @@
           "Keep library settings between launches"
         ]
       },
-      "stars": 14760,
-      "starsUpdatedAt": "2026-10-24T08:54:15.886Z"
+      "stars": 14776,
+      "starsUpdatedAt": "2026-10-25T09:11:09.166Z"
     },
     {
       "id": "navidrome",
@@ -957,8 +957,8 @@
           "Play music in the browser"
         ]
       },
-      "stars": 24334,
-      "starsUpdatedAt": "2026-10-24T08:54:16.095Z"
+      "stars": 24349,
+      "starsUpdatedAt": "2026-10-25T09:11:09.464Z"
     },
     {
       "id": "excalidraw",
@@ -1049,8 +1049,8 @@
           "Export drawings"
         ]
       },
-      "stars": 134462,
-      "starsUpdatedAt": "2026-10-24T08:54:16.318Z"
+      "stars": 134512,
+      "starsUpdatedAt": "2026-10-25T09:11:09.755Z"
     },
     {
       "id": "draw-io",
@@ -1144,8 +1144,8 @@
           "Save or export diagram files"
         ]
       },
-      "stars": 8960,
-      "starsUpdatedAt": "2026-10-24T08:54:16.566Z"
+      "stars": 8972,
+      "starsUpdatedAt": "2026-10-25T09:11:10.061Z"
     },
     {
       "id": "omni-tools",
@@ -1241,8 +1241,8 @@
         ],
         "features": []
       },
-      "stars": 10394,
-      "starsUpdatedAt": "2026-10-24T08:54:16.770Z"
+      "stars": 10422,
+      "starsUpdatedAt": "2026-10-25T09:11:10.318Z"
     },
     {
       "id": "dienius",
@@ -1338,7 +1338,7 @@
         "features": []
       },
       "stars": 0,
-      "starsUpdatedAt": "2026-10-24T08:54:16.959Z"
+      "starsUpdatedAt": "2026-10-25T09:11:10.558Z"
     },
     {
       "id": "web-chess",
@@ -1442,7 +1442,7 @@
         "features": []
       },
       "stars": 6,
-      "starsUpdatedAt": "2026-10-24T08:54:17.173Z"
+      "starsUpdatedAt": "2026-10-25T09:11:11.035Z"
     },
     {
       "id": "pdfcraft",
@@ -1540,8 +1540,8 @@
           "Separate specific pages or divide by page ranges"
         ]
       },
-      "stars": 9644,
-      "starsUpdatedAt": "2026-10-24T08:54:17.375Z"
+      "stars": 9655,
+      "starsUpdatedAt": "2026-10-25T09:11:11.305Z"
     },
     {
       "id": "mochord",
@@ -1637,8 +1637,8 @@
         ],
         "features": []
       },
-      "stars": 104,
-      "starsUpdatedAt": "2026-10-24T08:54:17.635Z"
+      "stars": 116,
+      "starsUpdatedAt": "2026-10-25T09:11:11.630Z"
     },
     {
       "id": "tela",
@@ -1736,8 +1736,8 @@
         ],
         "features": []
       },
-      "stars": 25,
-      "starsUpdatedAt": "2026-10-24T08:54:17.895Z"
+      "stars": 26,
+      "starsUpdatedAt": "2026-10-25T09:11:11.961Z"
     },
     {
       "id": "shotcandy",
@@ -1835,7 +1835,7 @@
         "features": []
       },
       "stars": 54,
-      "starsUpdatedAt": "2026-10-24T08:54:18.157Z"
+      "starsUpdatedAt": "2026-10-25T09:11:12.258Z"
     },
     {
       "id": "habit-tracker",
@@ -1933,7 +1933,7 @@
         "features": []
       },
       "stars": 0,
-      "starsUpdatedAt": "2026-10-24T08:54:18.418Z"
+      "starsUpdatedAt": "2026-10-25T09:11:12.598Z"
     },
     {
       "id": "smart-study-timer",
@@ -2031,11 +2031,11 @@
         "features": []
       },
       "stars": 0,
-      "starsUpdatedAt": "2026-10-24T08:54:18.639Z"
+      "starsUpdatedAt": "2026-10-25T09:11:12.893Z"
     },
     {
       "id": "chinese-flashcards",
-      "name": "\u6c49\u5b57 Flashcards",
+      "name": "汉字 Flashcards",
       "description": "Practice Chinese characters by entering pinyin, with adaptive review and local progress history.",
       "category": "Learning",
       "tags": [
@@ -2047,7 +2047,7 @@
       "packageName": "chinese",
       "preferredScript": "dev",
       "accent": "#a75c48",
-      "glyph": "\u6c49\u5b57",
+      "glyph": "汉字",
       "editorial": {
         "audience": "consumer",
         "reason": "A focused Chinese-character practice tool with immediate feedback and review based on past answers.",
@@ -2108,7 +2108,7 @@
           {
             "kind": "smoke",
             "source": "https://github.com/bigmints/oven-web/blob/5a0c7dc5596d1b61987761059027be47ba3da6b6/curation/reports/2026-10-16-creative-study-runtime.md",
-            "summary": "Entered dian for \u70b9/\u9ede with hint di\u01cen; accepted as correct, one answer out of one and 100% success, advancing to \u5988/\u5abd. History recorded the answer."
+            "summary": "Entered dian for 点/點 with hint diǎn; accepted as correct, one answer out of one and 100% success, advancing to 妈/媽. History recorded the answer."
           },
           {
             "kind": "restart",
@@ -2130,7 +2130,7 @@
         "features": []
       },
       "stars": 1,
-      "starsUpdatedAt": "2026-10-24T08:54:18.848Z"
+      "starsUpdatedAt": "2026-10-25T09:11:13.383Z"
     },
     {
       "id": "filter",
@@ -2208,7 +2208,7 @@
           {
             "kind": "smoke",
             "source": "https://github.com/bigmints/oven-web/blob/76188079768fc6b221d1c6cbee8ff9f31294d41d/curation/reports/2026-10-18-filter-write0-runtime.md",
-            "summary": "Imported a synthetic 320\u00d7200 PNG, flipped horizontally, saved and downloaded a 3,366-byte PNG with verified dimensions and recorded SHA-256."
+            "summary": "Imported a synthetic 320×200 PNG, flipped horizontally, saved and downloaded a 3,366-byte PNG with verified dimensions and recorded SHA-256."
           },
           {
             "kind": "restart",
