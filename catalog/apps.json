@@ -2131,6 +2131,207 @@
       },
       "stars": 1,
       "starsUpdatedAt": "2026-10-30T10:53:26.962Z"
+    },
+    {
+      "id": "filter",
+      "name": "Filter",
+      "description": "Edit a photo in the browser, flip or adjust it, and download the result.",
+      "category": "Photos & media",
+      "tags": [
+        "Photos",
+        "Image editing",
+        "Export"
+      ],
+      "repository": "https://github.com/addyosmani/filter",
+      "packageName": "vite-react-typescript-starter",
+      "preferredScript": "dev",
+      "accent": "#6366f1",
+      "glyph": "FI",
+      "editorial": {
+        "audience": "consumer",
+        "reason": "A focused photo editor for quick adjustments and downloadable results without an account.",
+        "bestFor": "Quick edits to a local image before sharing or saving it.",
+        "requirements": [
+          "PicoRunner on an Apple Silicon Mac; tested with 0.3.14 on macOS 26.6.2.",
+          "Internet access for initial source and dependency download. Core image editing requires no account or backend.",
+          "Canonical native Vite launch listens on all interfaces and may be reachable on the local network; it is not loopback-only.",
+          "Editing state is session-only. Save and download results before stopping or reloading.",
+          "An initial leftover test process required scoped SIGTERM after transport loss; subsequent native stops removed the test listener normally.",
+          "Sanity covered synthetic PNG import, horizontal flip, save, download and restart. Proposed production-manifest acceptance and managed updates were not tested."
+        ],
+        "license": "MIT",
+        "licenseSource": "https://github.com/addyosmani/filter/blob/fc7acbb2b6373b0a437776284c72524f83819210/LICENSE",
+        "copyright": "Copyright (c) 2024 Addy Osmani",
+        "legalNotes": [
+          "Repository code is MIT-licensed. Individual bundled media/icon provenance was not independently cleared; no upstream logo or screenshot is copied into the catalog."
+        ]
+      },
+      "compatibility": {
+        "status": "verified",
+        "checkedAt": "2026-10-18",
+        "commit": "fc7acbb2b6373b0a437776284c72524f83819210",
+        "platform": "macOS 26.6.2, Apple Silicon arm64",
+        "launcherVersion": "0.3.14",
+        "launch": {
+          "packagePath": "package.json",
+          "packageName": "vite-react-typescript-starter",
+          "script": "dev",
+          "command": "vite",
+          "packageManager": null
+        },
+        "evidence": [
+          {
+            "kind": "source",
+            "source": "https://github.com/addyosmani/filter/blob/fc7acbb2b6373b0a437776284c72524f83819210/package.json",
+            "summary": "Pinned root package declares vite-react-typescript-starter and dev: vite; packageManager is absent (null). Runtime package bytes match this source."
+          },
+          {
+            "kind": "source",
+            "source": "https://github.com/addyosmani/filter/blob/fc7acbb2b6373b0a437776284c72524f83819210/LICENSE",
+            "summary": "MIT repository license with the stated copyright notice."
+          },
+          {
+            "kind": "install",
+            "source": "https://github.com/bigmints/oven-web/blob/76188079768fc6b221d1c6cbee8ff9f31294d41d/curation/reports/2026-10-18-filter-write0-runtime.md",
+            "summary": "Canonical import completed at attempt zero; saved installer job reports launch checks passed. Runtime root package bytes matched the pinned source."
+          },
+          {
+            "kind": "launch",
+            "source": "https://github.com/bigmints/oven-web/blob/76188079768fc6b221d1c6cbee8ff9f31294d41d/curation/reports/2026-10-18-filter-write0-runtime.md",
+            "summary": "Native discovery ran root npm dev: vite on its assigned port. Observed IPv6 wildcard binding exposes the development server beyond loopback."
+          },
+          {
+            "kind": "health",
+            "source": "https://github.com/bigmints/oven-web/blob/76188079768fc6b221d1c6cbee8ff9f31294d41d/curation/reports/2026-10-18-filter-write0-runtime.md",
+            "summary": "Installer readiness completed and the image editor was reachable for editing and reload; no independent numeric HTTP status is asserted."
+          },
+          {
+            "kind": "smoke",
+            "source": "https://github.com/bigmints/oven-web/blob/76188079768fc6b221d1c6cbee8ff9f31294d41d/curation/reports/2026-10-18-filter-write0-runtime.md",
+            "summary": "Imported a synthetic 320×200 PNG, flipped horizontally, saved and downloaded a 3,366-byte PNG with verified dimensions and recorded SHA-256."
+          },
+          {
+            "kind": "restart",
+            "source": "https://github.com/bigmints/oven-web/blob/76188079768fc6b221d1c6cbee8ff9f31294d41d/curation/reports/2026-10-18-filter-write0-runtime.md",
+            "summary": "Native Stop/Start and reload returned Select Image; in-memory edits did not persist, while the downloaded export remained. Assigned port changed."
+          },
+          {
+            "kind": "cleanup",
+            "source": "https://github.com/bigmints/oven-web/blob/76188079768fc6b221d1c6cbee8ff9f31294d41d/curation/reports/2026-10-18-filter-write0-runtime.md",
+            "summary": "An initial orphaned test process after transport loss required verified scoped SIGTERM. Subsequent native Stop cleared the listener; final listener absent. Source and export retained."
+          }
+        ]
+      },
+      "readme": {
+        "source": "https://github.com/addyosmani/filter/blob/fc7acbb2b6373b0a437776284c72524f83819210/README.md",
+        "paragraphs": [
+          "Filter is a powerful, web-based image editor built with React and TypeScript."
+        ],
+        "features": [
+          "Download edited images in various formats"
+        ]
+      }
+    },
+    {
+      "id": "write0",
+      "name": "write0",
+      "description": "Write and preview Markdown notes, keep documents in your browser, and export them as files.",
+      "category": "Productivity",
+      "tags": [
+        "Writing",
+        "Markdown",
+        "Notes"
+      ],
+      "repository": "https://github.com/omarbdri/write0",
+      "packageName": "write0",
+      "preferredScript": "dev",
+      "accent": "#59766a",
+      "glyph": "WR",
+      "editorial": {
+        "audience": "consumer",
+        "reason": "A distraction-free writing space with live Markdown preview and portable exports.",
+        "bestFor": "Drafting personal notes and short documents with browser-local storage.",
+        "requirements": [
+          "PicoRunner on an Apple Silicon Mac; tested with 0.3.14 on macOS 26.6.2.",
+          "Internet access for initial download and external Tailwind CDN JavaScript and Google Fonts; offline styling and zero network traffic are not promised.",
+          "Core writing needs no account or backend. Notes and preferences use browser localStorage outside the managed checkout; keep the same browser profile and local origin.",
+          "Canonical Vite launch was observed on IPv6 loopback.",
+          "Sanity covered a synthetic note, Markdown preview, Markdown download and retained text after native restart. PDF printing was not tested.",
+          "Native discovery used the development server. Proposed production-manifest acceptance and managed updates were not tested."
+        ],
+        "license": "MIT",
+        "licenseSource": "https://github.com/omarbdri/write0/blob/f21a90d01fc831e28d47e591afce93d78a51032e/LICENSE",
+        "copyright": "Copyright (c) 2025 write0 Contributors",
+        "legalNotes": [
+          "Repository code is MIT-licensed. Individual bundled media/icon provenance was not independently cleared; no upstream logo or screenshot is copied into the catalog."
+        ]
+      },
+      "compatibility": {
+        "status": "verified",
+        "checkedAt": "2026-10-18",
+        "commit": "f21a90d01fc831e28d47e591afce93d78a51032e",
+        "platform": "macOS 26.6.2, Apple Silicon arm64",
+        "launcherVersion": "0.3.14",
+        "launch": {
+          "packagePath": "package.json",
+          "packageName": "write0",
+          "script": "dev",
+          "command": "vite",
+          "packageManager": null
+        },
+        "evidence": [
+          {
+            "kind": "source",
+            "source": "https://github.com/omarbdri/write0/blob/f21a90d01fc831e28d47e591afce93d78a51032e/package.json",
+            "summary": "Pinned root package declares write0 and dev: vite; packageManager is absent (null). Runtime package bytes match this source."
+          },
+          {
+            "kind": "source",
+            "source": "https://github.com/omarbdri/write0/blob/f21a90d01fc831e28d47e591afce93d78a51032e/LICENSE",
+            "summary": "MIT repository license with the stated copyright notice."
+          },
+          {
+            "kind": "install",
+            "source": "https://github.com/bigmints/oven-web/blob/76188079768fc6b221d1c6cbee8ff9f31294d41d/curation/reports/2026-10-18-filter-write0-runtime.md",
+            "summary": "Canonical import completed at attempt zero in 19 seconds; actual checkout matched the pinned commit and installer launch checks passed."
+          },
+          {
+            "kind": "launch",
+            "source": "https://github.com/bigmints/oven-web/blob/76188079768fc6b221d1c6cbee8ff9f31294d41d/curation/reports/2026-10-18-filter-write0-runtime.md",
+            "summary": "Native discovery selected root npm dev: vite. The test listener was observed on IPv6 loopback."
+          },
+          {
+            "kind": "health",
+            "source": "https://github.com/bigmints/oven-web/blob/76188079768fc6b221d1c6cbee8ff9f31294d41d/curation/reports/2026-10-18-filter-write0-runtime.md",
+            "summary": "Installer readiness completed and editor/Markdown preview were reachable before and after restart; no independent numeric HTTP status is asserted."
+          },
+          {
+            "kind": "smoke",
+            "source": "https://github.com/bigmints/oven-web/blob/76188079768fc6b221d1c6cbee8ff9f31294d41d/curation/reports/2026-10-18-filter-write0-runtime.md",
+            "summary": "Created a synthetic 17-word note; preview rendered its heading and two bullets. Markdown export was 101 bytes with exact text and recorded SHA-256."
+          },
+          {
+            "kind": "restart",
+            "source": "https://github.com/bigmints/oven-web/blob/76188079768fc6b221d1c6cbee8ff9f31294d41d/curation/reports/2026-10-18-filter-write0-runtime.md",
+            "summary": "Native Stop removed the listener; Start and browser reload retained the active note, text and preview in the same browser context."
+          },
+          {
+            "kind": "cleanup",
+            "source": "https://github.com/bigmints/oven-web/blob/76188079768fc6b221d1c6cbee8ff9f31294d41d/curation/reports/2026-10-18-filter-write0-runtime.md",
+            "summary": "Final native Stop confirmed and listener absent. Browser-local synthetic note and export retained; no uninstall or data deletion claimed."
+          }
+        ]
+      },
+      "readme": {
+        "source": "https://github.com/omarbdri/write0/blob/f21a90d01fc831e28d47e591afce93d78a51032e/README.md",
+        "paragraphs": [
+          "Toggle a split-screen preview to see your markdown rendered in real-time."
+        ],
+        "features": [
+          "Markdown (.md): Standard format for cross-platform compatibility.",
+          "HTML: Web-ready content."
+        ]
+      }
     }
   ]
 }
