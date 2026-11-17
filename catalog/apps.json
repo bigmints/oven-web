@@ -47,7 +47,7 @@
         ]
       },
       "stars": 1,
-      "starsUpdatedAt": "2026-11-16T12:48:47.153Z",
+      "starsUpdatedAt": "2026-11-17T13:30:18.714Z",
       "readme": {
         "source": "https://github.com/bigmints/ubot/blob/3750b6fc29b7f15adf4d720836caf79042f9a883/README.md",
         "paragraphs": [
@@ -265,8 +265,8 @@
           }
         ]
       },
-      "stars": 3962,
-      "starsUpdatedAt": "2026-11-16T12:48:47.795Z",
+      "stars": 3964,
+      "starsUpdatedAt": "2026-11-17T13:30:19.642Z",
       "readme": {
         "source": "https://github.com/remvze/moodist/blob/11c0be2200116a3635880d600fd6953899cc51a3/README.md",
         "paragraphs": [
@@ -338,8 +338,8 @@
           }
         ]
       },
-      "stars": 8988,
-      "starsUpdatedAt": "2026-11-16T12:48:48.010Z",
+      "stars": 8989,
+      "starsUpdatedAt": "2026-11-17T13:30:19.963Z",
       "readme": {
         "source": "https://github.com/xitanggg/open-resume/blob/4f8255a2c763479837f69f1dccf2a3338730cd79/README.md",
         "paragraphs": [
@@ -410,7 +410,7 @@
         ]
       },
       "stars": 8302,
-      "starsUpdatedAt": "2026-11-16T12:48:48.230Z",
+      "starsUpdatedAt": "2026-11-17T13:30:20.336Z",
       "readme": {
         "source": "https://github.com/joemccann/dillinger/blob/17010b79c18553cf9c1757c297e128f9b950c9be/README.md",
         "paragraphs": [
@@ -488,8 +488,8 @@
           }
         ]
       },
-      "stars": 316,
-      "starsUpdatedAt": "2026-11-16T12:48:48.546Z",
+      "stars": 317,
+      "starsUpdatedAt": "2026-11-17T13:30:20.631Z",
       "readme": {
         "source": "https://github.com/scratchfoundation/scratch-editor/blob/ce118023c9b1da401ac0612ab24e743c9ab5e7a1/README.md",
         "paragraphs": [
@@ -591,8 +591,8 @@
           "Inspect results immediately"
         ]
       },
-      "stars": 36420,
-      "starsUpdatedAt": "2026-11-16T12:48:48.802Z"
+      "stars": 36428,
+      "starsUpdatedAt": "2026-11-17T13:30:20.956Z"
     },
     {
       "id": "actual-budget",
@@ -682,8 +682,8 @@
           "Review spending plans"
         ]
       },
-      "stars": 30297,
-      "starsUpdatedAt": "2026-11-16T12:48:49.290Z"
+      "stars": 30321,
+      "starsUpdatedAt": "2026-11-17T13:30:21.315Z"
     },
     {
       "id": "memos",
@@ -773,8 +773,8 @@
           "Keep notes in local app storage"
         ]
       },
-      "stars": 64502,
-      "starsUpdatedAt": "2026-11-16T12:48:49.568Z"
+      "stars": 64520,
+      "starsUpdatedAt": "2026-11-17T13:30:21.746Z"
     },
     {
       "id": "audiobookshelf",
@@ -865,8 +865,8 @@
           "Keep library settings between launches"
         ]
       },
-      "stars": 15025,
-      "starsUpdatedAt": "2026-11-16T12:48:49.824Z"
+      "stars": 15038,
+      "starsUpdatedAt": "2026-11-17T13:30:21.994Z"
     },
     {
       "id": "navidrome",
@@ -957,8 +957,8 @@
           "Play music in the browser"
         ]
       },
-      "stars": 24773,
-      "starsUpdatedAt": "2026-11-16T12:48:50.083Z"
+      "stars": 24803,
+      "starsUpdatedAt": "2026-11-17T13:30:22.527Z"
     },
     {
       "id": "excalidraw",
@@ -1049,8 +1049,8 @@
           "Export drawings"
         ]
       },
-      "stars": 135776,
-      "starsUpdatedAt": "2026-11-16T12:48:50.288Z"
+      "stars": 135854,
+      "starsUpdatedAt": "2026-11-17T13:30:22.855Z"
     },
     {
       "id": "draw-io",
@@ -1144,8 +1144,8 @@
           "Save or export diagram files"
         ]
       },
-      "stars": 9396,
-      "starsUpdatedAt": "2026-11-16T12:48:50.500Z"
+      "stars": 9434,
+      "starsUpdatedAt": "2026-11-17T13:30:23.252Z"
     },
     {
       "id": "omni-tools",
@@ -1241,8 +1241,8 @@
         ],
         "features": []
       },
-      "stars": 10730,
-      "starsUpdatedAt": "2026-11-16T12:48:50.703Z"
+      "stars": 10741,
+      "starsUpdatedAt": "2026-11-17T13:30:23.637Z"
     },
     {
       "id": "dienius",
@@ -1338,7 +1338,7 @@
         "features": []
       },
       "stars": 0,
-      "starsUpdatedAt": "2026-11-16T12:48:50.987Z"
+      "starsUpdatedAt": "2026-11-17T13:30:23.973Z"
     },
     {
       "id": "web-chess",
@@ -1442,7 +1442,7 @@
         "features": []
       },
       "stars": 6,
-      "starsUpdatedAt": "2026-11-16T12:48:51.188Z"
+      "starsUpdatedAt": "2026-11-17T13:30:24.296Z"
     },
     {
       "id": "pdfcraft",
@@ -1540,8 +1540,8 @@
           "Separate specific pages or divide by page ranges"
         ]
       },
-      "stars": 9852,
-      "starsUpdatedAt": "2026-11-16T12:48:51.403Z"
+      "stars": 9851,
+      "starsUpdatedAt": "2026-11-17T13:30:24.632Z"
     },
     {
       "id": "mochord",
@@ -1638,7 +1638,7 @@
         "features": []
       },
       "stars": 200,
-      "starsUpdatedAt": "2026-11-16T12:48:51.629Z"
+      "starsUpdatedAt": "2026-11-17T13:30:24.892Z"
     },
     {
       "id": "tela",
@@ -1737,7 +1737,7 @@
         "features": []
       },
       "stars": 30,
-      "starsUpdatedAt": "2026-11-16T12:48:51.914Z"
+      "starsUpdatedAt": "2026-11-17T13:30:25.237Z"
     },
     {
       "id": "shotcandy",
@@ -1835,7 +1835,7 @@
         "features": []
       },
       "stars": 63,
-      "starsUpdatedAt": "2026-11-16T12:48:52.216Z"
+      "starsUpdatedAt": "2026-11-17T13:30:25.518Z"
     },
     {
       "id": "habit-tracker",
@@ -1933,7 +1933,7 @@
         "features": []
       },
       "stars": 0,
-      "starsUpdatedAt": "2026-11-16T12:48:52.534Z"
+      "starsUpdatedAt": "2026-11-17T13:30:25.851Z"
     },
     {
       "id": "smart-study-timer",
@@ -2031,7 +2031,7 @@
         "features": []
       },
       "stars": 0,
-      "starsUpdatedAt": "2026-11-16T12:48:52.820Z"
+      "starsUpdatedAt": "2026-11-17T13:30:26.215Z"
     },
     {
       "id": "chinese-flashcards",
@@ -2130,7 +2130,7 @@
         "features": []
       },
       "stars": 1,
-      "starsUpdatedAt": "2026-11-16T12:48:53.053Z"
+      "starsUpdatedAt": "2026-11-17T13:30:26.584Z"
     }
   ]
 }
